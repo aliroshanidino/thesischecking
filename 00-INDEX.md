@@ -45,7 +45,8 @@
 | [`19-thesis-structure-plan.md`](19-thesis-structure-plan.md) | **طرح ساختار پایان‌نامه (۹ فصل)**، ۲۴ ضعف و ۱۱ خانوادهٔ شتاب‌دهی، نگاشت فصل ۱ قبلی به فصل‌های جدید، و مطالب بدون منبع |
 | [`20-core-idea-narrative.md`](20-core-idea-narrative.md) | **ایدهٔ اصلی تز به روایت پژوهشگر:** دستگاه لبه به‌جای برون‌سپاری، ODIN و time-multiplexing، چهار جزء آسیب‌پذیر، سه فاز (H‑ASIZH، GateScan، BioVision) و فاز آسیب‌پذیری |
 | [`21-literature-review-database.md`](21-literature-review-database.md) | **پایگاه مرور ادبیات:** ۶ دسته (A شتاب‌دهندهٔ بینایی، B شتاب‌دهندهٔ مقاوم، C نورومورفیک، D تحمل خطای SNN، E ابزار FI، F بینایی اسپایکی)، ماتریس جایگاه، پیوندهای جست‌وجو |
-| [`22-thesis-deck-outline-draft.md`](22-thesis-deck-outline-draft.md) | پیش‌نویس طرح ۲۸ تا ۳۰ اسلاید تز |
+| [`22-thesis-deck-outline-draft.md`](22-thesis-deck-outline-draft.md) | طرح نهایی **دک اسلاید تز (۳۸ اسلاید)** و منشأ هر اسلاید |
+| [`deliverables/thesis_progress_deck.pptx`](deliverables/thesis_progress_deck.pptx) | **خروجی:** دک اسلاید تز (به‌همراه PDF)؛ ساخته‌شده با `tools/build_thesis_deck.py` |
 
 ## ۳. نقشهٔ ذهنی یک‌خطی
 ```

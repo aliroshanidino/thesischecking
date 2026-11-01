@@ -1,8 +1,58 @@
-# 22 — پیش‌نویس طرح اسلایدهای تز (۲۸ اسلاید)
+# 22 — دک اسلاید تز: طرح نهایی (۳۸ اسلاید) و پیش‌نویس اولیه
 
 > **وضعیت:** پیش‌نویس. ترتیب نهایی پس از رسیدن **دک تز مبنا** با آن تطبیق داده می‌شود. ظاهر اسلایدها از **دک سمینار** (`originals/seminar_H-ASIZH_Roshani.pptx`) و **دک مقاله** (هنوز نرسیده) گرفته می‌شود.
 > **زبان دک:** انگلیسی، مثل سمینار.
 > **منابع محتوا:** یادداشت‌های `01` تا `21`.
+
+
+## نسخهٔ ساخته‌شده (2026-11-01): `deliverables/thesis_progress_deck.pptx` و `.pdf`
+
+**مبنای ساخت:**
+- **روند:** از دک تز مبنا (پایان‌نامهٔ GAP، Younesi، شریف، ۳۳ اسلاید). ترتیب: مقدمه (پیش‌زمینه، اهمیت، اهداف) ← مرور ادبیات با جدول مقایسه ← روش ← نتایج ← جمع‌بندی ← مراجع ← مقالات پژوهشی ← تشکر. این دک متعلق به شخص دیگری است و در مخزن گذاشته **نشده**.
+- **ظاهر:** از دک مقالهٔ H‑ASIZH (`originals/H-ASIZH_paper_slides.pptx`). همان نوار ناوبری، رنگ‌ها و فونت Palatino. اسلایدهای روش و نتایج H‑ASIZH مستقیماً از همان دک بازاستفاده شدند.
+- **اسکریپت تولید:** `tools/build_thesis_deck.py`.
+
+| # | اسلاید | منشأ |
+|---|---|---|
+| 1 | عنوان (M.Sc. Thesis، عنوان رسمی، دو استاد راهنما) | دک مقاله، ویرایش‌شده |
+| 2 | Outline | دک مقاله، ویرایش‌شده |
+| 3 | جداکنندهٔ 01 Introduction | دک مقاله |
+| 4 | Where Should Intelligence Live? (نردبان پیوستار و فرض پنهان) | جدید |
+| 5 | Why Offloading Fails Safety-Critical Vision (۸ گروه) | جدید |
+| 6 | Our Anchor: Build the Extreme-Edge Device (دو دست‌آویز، جدول توان، چرا اسپایک) | جدید |
+| 7 | Inside a Time-Multiplexed SNN Accelerator: Who Can Fail? | جدید، با شکل SA1/SA0 دک مقاله |
+| 8 | Research Gaps (G1 تا G6) | جدید |
+| 9 | Research Questions and Contributions (Q0 تا Q6؛ C1 تا C5) | جدید |
+| 10 | جداکنندهٔ 02 | دک مقاله |
+| 11 | Accelerators for Vision (دسته‌های A و B) | جدید |
+| 12 | Neuromorphic Processors and Neuron Cores (دستهٔ C) | جدید |
+| 13 | Fault Tolerance in SNN Hardware, Layer by Layer (دستهٔ D) | جدید |
+| 14 | Fault-Injection and Reliability Tools (دستهٔ E) | جدید |
+| 15 | Bio-Inspired Spiking Vision Systems (دستهٔ F) | جدید |
+| 16 | Where This Thesis Stands (ماتریس جایگاه) | جدید |
+| 17 | جداکنندهٔ 03 (پنج گام) | دک مقاله، ویرایش‌شده |
+| 18 | Methodology: Three Phases, One Device | جدید |
+| 19 تا 22 | Phase 1: کنترل‌گر، لیاپانوف، ریزمعماری، سخت‌سازی صفحهٔ کنترل | دک مقاله |
+| 23 | Phase 2 · From GLFI to GateScan | جدید |
+| 24 | Phase 3 · BioVision-SNN Architecture | جدید |
+| 25 | Phase 3 · Hardware-Aware Retina and Learning | جدید |
+| 26 | جداکنندهٔ 04 | دک مقاله |
+| 27 تا 30 | PPA، توزیع پیامد خطا، RFoM، یادگیری روی تراشه | دک مقاله |
+| 31 | BioVision-SNN: Results So Far (فاز ۰ و ۱) | جدید |
+| 32 | جداکنندهٔ 05 | جدید |
+| 33 | Conclusion | جدید |
+| 34 | Future Work | دک مقاله، ویرایش‌شده |
+| 35 | Research Articles and Artefacts | جدید |
+| 36 | References (I) [1–53] | دک مقاله |
+| 37 | References (II) [54–107] | جدید |
+| 38 | Thank you | دک مقاله |
+
+**قرارداد مراجع:**
+- شماره‌های ۱ تا ۵۳ همان فهرست دک مقاله‌اند، تا ارجاع اسلایدهای بازاستفاده‌شده درست بماند.
+- مراجع تازه از ۵۴ شروع می‌شوند.
+- مشخصات کامل چند مرجع بررسی‌نشده است (NeuFT، Suh 2023، Sterpone 2023، FORTALESA). در متن مرجع با توصیف یا DOI آمده‌اند و پیش از ارائه باید کامل شوند.
+
+## پیش‌نویس اولیه
 
 | # | بخش | عنوان اسلاید (EN) | محتوا و منبع |
 |---|---|---|---|
