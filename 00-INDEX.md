@@ -42,6 +42,7 @@
 | [`16-biovision-phase1-report.md`](16-biovision-phase1-report.md) | **BioVision:** گزارش فاز ۱ (پیش‌نویس) — شبیه‌ساز لگاریتمی، شکست کف H‑ASIZH در S1، نتایج و ناوردایی، خطاها |
 | [`17-biovision-results-csv.md`](17-biovision-results-csv.md) | **BioVision:** تحلیل `results_all.csv` و تطبیق ۱۴ عدد گزارش (همه برابر) |
 | [`18-working-conventions.md`](18-working-conventions.md) | قرارداد کاری: خروجی‌ها، ورودی‌ها، نکتهٔ CLAUDE.md |
+| [`19-thesis-structure-plan.md`](19-thesis-structure-plan.md) | **طرح ساختار پایان‌نامه (۹ فصل)**، ۲۴ ضعف و ۱۱ خانوادهٔ شتاب‌دهی، نگاشت فصل ۱ قبلی به فصل‌های جدید، و مطالب بدون منبع |
 
 ## ۳. نقشهٔ ذهنی یک‌خطی
 ```
