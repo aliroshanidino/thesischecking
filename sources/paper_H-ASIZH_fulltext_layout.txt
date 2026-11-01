@@ -1,0 +1,923 @@
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                        1
+
+
+
+
+ H-ASIZH: A Highly Reliable Digital Izhikevich
+Neuron Core Using Adaptive Threshold Control for
+             Fault Accommodation
+                               Ali Roshani, Mohsen Ansari, and Mohammad T. Manzuri Shalmani
+
+
+
+   Abstract—Spiking neural nets scale to microwatts by encoding                   Permanent defects are the concern. Manufacturing defects,
+information in the timing of events but silicon makes them                     electromigration, dielectric breakdown, hot-carrier injection
+vulnerable to permanent stuck-at faults that trap a neuron in                  and radiation damage cause a node to short to ground (SA0) or
+either a firing infinity (digital seizure) or a zero and TMR solves
+that at 3.40× the cells. This work pushes fault tolerance inside               to the supply (SA1) [9]. In a spiking neuron the two polarities
+the neuron: H-ASIZH (Homeostatic Affine Scaled Izhikevich)                     fail quite differently. An SA1 in the membrane datapath,
+makes the firing threshold a slow state variable whose negative                or an SA1 in the threshold comparator, acts as a persistent
+feedback accommodates a permanent fault without an outside                     parasitic current: every cycle it drives the membrane to the
+observer and a Lyapunov argument guarantees that the mean                      rail, and it locks the cell into sustained discharge—a digital
+firing rate is uniformly ultimately bounded against a persistent
+fault current. 1-cycle Q7.19 core of the placed and routed layout              seizure that saturates the spike fabric and flattens an implanted
+of the SkyWater 130 nm process costs 1.39× the cells at 0.813 pJ               battery in seconds. An SA0, on the other hand, takes out the
+per neuron update and brings the dangerous defect set down from                drive and silences the cell [10]. The difference is important.
+46.2% to 17.5%. Hardening its control plane with a triplicated                 Saturation almost always kills the network, while silencing is
+restoring organ leaves 4.2% of defects dangerous against 12.0%                 often absorbed in a hidden layer and becomes deadly only at
+for triplication, at 32% fewer cells, at the same energy per update,
+and at a 4.76× reliability figure of merit (RFoM) against 1.13×.               the output [11], [12]. Defect tolerance in VLSI is not new [13],
+                                                                               but in its traditional incarnation it assumes a datapath whose
+                                                                               correctness is binary—not one that outputs a rhythm.
+   Index Terms—Spiking neural networks, neuromorphic com-
+puting, fault accommodation, fault tolerance, homeostasis, Izhik-
+evich model, Lyapunov stability, gate-level fault injection, energy-           A. Limits of Conventional and Bio-Inspired Mitigation
+efficient VLSI.                                                                   The textbook answer is spatial redundancy. Triple Modular
+                                                                               Redundancy (TMR) replicates the module to be protected and
+                          I. I NTRODUCTION                                     masks faults with majority voting [14]. Inserting TMR into
+                                                                               a neuromorphic substrate it is self-defeating: area and power
+     HE brain-computer interface and neuroprosthetic devices
+T    must compute within the body. Doing so requires working
+under a thermal budget that a standard accelerator cannot
+                                                                               at least triple, the voter shoves jitter down a channel whose
+                                                                               information is in its timing, and tripling the circuit triples the
+                                                                               cross-section available to the provoking event [15].
+meet, and a means of communicating with tissue that already                       A second line of work has moved towards biological com-
+communicates in spikes. Neuromorphic computing accom-                          pensation. SPANNER deploys astrocyte-like monitors along-
+plishes both simultaneously. Encoding information in the time                  side the cores and modulates synaptic release probability on
+of events rather than the strength of continuous activations                   detection [16]; some distribute astrocytes to restore individual
+reduces the volume of data that must be moved, enabling low-                   firing rates [17], or make that compensation tunable at run
+milliwatt operation while still capturing much of the behaviour                time and report 94% accuracy with 15% of cores faulty [18].
+of biological circuits [1], [2]; the same behaviour properties                 Closest in spirit to this paper, Johnson et al. use homeo-
+also make neuromorphic computing useful for edge-AI work-                      static regulation to provide fault tolerance, but the underlying
+loads that have surpassed von Neumann architectures [3].                       mechanism derives from a distributed astrocyte net rather
+   Of all the models for digital emulation, a Izhikevich neu-                  than directly from the neuron’s own state [19]. Others restore
+ron [4] is an unusually good deal: over twenty firing modes                    execution within an already-faulty accelerator [20], or seek
+from two differential equations for a minuscule fraction of the                structural containment within a single dendritic branch [21],
+cost of biophysically detailed models. Multiplierless incarna-                 or within a single spiking pixel [22]. Two more approaches
+tions are under a thousand transistors [5], [6]; million-neuron                complete the list: temporal redundancy swaps replication for
+fabrics have been fabricated in silicon [7], [8], however none                 re-execution [23], and mapping schemes move the computa-
+of this settles the question: How does the fabric behave as its                tion itself either away from an unreliable memory [24], or
+transistors die?                                                               between diverse heterogeneous cores [25].
+  Manuscript submitted to IEEE Transactions on Circuits and Systems I:
+Regular Papers.                                                                B. The Research Gap
+  The authors are with the Department of Computer Engineering, Sharif
+University of Technology, Tehran, Iran (e-mail: aliroshani.sci.pa@gmail.com;     Each of these advances is real, and they all lead to the same
+ansari@sharif.edu; manzuri@sharif.edu).                                        place. Six remaining gaps together constitute the surface on
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                         2
+
+
+
+                                                                                  each dendritic compartment’s arithmetic with overhead of
+                                                                                  around 60% per neuron [21]. And the deeper issue is direction:
+                                                                                  the field’s centre of gravity still resides in a top-down manner
+                                                                                  – treating the neuron core as a primitive to route around rather
+                                                                                  than something to harden.
+                                                                                     Heuristic rather than formal guarantees. Robustness is
+                                                                                  typically estimated based on the campaign, and the lack of
+                                                                                  a counterexample does not say what might happen under
+                                                                                  untested conditions. What is missing is a stability argument
+                                                                                  that bounds the firing rate for every admissible parasitic
+                                                                                  current [26], [27].
+                                                                                     Assessment that is not physically faithful. Assertions are
+                                                                                  largely made based on high-level simulations, or gate-level
+                                                                                  campaigns that are limited to two-valued logic, which resolves
+                                                                                  an unknown optimistically in a way that a real comparator or
+                                                                                  a select line would not. Existing frameworks either operate at
+                                                                                  a level above the netlist or constrain the design to a single
+                                                                                  FPGA target, so the coverage reported describes the model or
+                                                                                  the device rather than the circuit [28].
+                                                                                     Fig. 1 categorizes this space by the layer of mitigation, and
+                                                                                  displays a space that has been explored virtually completely
+                                                                                  at every layer but one. Classical redundancy was refined well
+                                                                                  past triplication alone [29]–[31], and has been extended by
+                                                                                  information redundancy, from approximate scrubbing [32] to
+                                                                                  upset-tolerant cells [33] and in-memory substrates [34]. At
+                                                                                  the system level, the focus is on error absorption; approx-
+                                                                                  imate memories give up a tunable error budget for energy
+                                                                                  savings [35]–[37], 3-D networks on chip reroute around dam-
+                                                                                  aged tiles [38], and migration, remapping, and lifetime-aware
+                                                                                  placement push computation onto healthy cores [39]–[42]. The
+                                                                                  bio-inspired work has also seen network scale work [43]. Each
+                                                                                  one of these acts on, around, or above the neuron. None of
+                                                                                  them acts inside the neuron.
+
+
+Fig. 1. Taxonomy of SNN fault-tolerance work by the level at which the            C. Proposed Solution and Contributions
+mitigation acts. H-ASIZH occupies the remaining leaf, intrinsic to the neuron’s
+own dynamics.                                                                       We close all six gaps with a solitary architectural com-
+                                                                                  mitment: the fault-tolerance is implemented as part of the
+which this paper stands.                                                          neuron’s own state equations. The neuron we propose, H-
+   The redundancy trap. Spatial redundancy pays in area                           ASIZH (Homeostatic Affine Scaled Izhikevich), is an intrinsic
+and power [14], [15]; temporal redundancy pays in latency                         controller, which treats the firing threshold as a slow state
+and energy [23], and against a permanent defect it achieves                       variable that can be elevated to absorb the energy of a perma-
+nothing, since a fault on every cycle provides the same wrong                     nent fault. No external guardian is left to break, because the
+result every time.                                                                regulator and control plant are the same circuit, and because
+   Loss of determinism. Fault-aware mapping and migration                         nothing migrates, the fabric remains as deterministic when
+make a spike’s path specific to one specific defect map of one                    faulty as it was when not.
+specific die [24], [25]. Arrivals can be re-analysed afterwards                     • Reformulation and stability proof. An affine map
+but not guaranteed in advance, and for a prosthesis that looped                        carries the Izhikevich equations into a compact, shift-
+in less than a millisecond, a bound that holds typically is not                        only domain with no approximation, reproducing nine
+good enough.                                                                           firing patterns to within 10−13 RMSE. With the con-
+   The unwatched watcher. Bio-inspired schemes avoid redun-                            troller embedded in the mapped dynamics, we prove by
+dancy by adding a supervisor [16]–[18] – one made from the                             Lyapunov analysis that the mean firing rate is Uniformly
+same gates, on the same die, at the same defect density as the                         Ultimately Bounded under any persistent fault current,
+circuit that it is intended to rescue. A permanent fault in its                        the residual band being set by the spike penalty rather
+configuration state doesn’t just incapacitate the protection – it                      than by the defect amplitude. Boundedness of the rate and
+inverts it.                                                                            boundedness of the machine word are distinct guarantees:
+   The price of endogenous resilience. The one family that does                        the theorem supplies the first, the clamping network of
+inject resilience within the neuron does so structurally, copying                      Section IV-C the second.
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                               3
+
+
+
+   •  Hardware-aware coefficient optimisation. Multi-
+      objective design space exploration binds the controller
+      parameters to an exact power of two, which simplifies
+      the resilience arithmetic to a shift-and-add.
+   • RTL micro-architecture. A 1-cycle unrolled Q7.19
+      datapath with the 4-segment piecewise-linear estimator
+      (implemented without multiplier), a clamping network,
+      a fast-bleed recovery path, and a proportional β-brake -
+      mitigation performed entirely in the neuron core, leaving
+      routing and schedule untouched.
+   • Physically faithful fault analysis. A technology-agnostic
+      gate-level injection framework applied to the synthesised
+      netlist using four-valued logic that compiles the fault into
+      the circuit, rather than forcing it out of the simulator as
+      open frameworks do [44], with an exhaustive campaign
+      of five architectures. The resulting projection reveals the
+      proposed core outperforming full triplication by more
+      than a factor of 4 at one-third less silicon.1
+   Section II develops the mapping and the controller; Sec-                    Fig. 2. Spike-train overlay of the floating-point biological model and the
+tion III-A establishes stability; Section IV describes the micro-              affine-mapped hardware model across nine firing patterns.
+architecture; Section V the injection framework; Section VI
+presents an on-chip learning case study; and Section VII                       side effect: division by 26 is a right-shift costing no logic, and
+reports the results.                                                           it confines the trajectory to roughly [−0.5, 1.5], leaving the
+                                                                               integer field almost empty so the released bits become guard
+            II. M ATHEMATICAL F RAMEWORK AND                                   bits that absorb an overshoot or an injected defect without
+             H ARDWARE -AWARE A FFINE M APPING                                 wrapping the accumulator.
+A. Baseline Model and Its VLSI Obstacles
+  The Izhikevich model [4] reduces neuronal dynamics to two                    C. Algebraic Equivalence
+equations in the membrane potential v and a slow recovery                         Substituting vbio = 64Vhw −65 into (1) and dividing through
+variable u:                                                                    by 64 gives the hardware-domain dynamics directly:
+              dv                                                                   dVhw
+                  = 0.04v 2 + 5v + 140 − u + I           (1)                              = 2.56 Vhw2
+                                                                                                      − 0.2 Vhw + Ihw − Uhw + Ψbias         (5)
+              dt                                                                     dt
+              du                                                               with Ψbias = −0.25 collecting the constant terms, and
+                  = a(bv − u)                            (2)
+              dt                                                                               dUhw
+                                                                                                      = a bVhw − Uhw − 65
+                                                                                                                                
+with the discontinuous after-spike reset                                                         dt                        64 b             (6)
+              if v ≥ 30 mV:        v ← c,      u←u+d                    (3)       The transformation is exact, so nullclines and phase-portrait
+                                                                               topology are preserved—unlike comb-exponential [6] and hy-
+where I is the synaptic current and a, b, c, d select the firing
+                                                                               perbolic [5] substitutions, which buy multiplier-free opera-
+pattern.
+                                                                               tion at the cost of residual model error. Parameters map as
+   Two properties obstruct direct digital implementation: the
+                                                                               chw = (c + 65)/64, dhw = d/64, with a, b invariant (Table I);
+potential is signed, resting near −65 mV and peaking at
+                                                                               Fig. 2 overlays the two models at RMSE below 10−13 .
++30 mV; and the quadratic term demands multipliers, which
+dominate area and power in a many-core array. In-memory
+substrates evade the multiplier by computing inside the storage                D. The Intrinsic Homeostatic Controller
+macro [34], but surrender the bit-exact reproducibility a gate-                   Prior designs rely on extrinsic supervisors—modelled as-
+level campaign depends on.                                                     trocytes monitoring activity and modulating weights [16]—or
+                                                                               relocate computation away from a damaged core [39], pre-
+B. Affine Transformation and Scaling                                           suming healthy spare capacity. Our route is control-theoretic.
+                                                                               Fault-tolerant control distinguishes masking, which conceals
+   We map the state variables into a compact, predominantly
+                                                                               a defect by replication, from accommodation, in which the
+positive fixed-point domain, shifting the potential by η = 65 to
+                                                                               regulator concedes the defect is permanent and retunes a
+place rest at the hardware origin and contracting by σ = 2−6 :
+                                                                               slow set-point under output feedback until the loop settles
+                               vbio + 65
+                       Vhw =                                 (4)               on a new admissible equilibrium. The only quantity inside
+                                   64                                          a neuron that directly gates the regulated output is the firing
+with Uhw = ubio /64 and Ihw = Ibio /64 taking the same                         threshold, so we make it a slow state variable θ(t) resting at
+scaling without offset. The contraction is the motive, not a                   θ0 = 1.1 (≡ +5.4 mV)—on the regenerative upstroke, just
+   1 Framework, fault dictionaries and campaign scripts: https://github.com/   below the divergent PWL segment, while the apex +30 mV
+aliroshanidino/GLFI_fault_campaign.                                            (≡ 1.484375) remains the saturation clamp.
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                           4
+
+
+
+                               TABLE I                                  Algorithm 1 Hardware-Aware Design Space Exploration for
+  BASELINE AND H ARDWARE -M APPED I ZHIKEVICH PARAMETERS (a, b          the H-ASIZH Controller
+I NVARIANT U NDER THE M AP ; M APPED VALUES TO T HREE D ECIMALS ).      Require: power-of-two grids Sα , Sγ , Sβ ; pattern set P; horizon T ; fault
+RS R EGULAR S PIKING , IB I NTRINSICALLY B URSTING , CH C HATTERING ,       window [T0 , T1 ]; disturbance ϵ; weights w1 , w2 , w3
+        FS FAST S PIKING , LTS L OW-T HRESHOLD S PIKING , TC            Ensure: optimal triplet (α⋆ , γ ⋆ , β ⋆ )
+ T HALAMO -C ORTICAL , RZ R ESONATOR , TN T ONIC , MX M IXED M ODE       1: for all p ∈ P do                             ▷ references, computed once
+                                                                         2:     Gp ← RUN(p, controller off, 0)
+                    Biological domain          Hardware domain           3:     Up ← RUN(p, controller off, ϵ)
+                                                                         4: end for
+     Pattern    a     b     c       d   Iapp   chw   dhw   Ihw           5: C ⋆ ← +∞
+                                                                         6: for all (α, γ, β) ∈ Sα × Sγ × Sβ do
+     RS        0.02 0.20 −65 8.00       14   0   0.125 0.219             7:     C←0
+     IB        0.02 0.20 −55 4.00       10 0.156 0.063 0.156             8:     for all p ∈ P do
+     CH        0.02 0.20 −50 2.00       25 0.234 0.031 0.391             9:         Hp ← RUN(p, (α, γ, β), 0)
+     FS        0.10 0.20 −65 2.00       24   0   0.031 0.375            10:         Fp ← RUN(p, (α, γ, β), ϵ)
+     LTS       0.02 0.25 −65 2.00        8   0   0.031 0.125            11:         cbio ← ∆[0,T ] (Hp , Gp )                          ▷ transparency
+     TC        0.02 0.25 −65 0.05        5   0   0.001 0.078            12:         csup ← evaluate (13) on [T0 , T1 ]
+     RZ        0.10 0.25 −65 2.00        5   0   0.031 0.078            13:         crec ← ∆[T1 ,T ] (Fp , Gp )                            ▷ recovery
+     TN        0.02 0.20 −65 6.00       20   0   0.094 0.313            14:         C ← C + w1 cbio + w2 csup + w3 crec
+                                                                        15:     end for
+     MX        0.02 0.20 −50 2.00       15 0.234 0.031 0.234            16:     if C < C ⋆ then
+                                                                        17:         C ⋆ ← C; (α⋆ , γ ⋆ , β ⋆ ) ← (α, γ, β)
+                                                                        18:     end if
+   A permanent stuck-at-1 defect acts as a persistent parasitic         19: end for
+current driving the neuron into a digital seizure. Three param-         20: return (α⋆ , γ ⋆ , β ⋆ )
+eters absorb it: the leak α returns θ to θ0 absent rapid firing,
+keeping the defence transparent when healthy; the penalty γ             neuron inert once the defect clears. With NW the spike count
+raises θ at every spike, so fault-induced discharge chokes itself;      and ISIW the mean interval,
+and the brake β amplifies the reset jump of Uhw in proportion                                   1 NW (S) − NW (R)
+to θ − θ0 . The complete system is                                                ∆W (S, R) =
+                                                                                                2        NW (R)
+    dVhw                                                                                                                           (11)
+                 2                                                                                 1 ISIW (S) − ISIW (R)
+         = 2.56 Vhw − 0.2 Vhw + Ihw − Uhw + Ψbias                 (7)
+     dt                                                                                         +
+    dUhw                                                                                           2         ISIW (R)
+         = a bVhw − Uhw − 65
+                                 
+                            64 b                                  (8)   with ∆W = 1 when S has fewer than two spikes—the same
+     dt
+      dθ                 X                                              value a controller halving or doubling the rate incurs, so
+         = α(θ0 − θ) + γ    δ(t − tk )                            (9)   silence is charged as a gross rate error rather than treated as
+      dt
+                                k                                       free. Two terms follow,
+with the reset condition                                                     cbio = ∆W1 (Hp , Gp ),             crec = ∆W3 (Fp , Gp )          (12)
+                  (
+                    Vhw ← chw                                           enforcing transparency when healthy and recovery after the
+  if Vhw ≥ θ :                                                   (10)
+                    Uhw ← Uhw + dhw + β(θ − θ0 )                        defect, while the suppression term takes the size of the seizure
+                                                                        itself as denominator:
+  The three parameters map term by term onto intracellular                                          NW2 (Fp ) − NW2 (Gp )
+calcium handling, so the silicon that buys fault tolerance also                              csup =                                    (13)
+                                                                                                    NW2 (Up ) − NW2 (Gp )
+materialises the state local on-chip learning requires [19].
+                                                                        which makes it interpretable: 0 is complete suppression, 1 a
+                                                                        controller achieving nothing, and csup > 1 one actively worse
+                                                                        than no protection—a region that is not hypothetical. Since
+E. Hardware-Aware Design Space Exploration
+                                                                        ϵ is chosen large enough that an unprotected cell seizes for
+   Lyapunov analysis bounds the firing rate for any positive            every pattern, the denominator is bounded away from zero by
+α, γ, but says nothing about recovery speed or silicon cost.            construction. The objective aggregates over the set,
+Keeping the datapath multiplier-free confines all three coef-
+                                                                                                       X
+                                                                           (α⋆ , γ ⋆ , β ⋆ ) = arg min
+                                                                                                                                         
+                                                                                                             w1 cbio + w2 csup + w3 crec
+ficients to powers of two, collapsing the search onto a grid:                                Sα ×Sγ ×Sβ
+                                                                                                          p∈P
+α ∈ [2−10 , 2−3 ], γ ∈ [2−6 , 20 ], β ∈ [20 , 26 ]. Cost thus enters                                                                (14)
+as a structural constraint—one shifter per parameter—leaving            with w1 = 0.25, w2 = 0.40, w3 = 0.35. Summing over
+the objective to score behaviour alone.                                 P is a hardware requirement: one set of shift constants is
+   That objective must be neuro-metric: a controller shifting           hardwired and must serve every pattern, so a triplet excellent
+every spike by two cycles has not failed, whereas one pre-              for one and destructive for another is inadmissible. Algo-
+serving the count while destroying the rhythm has. Per pattern          rithm 1 enumerates the grid over T = 6000 cycles with
+p we score four trains—golden Gp and unprotected-faulted                [T0 , T1 ] = [700, 2700] and disturbance ϵ = 85/64, integrating
+Up , computed once, plus healthy-protected Hp and faulted-              at a fixed Euler step of 2−6 . No term refers to an expected
+protected Fp per candidate—over three disjoint windows:                 solution, so the reported triplet is a property of the objective
+W1 = [0, T ], W2 = [T0 , T1 ] during the disturbance, and               rather than of the initialisation.
+W3 = [T1 , T ] after it. The third is indispensable, because a             The exploration returns α⋆ = 2−6 , γ ⋆ = 2−3 , β ⋆ = 23 ,
+controller can suppress a seizure perfectly and still leave the         realised as ≫ 6, ≫ 3 and ≪ 3: three shifters, two adders and
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                                      5
+
+
+
+
+Fig. 3. Cost landscape over the (α, γ) subspace at β = β ⋆ . The two high-cost ridges are self-silencing of a healthy neuron and failure to contain the seizure,
+separated by the valley holding the selected operating point.
+
+one comparator, with no multiplier on the critical path. Fig. 3
+shows why the valley is broad in α and narrow in γ—small                                            dθ
+                                                                                                        = α(θ0 − θ) + γr(t)                 (15)
+α with large γ ratchets the threshold up faster than it relaxes                                     dt
+and the neuron suffocates, while large α with small γ lets it                       The prerequisite is a monotonic relation between threshold
+decay before the penalty accumulates.                                            and firing frequency. The inter-spike interval follows from
+   Two results emerge. The brake has a genuine optimum:                          integrating the membrane equation from the reset voltage chw
+suppression cost falls from β = 20 to 23 , flattens at 24 ,                      to the instantaneous threshold θ, with V̇hw the right-hand side
+then deteriorates past unity at 26 , where the protected neuron                  of (5) and the recovery variable held at its slowly varying
+discharges more heavily than an unprotected one. The mech-                       value:
+anism is resonance rather than overshoot—an excessive brake                                                       Z θ
+                                                                                                                    dVhw
+drives the membrane far below rest at every reset and trips                                            TISI =                              (16)
+the emergency discharge path of Section IV. And threshold                                                   chw V̇hw + If ault
+
+adaptation alone is insufficient: with that path disabled, only                    Since r = 1/TISI , raising the upper limit θ monotonically
+one pattern in six resumes firing after the disturbance, at every                increases TISI and strictly reduces the firing frequency:
+β, because each seizure spike adds β(θ − θ0 ) to the recovery
+                                                                                                           ∂r
+variable and the accumulation relaxes only with a ≈ 0.02.                                                      <0                    (17)
+The neuron survives the seizure and is extinguished by its                                                 ∂θ
+                                                                                   Let θ∗ be the unique homeostatic equilibrium threshold
+own defence. Bounded firing and functional survival are not                      under a permanent defect If ault :
+the same property.
+
+         III. VALIDATION : S TABILITY A NALYSIS AND                                                   α(θ0 − θ∗ ) + γr∗ = 0                    (18)
+                   P HASE -S PACE DYNAMICS                                          The candidate V(θ) = 12 (θ − θ∗ )2 is strictly positive-
+A. Lyapunov Stability Analysis and Uniform Ultimate Bound-                       definite, vanishing only at θ∗ . Its Lie derivative along the state
+edness (UUB)                                                                     trajectories is
+   The objective is to show, within nonlinear control the-                                             ∂V dθ
+ory [26], [27], that under a permanent hardware failure mod-                                     V̇(θ) =
+                                                                                                       ∂θ dt
+elled as a persistent parasitic current If ault the internal feed-                                  = (θ − θ∗ ) [α(θ0 − θ) + γr(t)]     (19)
+back loop prevents exponential state divergence, so the firing
+                                                                                    Substituting the equilibrium condition αθ0 = αθ − γr∗ :
+                                                                                                                                    ∗
+frequency remains Uniformly Ultimately Bounded (UUB).
+   Because the controller  includes a discontinuous term driven
+                                                                                       V̇(θ) = (θ − θ∗ ) −α(θ − θ∗ ) + γ r(t) − r∗
+                                                                                                                                    
+                  P
+by Dirac pulses ( k δ(t−tk )), classical continuous Lyapunov                                                                                (20)
+stability does not apply directly. We therefore invoke the                          Two regimes emerge. In the hyperactive phase (θ < θ∗ )
+Averaging Theorem for hybrid systems, mapping the discrete                       an abnormal outburst gives r(t) > r∗ by (17); with (θ −
+spike train onto a continuous mean firing rate r(t). Averaging                   θ∗ ) negative and (r − r∗ ) positive, V̇ < 0. In the hypoactive
+is legitimate because θ is the slowest state: at α = 2−6                         phase (θ > θ∗ ) the threshold over-corrects, r(t) < r∗ , and
+per clock cycle it moves by a negligible fraction of its                         the positive (θ − θ∗ ) multiplied by a negative bracket again
+range between two consecutive spikes, so the membrane pair                       yields V̇ < 0. Since V̇ is strictly negative-definite across all
+(Vhw , Uhw ) may be treated as having reached its periodic orbit                 non-equilibrium states, θ converges asymptotically to θ∗ and
+for the instantaneous θ:                                                         r(t) stays bounded, preventing digital saturation.           ■
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                              6
+
+
+
+
+Fig. 4. Phase-space dynamics: (a) transition from the nominal 2D limit cycle to a bounded homeostatic attractor upon fault injection; (b) membrane trace
+showing graceful degradation; (c) autonomous threshold elevation absorbing the defect.
+
+   This establishes convergence of the averaged dynamics. The
+physical system is hybrid—θ takes a discrete increment γ at
+every firing instant and relaxes between them—so it cannot
+settle onto θ∗ exactly but enters and remains within a residual
+band |θ − θ∗ | ≲ γ. The hardware guarantee is therefore
+uniform ultimate boundedness with a bound proportional to γ
+and independent of the disturbance amplitude: a larger defect
+displaces θ∗ but does not widen the oscillation around it, so the
+firing rate degrades predictably rather than catastrophically.
+
+                                                                             Fig. 5. The Q7.19 datapath word. Top: bit allocation, binary point after
+B. Phase-Space Interpretation                                                bit 19. Bottom: operating envelope of the three state variables against the
+                                                                             representable range, showing the guard headroom before wrap-around.
+   The mechanism admits a geometric reading in
+(Vhw , Uhw , θ). Fault-free, θ stays at θ0 and the state is
+                                                                             the encoding. The datapath (Fig. 6) splits into a combinational
+confined to a planar slice, executing a canonical limit cycle.
+                                                                             EX stage carrying the arithmetic and a WB stage enforcing the
+A stuck-at-1 defect on a high-order accumulator bit warps
+                                                                             structural bounds, with three 26-bit state registers—V-REG,
+that vector field; in an unprotected core it destroys the limit
+                                                                             U-REG and THETA-REG—at their boundary.
+cycle and the trajectory accelerates into saturation. H-ASIZH
+prevents the collapse by making θ an active third dimension:
+the defect-induced burst activates the penalty term, θ expands               A. The Fixed-Point Word and Its Guard Bits
+along that axis and lifts the trajectory out of the compromised
+                                                                                The datapath carries a 26-bit signed word in Q7.19 format—
+plane, deforming the integration boundary and absorbing the
+                                                                             one sign bit, six integer bits, nineteen fractional bits (Fig. 5).
+injected energy, while the β-brake deepens the reset along
+                                                                             Two consequences of the affine map make that word sufficient
+Uhw and adds damping. Instead of diverging, the trajectory
+                                                                             where floating point would otherwise be required.
+settles into a bounded three-dimensional limit cycle—an
+                                                                                The first is headroom. With σ = 2−6 , Vhw occupies
+adaptive homeostatic attractor (Fig. 4).
+                                                                             [−0.5, 1.5] nominally and is clamped at 4.0, Uhw is bounded
+                                                                             by ±4.0 and θ spans 1.1 to 8.0, whereas Q7.19 represents
+      IV. H ARDWARE -AWARE M ICRO -A RCHITECTURE                             ±64: every state variable lives within roughly one eighth of the
+   The H-ASIZH core is described in VHDL as a flat, 1-cycle                  available magnitude. This matters because two’s-complement
+unrolled pipeline, which eliminates the latency jitter of multi-             overflow inverts rather than saturates, turning a membrane on
+cycle execution: in a fabric that encodes information in spike               the verge of a spike into one in deep hyperpolarisation in a
+timing, an update latency varying with operand values corrupts               single clock edge and voiding the argument of Section III-A.
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                          7
+
+
+
+
+Fig. 6. H-ASIZH micro-architecture. The EX stage holds the PWL estimator, the V- and U-datapaths and the homeostatic engine; the WB stage holds the
+clamping network, the fast-bleed valve and the spike generator. All paths resolve within one clock period.
+
+   The second is resolution. The smallest quantity that must               and that sign test drive a 5-to-1 multiplexer, so the nonlinear
+accumulate without vanishing is a threshold decrement of                   evaluation costs one multiplexer delay and no arithmetic.
+order 2−6 (θ − θ0 ); nineteen fractional bits put the quantisation
+floor at 2−19 ≈ 1.9 × 10−6 , three orders of magnitude below               C. Datapaths, Homeostatic Engine and Write-Back
+it. Widening the word would improve neither margin, since
+the dominant error is the piecewise-linear estimate rather than              Two adder trees run concurrently, and every coefficient in
+quantisation.                                                              them is a sum of powers of two, so the whole recurrence is
+                                                                           shifts and additions. The V-datapath forms
+                                                                                                                        
+                                                                           ∆V = PWL(V ) + Ihw − (V ≫ 3) + (V ≫ 6) − U − 0.25,
+B. Multiplier-Free PWL Estimator                                           V + = V + (∆V ≫ 6),
+   The quadratic term 2.56 Vhw    2
+                                      is the one operation that                                                                               (22)
+would otherwise demand a 26-bit multiplier per neuron. It                  where (V ≫ 3) + (V ≫ 6) = 64      9
+                                                                                                               V realises the linear term
+is approximated by a four-segment piecewise-linear estimator               of (5) in two shifts and ≫ 6 is the Euler step ∆t = 2−6 . The
+whose slopes are exact powers of two, so each segment is a                 U-datapath forms
+wired shift and a constant subtraction:                                      ∆U = (V ≫ 2) − (V ≫ 4) + (V ≫ 6) − Urest − U,
+                  
+                    0,                     V <0                                                                                       (23)
+                                                                              U + = U + (∆U ≫ 6) + (∆U ≫ 8) ≫ 6,
+                                                                                                                 
+                  
+                  
+                  V ≫ 1,                  0 ≤ V < 0.25
+                  
+                  
+                                                                           in which the three shifts on V realise b = 13
+                  
+                                                                                                                           64 , the two on
+    PWL(V ) = (V ≪ 1) − 0.375, 0.25 ≤ V < 0.625                            ∆U realise a = 256    5
+                                                                                                   , and Urest = − 13     is  the recovery
+                                                                                                                     64
+                    (V ≪ 2) − 1.625, 0.625 ≤ V < 1.125
+                  
+                  
+                  
+                                                                          variable at rest. The deviations from the ideal coefficients
+                  
+                  (V ≪ 3) − 6.125, V ≥ 1.125                              are those a shift-only datapath admits by construction, and
+                                                               (21)        the controller was tuned on these realised dynamics. A third
+The leading branch is a design decision rather than a limita-              branch implements the controller: a subtractor forms θ − θ0 ,
+tion. The clamping network of Section IV-C holds Vhw at or                 a ≫ 6 realises the α leak, and the same error is rectified and
+above −0.5, so the sub-rest excursion is bounded and the true              shifted ≪ 3 to form the β brake.
+quadratic contributes at most 0.64 there, against a derivative                Because one set of shift constants is hardwired, the core
+dominated by the leak and the recovery variable. Forcing the               realises the b = 0.20 family of Table I—RS, IB, CH, FS,
+estimator to zero below rest costs one sign-bit comparison,                TN and MX. The nine patterns of Fig. 2 therefore validate
+keeps the regenerative branch monotone, and removes any                    the affine mapping; the six validate the implemented core, and
+possibility that an arithmetic right shift returns a negative value        every hardware result here is taken over that set.
+for a term positive by construction. The selector reads the sign              The WB stage enforces in hardware the boundedness proven
+bit with bits 15–23 of V-REG; three breakpoint comparators                 analytically: parallel comparators clamp v-raw-ext and
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                              8
+
+
+
+u-raw-ext to their saturation limits, so the accumulator             source, and the gate-level masking that decides survival is in-
+can never wrap. A fast-bleed valve addresses the opposite            visible above the netlist. Simulator-resident FORCE/RELEASE
+risk—once a seizure is suppressed, the inhibitory charge in          strikes the right level but does not scale well, and is vendor-
+U-REG can trap the neuron in deep hyperpolarisation—by               specific. Open frameworks [44] pursue the bottleneck with
+bypassing the nominal integration and driving the recovery           hyperscale compute, but injection remains external to the
+variable halfway back to rest in one cycle. Without it, five         design; we inject internally.
+of six patterns never resume after the defect clears. A 26-             Since the framework compiles the fault into the circuit
+bit comparator then evaluates the clamped voltage against the        itself, there are no interventions at run-time. The framework
+decayed threshold, and the spike flag steers the write-back          is implemented with open tooling in five stages (Fig. 7). Each
+multiplexers, routing V to chw , adding dhw and the β brake          core is elaborated by GHDL and synthesised by Yosys, with
+to U , and penalising θ by γ.                                        the circuit fully flattened so all nets are addressable, then
+                                                                     mapped to generic primitives instead of a vendor library, so
+                                                                     the reported distribution remains a property of the architecture.
+D. Control-Plane Hardening: Light TMR and the Restoring
+                                                                     In addition, a parser maps each primitive output to one of four
+Organ
+                                                                     semantic zones, namely STATE _ MEMORY, CONTROL _ PLANE
+   Accommodation defends the wide arithmetic well, because           for the nets originated by the threshold comparison or spike
+a defect there perturbs a quantity the loop measures and can         signal, DATAPATH for the wide arithmetics, and COMB _ CLOUD
+absorb. It cannot defend the loop’s own decision logic: a            for everything else. This is not for aesthetic reasons: a datapath
+stuck-at on the spike comparator, a clamp flag or THETA-             defect affects a quantity the loop tracks and can compensate,
+REG corrupts the signal the feedback is computed from,               whereas a control-plane defect destroys a signal the loop
+and no threshold elevation recovers a decision never taken.          depends on.
+Two variants therefore harden the control plane and leave the
+datapath to the controller.                                          B. Saboteur Weaving by Logic Shadow Hook
+   Light TMR triplicates the decision logic only. THETA-REG
+                                                                        Instrumentation simplifies the engineering burden for a
+becomes three 26-bit registers reduced by a bitwise majority
+                                                                     comprehensive campaign: the instrumentor modifies the netlist
+voter, θv = (θA ∧θB )∨(θB ∧θC )∨(θA ∧θC ), and seven single-
+                                                                     only once rather than once per fault. At every target the
+bit decisions—the spike flag, brake-enable, fast-bleed enable
+                                                                     instrumentor inserts a controllable bypass through a three-port
+and four saturation flags—are triplicated the same way. Each
+                                                                     fault bus (fi_enable, fi_target_id, fi_value). Each
+replica derives its flag from its own threshold copy, so a defect
+                                                                     target net is disconnected from its primitive driver, its outputs
+in one register is outvoted rather than propagated, while V-
+                                                                     switched to a shadow net, and the net is re-specified as a
+REG, U-REG, the PWL estimator and both adder trees remain
+                                                                     continuous assignment selecting between the two:
+simplex. The cost is 1 500 cells and a 3.6% longer critical path.
+   The restoring organ closes the gap Light TMR leaves: a             assign net = (fi_enable && fi_target_id==ID)
+                                                                                       ? fi_value : hook_net;
+single voter reduces three replicas to one net, and that net is
+a single point of failure downstream of everything it protects.      Three properties follow. If fi_enable is low then the
+Following the classical construction, this variant triplicates the   expression is just the original driver so the instrumented netlist
+voters themselves, so no reduction to a single net occurs before     is functionally identical to the golden netlist, and only one
+the register boundary. The 124 cells it adds—about 3%—               design serves the entire campaign. The fi_target_id is
+remove the last unreplicated decision node, and Section VII-B        a top-level input not a constant therefore optimisation cannot
+shows what they buy.                                                 remove the multiplexer - a silent failure mode that would make
+                                                                     naive netlist mutation fail. And fi_value is four state so the
+      V. A G ENERIC G ATE -L EVEL FAULT I NJECTION                   hook can force x or z as easily as a logic level.
+                     F RAMEWORK
+                                                                     C. Simulation and Neuro-Metric Classification
+   The stability argument of Section III-A is valid for a
+continuous disturbance on an idealised state; silicon does not          The instrumented netlist is simulated using Icarus Verilog,
+break that way. A permanent defect damages a single node of          driven from Python using Cocotb: the latter’s interface sup-
+a synthesised netlist, and whether it reaches the spike output       ports clocks, stimulus and sampling, but it is not the injection
+depends on Boolean structure, on what state the neuron is in,        mechanism, which is a structural feature. We use a four-valued
+and how many cycles pass before it propagates. To see what           IEEE 1364 logic and explicitly simulate the unknown state
+the architecture can withstand, we must gate-level inject under      propagation - it’s important when a defect feeds a comparator
+a realistic workload.                                                or select line, as a two-valued simulator would silently select a
+                                                                     branch and produce a more optimistic result than the hardware
+                                                                     delivers. Each run is fault free for 2000 cycles to give the
+A. Rationale and Toolchain                                           state time to reach its limit cycle, then the fault is asserted
+   Two standard approaches were dismissed. Behavioural in-           permanently, running to cycle 10 000 - a timescale made
+jection into a source RTL variable operates at the wrong level:      necessary by the 64-cycle leak constant.
+the synthesis restructures the arithmetic aggressively, so a 26-        A spiking neuron cannot be graded pass or fail: a train
+bit adder becomes a carry chain with no counterpart in the           displaced by a few cycles still carries its information, whereas
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                          9
+
+
+
+
+Fig. 7. The five-stage GLFI framework: GHDL/Yosys synthesis to a flattened technology-independent netlist; extraction with semantic zoning; saboteur
+weaving by Logic Shadow Hook; Cocotb orchestration over Icarus Verilog; and neuro-metric classification of the spike timestamps.
+
+one preserving the count while degenerating into irregular                             VI. C ASE S TUDY: O N -C HIP L EARNING
+bursts does not. Classification uses the firing-rate error and
+the ISI coefficient of variation,                                             The homeostatic machinery which renders H-ASIZH fault-
+                                                                           tolerant intervenes exactly on the state variables that synaptic
+                |Nfaulty − Ngolden |            σISI
+      FRE =                          ,  CV =               (24)            learning would normally alter, so a core hardened in this
+                      Ngolden                   µISI                       manner could have sacrificed the plasticity that learning would
+with the tolerance band FRE ≤ 20% and CV ≤ 0.20.                           require. This section settles that question - a confidence check
+An absolute bound on CV is admissible here because the                     rather than a second contribution.
+synthesised instance is configured for tonic firing (chw = 0,                 Fig. 8 shows the system. A 256 → 1024 → 10 network is
+dhw = 0.094), whose golden train is regular and whose fault-               built entirely from H-ASIZH cores: a hidden layer trained by
+free CV sits well inside the band; a bursting configuration such           unsupervised non-causal STDP under first-K temporal k-WTA
+as IB or CH would need the criterion expressed relative to its             (K = 3), and a ten-neuron output layer trained by a delta rule
+own golden statistic. Each fault falls into one of four outcomes:          with teacher annealing. Weights are 4-bit; MNIST digits are
+masked, timestamps identical to the reference; tolerant, altered           reduced to 16×16 and encoded as time-to-first-spike (TTFS).
+but inside the band; critical, outside the band while still firing;        The network is time-multiplexed onto two physical cores, so
+and fatal, permanently silenced or saturated. The last two are             neuron instances account for 4800 cells while 2.26 Mib of
+operationally distinct—a critical fault degrades what a neuron             memory dominates the rest, and the mitigation of Section II-D
+contributes, a fatal one removes it or turns it into a source of           is carried at negligible system cost: the two hardened cores
+propagating noise.                                                         draw 182.8 µW together, or 0.177 µW per logical neuron. The
+                                                                           organisation cuts both ways, and the trade should be stated:
+                                                                           amortising one core over hundreds of virtual neurons amortises
+D. Fault Model and Scope                                                   the protection, but a single permanent defect in that core then
+   The campaign applies the permanent single stuck-at model                reaches every neuron mapped onto it—which is precisely why
+to all extracted sites, in both polarities, with no fault col-             the core rather than the array is the right unit to harden.
+lapsing. Permanent faults are more difficult for an adaptive                  One point is worth making. Most on-chip learning demon-
+scheme, because a stuck-at node influences all later evalu-                strations so far have resorted to rate coding or rate-like spike-
+ations, rather than one update [37]. Three limits guide the                driven rules [45], and a rate code does not care about small
+numbers. The data reflect coverage under a given workload,                 errors in the timing. Temporal coding does care: a TTFS code
+not ATPG fault efficiency [28], and the only observation point             encodes everything in the order of the spikes, so any change in
+is the spike output, so a defect leaving an unchanged emitted              latency corrupts the code directly - which is why an adaptive-
+train counts as masked. The 10−13 residual of Section II-C is              threshold neuron is the right substrate for it. We are not aware
+the error in the affine map, not of the implemented datapath,              of a prior fully end-to-end synthesisable demonstration that
+which includes the piecewise-linear fit of Section IV-B. And               combines TTFS coding with on-chip unsupervised learning
+the stability theorem of Section III-A models a defect as a                and a fault-accommodating neuron. The problem is simplified,
+current to the membrane equation, covering DATAPATH and                    and is not offered as a benchmark result.
+COMB _ CLOUD , but not the decision logic that the loop is                    This scope should not be exaggerated. We did not run—
+computed from - the gap the hardened variants of Section IV-D              and we don’t claim to have run—a network-fault campaign: a
+exist to close.                                                            spiking accelerator is heterogeneous—weight and state mem-
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                              10
+
+
+
+
+Fig. 8. Case-study system. (a) Network: a 256 → 1024 → 10 feed-forward SNN with TTFS coding over fifteen timesteps, an unsupervised hidden layer under
+first-K temporal k-WTA and a first-spike output layer. (b) Hardware: the time-multiplexed accelerator, all 1034 logical neurons evaluated on two physical
+H-ASIZH cores.
+
+ories, address generator, winner arbitration, control FSMs—                      A single 80 146.87 µm2 floorplan was fixed throughout,
+every part must be mitigated, so claiming system reliability at               so the die outline is not the discriminating metric; occupied
+the neuron level is unsound. The campaign of Section V is                     silicon is, and it follows utilisation, rising from 22.35% to
+exclusive to H-ASIZH, the only unit for which our numbers                     75.98%—from 17 913 to 60 896 µm2 of standard cells (Ta-
+hold.                                                                         ble II). The intrinsic controller is inexpensive: threshold state,
+                                                                              leak, penalty accumulator and brake cost 697 cells (1.39×)
+                 VII. E XPERIMENTAL R ESULTS                                  and 1.72× the power. Triplication compounds, multiplying
+                                                                              cells by 3.40× and power by 3.80×—the latter larger be-
+   Five descriptions were passed through the same flow and                    cause replicated logic also multiplies switching activity—
+Campaign of Section V: the unprotected Baseline, the intrinsic                with wire length up 4.12×. The critical path lengthens from
+Homeostatic core, that core with Light TMR on the control                     11.96 to 15.04 ns, the threshold comparison now resolving
+plane, the same core with the Restoring Organ, and a fully                    against a register updated in the same cycle, placing Fmax at
+triplicated reference.                                                        64.92 MHz. Full triplication is the faster circuit at 80.00 MHz,
+                                                                              since it replicates the baseline datapath and adds only a voter;
+A. Physical Implementation and PPA                                            the next paragraph shows that advantage does not survive
+                                                                              translation into energy.
+   All five VHDL cores were elaborated by GHDL, synthe-
+sised by Yosys, placed, clock-tree synthesised and routed using                 Absolute dissipation stays inside the budget the application
+OpenLane on SkyWater’s open 130 nm PDK. OpenSTA signed                        demands: 30.7 µW unprotected and 91.4 µW hardened at the
+off timing and power at the typical corner (1.8 V, 25 ◦ C) on the             typical corner, so a defect-tolerant Izhikevich neuron costs un-
+netlist after routing with parasitic extraction, meaning delays               der a tenth of a milliwatt. Leakage is negligible throughout—
+capture loading of interconnect.                                              between 6.9 and 7.3 pW per cell, never above 0.05% of the
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                                     11
+
+
+
+                                                                TABLE II
+                P HYSICAL I MPLEMENTATION S UMMARY (S KY WATER 130 NM , O PEN L ANE P&R, O PEN STA T YPICAL -C ORNER S IGNOFF )
+
+ Metric                                               1. Baseline      2. Homeostasis     3. + Light TMR       4. + Restoring Organ        5. Full TMR
+                  2
+ Core area (µm , fixed floorplan)                      80 146.87          80 146.87           80 146.87               80 146.87               80 146.87
+ Placement utilisation                                  22.35%             30.26%              50.03%                  51.61%                  75.98%
+ Standard-cell area (µm2 )                              17 913             24 252              40 098                  41 364                   60 896
+ Standard-cell count                                     1 772              2 469               3 969                   4 093                   6 025
+ Cell overhead                                           1.00×              1.39×               2.24×                   2.31×                   3.40×
+ Critical-path delay (ns)                                11.96              15.04               15.58                   16.10                   12.50
+ Fmax (MHz) = throughput (M updates/s)a                  83.61              64.92               64.18                   62.11                   80.00
+ Internal / switching power (µW)                      13.4 / 17.3        22.6 / 30.2         36.3 / 52.2             37.4 / 54.0             45.6 / 71.2
+ Leakage power (nW)                                      13.00              17.00               27.32                   28.17                   44.20
+ Total core power (µW)b                                   30.7               52.8                88.5                    91.4                   116.8
+ Power overhead                                          1.00×              1.72×               2.88×                   2.98×                   3.80×
+ Energy per neuron update (pJ)                           0.367              0.813               1.379                   1.472                   1.460
+ Total wire length (µm)                                 59 207             87 411              151 221                 156 465                 243 932
+ Interconnect vias                                      14 185             19 827              31 861                   32 853                  48 229
+aF
+  max is the sign-off frequency reported by OpenSTA with clock uncertainty and skew included, and is therefore slightly below the reciprocal of the raw
+critical-path delay.
+b Total = internal + switching. Leakage stays below 0.05% of the total in every configuration (6.9–7.3 pW per standard cell), so it is reported separately
+rather than added.
+
+
+                                                                                   a fault is either totally invisible or destructive, and graceful
+                                                                                   degradation is not something the architecture has).
+                                                                                      The controller changes the shape of that distribution rather
+                                                                                   than shifting it. Critical outcomes fall threefold to 15.3% and
+                                                                                   a tolerant population of 20.8% appears where none existed,
+                                                                                   the accommodation the Lyapunov analysis predicts. The same
+                                                                                   data expose its limit: fatal outcomes rise from 0.7% to 2.2%,
+                                                                                   because sustained discharge accumulates inhibitory charge
+                                                                                   through the brake, which relaxes only with the intrinsic time
+                                                                                   constant—a controller able to suppress a seizure can, by the
+Fig. 9. Campaign results for the five cores. (a) Gate-level fault outcomes under
+                                                                                   same action, suffocate the cell. The restoring organ addresses
+the criteria of Section V-C, tolerance band FRE ≤ 20%, CV ≤ 0.20; the              exactly that: critical falls to 3.2%, fatal returns to 1.0%, and
+tolerant category appears only once adaptive thresholding is present. (b) Joint    masked reaches 79.5%, for 124 cells over light TMR.
+reliability and SWaP-C trade-off, each axis normalised to its best observed
+value.
+                                                                                      Fig. 9(b) places the five on the joint reliability and SWaP-C
+                                                                                   surface. Taking the dangerous fraction as critical plus fatal,
+total—which is what a 130 nm high-density library gives at                         the restoring-organ core leaves 4.2% against 12.0% for full
+25 ◦ C and confirms the figures are dynamic-dominated.                             triplication, with 32% fewer cells, 22% less power and 36%
+   Frequency and power compose into the metric that mat-                           less wire. It’s structural: spatial redundancy outvotes a fault,
+ters for an event-driven fabric, the energy of one update,                         does nothing about a defect all three copies see equally,
+E = Ptotal /Fmax . The unprotected core spends 0.367 pJ,                           expands the circuit, but accommodation recomposes a steady
+the homeostatic core 0.813 pJ. The comparison that settles                         state in the presence of the defect, regardless of how many
+this paper’s argument sits at the other end of the table: the                      copies observe it. The same reading separates this work from
+restoring-organ core spends 1.472 pJ against 1.460 pJ for full                     its bio-inspired forebears. The SPANNER [16] and astrocytic
+triplication—the same number to within 1%. Triplication is                         cluster [17], [18] monitors are placed next to the neuron, built
+faster and no more efficient, yet leaves 12.0% of defects dan-                     from the same gates on the same die, such that a defect in
+gerous where the proposed core leaves 4.2% (Section VII-B).                        the monitor itself removes or reverses the protection. Closest
+At equal energy per update the accommodating core is roughly                       to this work, Johnson et al. [19] achieve homeostasis from
+three times safer.                                                                 another rule-holder, a distributed set of astrocytic cells, so
+                                                                                   regulator and process do not share the same circuit. Here,
+                                                                                   the regulated variable, sensor and actuator are the same three
+B. Reliability and the Cost Trade-off                                              registers the neuron already needs, so no supervisory fabric is
+  Fig. 9(a) shows the results of the distribution of outcomes,                     left to fail. The dendritic family [21] acts inside the neuron
+with every node injected in both polarities. The unprotected                       as well, but is resilient structurally at overhead almost 60%,
+core defines the magnitude of the problem: 45.5% of faults                         against 39% here without replicas; migration schemes [24],
+go out of the admissible envelope, while 0.7% are fatal, and                       [25], [39] skip overhead but render a spike’s path a trait
+zero outcomes are tolerant (without a self adaptive threshold,                     of the die. The complementarity runs deeper, where upset-
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                          12
+
+
+
+                              TABLE III
+  R ELIABILITY F IGURE OF M ERIT (RF O M) FROM THE C AMPAIGN . T HE
+   F INAL C OLUMN I S THE Q UOTIENT OF THE T WO P RECEDING O NES
+
+                                    Vuln.    Area
+   Architecture         Cells AVF reduction growth RFoM
+   Baseline          1 772 0.462 1.00×               1.00×      1.00×
+   Homeostasis       2 469 0.175 2.64×               1.39×      1.89×
+   + Light TMR       3 969 0.149 3.10×               2.24×      1.38×
+   + Restoring Organ 4 093 0.042 11.00×              2.31×      4.76×
+   Full TMR          6 025 0.120 3.85×               3.40×      1.13×
+
+tolerant cells [33] resist changes to the state a neuron maintains
+rather than the computations it performs, and further away,
+where approximate memories trade inference energy against a
+contained error budget [36].
+   One number is the same for two very different architectures:
+1.0% fatal fraction for restoring-organ core and for full tripli-
+cation. The faults are on the spike output and the nets driving
+it, after the voter. And a voter corrects an error amongst its
+inputs but cannot correct its own output. But the floor is that
+                                                                        Fig. 10. On-chip learning on the network of Fig. 8. (a) Test accuracy against
+of the observation boundary and not that of the architecture;           epoch for three design points; the band is the steady-state mean ±σ over
+reaching it at 4 093 cells where triplication requires 6 025 is         the final five epochs of the implemented K = 3 core, whose peak epoch
+the pragmatic statement of efficiency.                                  reaches 81.8% and whose steady state is 81.2 ± 0.5%. The star marks the
+                                                                        RTL simulation over 600 images. (b) Active hidden neurons per epoch.
+
+C. Throughput and Time Multiplexing
+                                                                        the reliability figure of merit. A mitigation is worth its silicon
+   The signed-off 64.92 MHz is lower than figures quoted                only when RFoM > 1. It is a first-order screening ratio
+for comparable cores, but the relevant measure is sustained             rather than a lifetime, since absolute mean times to failure
+throughput Θ = fclk /CPU, with CPU the initiation interval              need foundry defect densities the open PDK does not supply,
+between updates: a core at 200 MHz with CPU = 4 delivers                and it charges triplication under the single-defect model the
+50 M updates/s, less than this design, where CPU = 1 by                 campaign implements; a full lifetime treatment of a voted
+construction. Nor is the frequency an architectural bound—              structure is second order in defect probability and follows the
+splitting the 15.04 ns path into S stages at Tov ≈ 0.4 ns               classical RTMR (t) = 3R2 (t) − 2R3 (t) analysis, which retains
+each gives roughly 235 MHz at S = 4 and 430 MHz at                      an advantage this metric does not credit at very low defect
+S = 8. Pipelining ordinarily raises CPU in proportion and               density.
+breaks the recurrence; time multiplexing resolves both, and                Table III evaluates the five. Full triplication cuts propagation
+is the organisation this core targets—one datapath cycling              probability by 3.85× yet returns only RFoM = 1.13, because
+through many virtual neurons, each still seeing a single-cycle          that reduction required 3.40× the cells and the enlarged target
+recurrence in its own timebase. What matters for an array is            consumes almost the whole benefit. The restoring-organ core
+then                                                                    gives RFoM = 4.76 from 11.00× vulnerability reduction
+                            Θ          fclk
+                Nvirtual =      =                          (25)         against 2.31× area growth, and even the plain homeostatic
+                           fbio    CPU · fbio
+                                                                        core outperforms full triplication by 1.67× at 41% of its
+At the conventional 1 ms timestep the signed-off clock sustains
+                                                                        cell count. Replication is self-limiting by construction: every
+about 64 900 neurons per core, meeting real time with four
+                                                                        copy that lowers the vulnerability factor raises the count
+orders of magnitude of margin.
+                                                                        that multiplies it, whereas homeostasis lowers AVF without
+                                                                        replicating anything.
+D. Reliability Figure of Merit
+   The distributions above give the architectural vulnerability
+factor, AVF = (Ncritical +Nfatal )/Ntotal , which is not by itself      E. On-Chip Learning
+a comparison between architectures: a mitigation that lowers               The network of Section VI was trained for 25 epochs on
+it also enlarges the circuit in which defects can occur. Under a        10 000 images and evaluated on 2000. Fig. 10(a) gives the
+single permanent defect, independent and uniform over cells,            outcome: the implemented configuration reaches 81.8% and
+the expected number of dangerous events scales as the product           holds 81.2 ± 0.5% over its final five epochs, while strict K =
+and the per-cell rate cancels in a ratio, so we score a mitigation      1 competition converges more slowly to a markedly lower
+by                                         ,                            plateau. The synthesisable RTL, simulated end to end over
+                            AVFbase              Ni                     600 test images, returns 81.5%—within one standard error of
+             RFoMi =                                          (26)
+                              AVFi             Nbase                    the software model, so the fixed-point datapath is a faithful
+                                                                        realisation of it.
+                            | {z }            | {z }
+                        vulnerability reduction   area growth
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                                    13
+
+
+
+   Fig. 10(b) reports the most relevant outcome: Across all 25                   [7] F. Akopyan, J. Sawada, A. Cassidy, R. Alvarez-Icaza, J. Arthur,
+epochs, 1020 ± 2 of the 1024 hidden neurons remain active.                           P. Merolla et al., “TrueNorth: Design and tool flow of a 65 mw 1 million
+                                                                                     neuron programmable neurosynaptic chip,” IEEE Trans. Comput.-Aided
+Both neuron death and domination are classic unsupervised                            Des. Integr. Circuits Syst., vol. 34, no. 10, pp. 1537–1557, 2015.
+competitive-learning failure modes; the adaptive threshold                       [8] M. Davies, N. Srinivasa, T. Lin, G. Chinya, Y. Cao, S. H. Choday et al.,
+suppresses both - the same mechanism that stops a faulted                            “Loihi: A neuromorphic manycore processor with on-chip learning,”
+                                                                                     IEEE Micro, vol. 38, no. 1, pp. 82–99, 2018.
+neuron from runaway also stops an untrained one from being                       [9] I. Hill, P. Chanawala, R. Singh, S. A. Sheikholeslam, and A. Ivanov,
+silenced. The Section II-D hardening does not just preserve                          “CMOS reliability from past to future: A survey of requirements, trends,
+learning; it is what makes the population viable until learning                      and prediction methods,” IEEE Trans. Device Mater. Rel., vol. 22, no. 1,
+                                                                                     pp. 1–18, 2022.
+is complete.
+                                                                                [10] E.-I. Vatajelu, G. D. Natale, and L. Anghel, “Special session: Reliability
+                                                                                     of hardware-implemented spiking neural networks (SNN),” in Proc.
+                         VIII. C ONCLUSION                                           IEEE 37th VLSI Test Symp., 2019, pp. 1–8.
+                                                                                [11] T. Spyrou, S. El-Sayed, E. Afacan, L. C. nas Mesa, B. Linares-
+   This paper set out to obtain fault tolerance for a digital                        Barranco, and H.-G. Stratigopoulos, “Neuron fault tolerance in spiking
+Izhikevich neuron at minimal overhead, and did so by moving                          neural networks,” in Proc. Design, Automation Test Europe Conf. Exhib.
+the mechanism inside the neuron: the firing threshold becomes                        (DATE), 2021, pp. 743–748.
+                                                                                [12] C. D. Schuman, J. P. Mitchell, J. T. Johnston, M. Parsa, B. Kay,
+a slow state variable whose negative feedback accommodates a                         P. Date et al., “Resilience and robustness of spiking neural networks for
+permanent defect, proven Uniformly Ultimately Bounded and                            neuromorphic systems,” in Proc. Int. Joint Conf. Neural Netw. (IJCNN),
+realised in shifts and additions on a single-cycle Q7.19 datap-                      2020, pp. 1–10.
+                                                                                [13] I. Koren and Z. Koren, “Defect tolerance in VLSI circuits: techniques
+ath at 30.7–91.4 µW. An exhaustive gate-level campaign leaves                        and yield analysis,” Proc. IEEE, vol. 86, no. 9, pp. 1819–1838, 1998.
+4.2% of faults dangerous against 12.0% for full triplication,                   [14] R. E. Lyons and W. Vanderkulk, “The use of triple-modular redundancy
+at 32% fewer cells, a 4.76× reliability figure of merit against                      to improve computer reliability,” IBM J. Res. Dev., vol. 6, no. 2, pp.
+1.13×, and—the comparison that carries the argument—the                              200–209, 1962.
+                                                                                [15] K. S. Morgan, D. L. McMurtrey, B. H. Pratt, and M. J. Wirthlin, “A
+same 1.47 pJ per neuron update. Triplication buys nothing that                       comparison of TMR with alternative fault-tolerant design techniques for
+accommodation does not buy more cheaply, because every                               FPGAs,” IEEE Trans. Nucl. Sci., vol. 54, no. 6, pp. 2065–2072, 2007.
+replica that lowers the vulnerability factor enlarges the target                [16] J. Liu, J. Harkin, L. P. Maguire, L. J. McDaid, and J. J. Wade, “SPAN-
+                                                                                     NER: A self-repairing spiking neural network hardware architecture,”
+that multiplies it.                                                                  IEEE Trans. Neural Netw. Learn. Syst., vol. 29, no. 1, pp. 87–100, 2018.
+   In another way, this mechanism is cheaper than we’d                          [17] M. Isik, A. Paul, M. L. Varshika, and A. Das, “A design methodology
+thought. The threshold-adapting neuron can’t runaway or be                           for fault-tolerant computing using astrocyte neural networks,” in Proc.
+                                                                                     19th ACM Int. Conf. Computing Frontiers (CF), 2022, pp. 43–52.
+permanently outcompeted, so the three registers that absorb
+                                                                                [18] M. L. Varshika, S. Johari, J. Dubey, and A. Das, “Design of a tunable
+the defect also suppress neural death and dominance in un-                           astrocyte neuromorphic circuitry with adaptable fault tolerance,” in Proc.
+supervised learning: 1020 of the 1024 hidden neurons remain                          IEEE 66th Int. Midwest Symp. Circuits Syst. (MWSCAS), 2023, pp. 1–5.
+active through training. This isn’t a fault-tolerance result; it’s              [19] A. P. Johnson, J. Liu, A. G. Millard, S. Karim, A. M. Tyrrell, J. Harkin,
+                                                                                     J. Timmis, L. J. McDaid, and D. M. Halliday, “Homeostatic fault
+due to the learning dynamics, and we report it as such, but                          tolerance in spiking neural networks: A dynamic hardware perspective,”
+the silicon bought for high-reliability is active even without a                     IEEE Trans. Circuits Syst. I, Reg. Papers, vol. 65, no. 2, pp. 687–699,
+fault.                                                                               2018.
+                                                                                [20] R. V. W. Putra, M. A. Hanif, and M. Shafique, “RescueSNN: enabling
+   The way forward is composition rather than extension.                             reliable executions on spiking neural network accelerators under perma-
+Intrinsic accommodation and system-level protection are com-                         nent faults,” Frontiers in Neuroscience, vol. 16, 2022.
+plementary: the former eliminates the neuron as a single point                  [21] A. Das and M. L. Varshika, “Exploring dendritic computation in bio-
+of failure, ECC-protected memories, control-path duplication                         inspired architectures for dynamic programming,” in Proc. Design,
+                                                                                     Automation Test Europe Conf. Exhib. (DATE), 2025, pp. 1–6.
+and checkpoint-and-retry address the parts of an accelerator                    [22] Q. Cheng, Q. Li, Z. Yang, Z. Kong, G. Niu, Y. Liang et al., “A radiation-
+that a neuron model cannot reach. Extending the treatment                            hardened neuromorphic imager with self-healing spiking pixels and
+to the memory hierarchy, the arbitration logic and the control                       unified spiking neural network for space robotics,” in Proc. IEEE Symp.
+                                                                                     VLSI Technol. Circuits, 2025, pp. 1–2.
+FSMs are topics of current research.                                            [23] R. Vadlamani, J. Zhao, W. Burleson, and R. Tessier, “Multicore soft
+                                                                                     error rate stabilization using adaptive dual modular redundancy,” in Proc.
+                             R EFERENCES                                             Design, Automation Test Europe Conf. Exhib. (DATE), 2010, pp. 27–32.
+                                                                                [24] R. V. W. Putra, M. A. Hanif, and M. Shafique, “ReSpawn: Energy-
+ [1] W. Maass, “Networks of spiking neurons: The third generation of neural
+                                                                                     efficient fault-tolerance for spiking neural networks considering unreli-
+     network models,” Neural Networks, vol. 10, no. 9, pp. 1659–1671, 1997.
+                                                                                     able memories,” in Proc. IEEE/ACM Int. Conf. Comput.-Aided Design
+ [2] K. Roy, A. Jaiswal, and P. Panda, “Towards spike-based machine
+                                                                                     (ICCAD), 2021, pp. 1–9.
+     intelligence with neuromorphic computing,” Nature, vol. 575, no. 7784,
+     pp. 607–617, 2019.                                                         [25] M. L. Varshika, A. Balaji, F. Corradi, A. Das, J. Stuijt, and F. Catthoor,
+ [3] N. Rathi, I. Chakraborty, A. Kosta, A. Sengupta, A. Ankit, P. Panda             “Design of many-core big little µBrains for energy-efficient embedded
+     et al., “Exploring neuromorphic computing based on spiking neural               neuromorphic computing,” in Proc. Design, Automation Test Europe
+     networks: algorithms to hardware,” ACM Comput. Surveys, vol. 55, pp.            Conf. Exhib. (DATE), 2022, pp. 1–6.
+     1–52, 2023.                                                                [26] H. K. Khalil, Nonlinear Systems, 3rd ed. Upper Saddle River, NJ:
+ [4] E. M. Izhikevich, “Simple model of spiking neurons,” IEEE Trans.                Prentice Hall, 2002.
+     Neural Netw., vol. 14, no. 6, pp. 1569–1572, 2003.                         [27] J.-J. E. Slotine and W. Li, Applied Nonlinear Control. Englewood
+ [5] S. Haghiri, A. Zahedi, A. Naderi, and A. Ahmadi, “Multiplierless                Cliffs, NJ: Prentice Hall, 1991.
+     implementation of noisy Izhikevich neuron with low-cost digital design,”   [28] R. Leveugle, A. Calvez, P. Maistri, and P. Vanhauwaert, “Statistical fault
+     IEEE Trans. Biomed. Circuits Syst., vol. 12, no. 6, pp. 1422–1430, 2018.        injection: Quantified error and confidence,” in Proc. Design, Automation
+ [6] P. V. Sruthi and T. S. Bindiya, “Modeling of Izhikevich spiking neu-            Test Europe Conf. Exhib., 2009, pp. 502–506.
+     rons with high matching accuracy using comb-exp functions and its          [29] B. Pratt, M. Caffrey, J. F. Carroll, P. Graham, K. Morgan, and M. Wirth-
+     multiplier-free realization,” IEEE Trans. Circuits Syst. I, Reg. Papers,        lin, “Fine-grain SEU mitigation for FPGAs using partial TMR,” IEEE
+     vol. 72, no. 8, 2025.                                                           Trans. Nucl. Sci., vol. 55, no. 4, pp. 2274–2280, 2008.
+IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS–I: REGULAR PAPERS, VOL. XX, NO. XX, MONTH 2026                                                                    14
+
+
+
+[30] F. Libano, B. Wilson, J. Anderson, M. J. Wirthlin, C. Cazzaniga,              of Technology. He was a Visiting Researcher with the Chair for Embedded
+     C. Frost, and P. Rech, “Selective hardening for neural networks in            Systems (CES), Karlsruhe Institute of Technology (KIT), Germany, from 2019
+     FPGAs,” IEEE Trans. Nucl. Sci., vol. 66, no. 1, pp. 216–222, 2019.            to 2021. His research interests include cyber-physical systems, embedded
+[31] K. Zhang, G. Bedette, and R. F. DeMara, “Triple modular redundancy            machine learning, edge, fog, cloud computing, and thermal and low-power
+     with standby (TMRSB) supporting dynamic resource reconfiguration,”            design of CPSs.
+     in Proc. IEEE Autotestcon, 2006, pp. 690–696.
+[32] S. T. Ahmed, M. Hefenbrock, C. Munch, and M. B. Tahoori, “Neuro-
+                                                                                   Mohammad T. Manzuri Shalmani received the B.Sc. and M.Sc. degrees
+     Scrub+: Mitigating retention faults using flexible approximate scrubbing
+                                                                                   in electrical engineering from the Sharif University of Technology, Tehran,
+     in neuromorphic fabric based on resistive memories,” IEEE Trans.
+                                                                                   Iran, in 1984 and 1988, respectively, and the Ph.D. degree in electrical and
+     Comput.-Aided Des. Integr. Circuits Syst., vol. 42, no. 5, pp. 1490–1503,
+                                                                                   computer engineering from the Vienna University of Technology, Austria, in
+     2023.
+                                                                                   1995. He is currently an Associate Professor with the Department of Computer
+[33] A. Yan, J. Zhang, X. Xu, H. Li, N. Bai, Z. Huang, X. Wang, X. Wen,
+                                                                                   Engineering, Sharif University of Technology. His main research interests
+     and P. Girard, “TUTPFL: Triple node upset-tolerant and single-event
+                                                                                   include image processing, machine vision, and machine learning.
+     transient filtered low-power latch,” IEEE Trans. Very Large Scale Integr.
+     (VLSI) Syst., vol. 33, no. 10, pp. 2783–2794, 2025.
+[34] F. Cheng, T. Zhang, J. H. C. Ku, Y. Wang, X. Yang, H. Li, and Y. Chen,
+     “MulPi: A multi-class and patient-independent epileptic seizure classifier
+     with co-designed input-stationary computing-in-SRAM,” IEEE Trans.
+     Biomed. Circuits Syst., 2025.
+[35] R. V. W. Putra, M. A. Hanif, and M. Shafique, “SparkXD: A framework
+     for resilient and energy-efficient spiking neural network inference using
+     approximate DRAM,” in Proc. 58th ACM/IEEE Design Automation
+     Conf. (DAC), 2021, pp. 379–384.
+[36] ——, “EnforceSNN: enabling resilient and energy-efficient spiking neu-
+     ral network inference considering approximate DRAMs for embedded
+     systems,” Frontiers in Neuroscience, vol. 16, p. 937782, 2022.
+[37] ——, “SoftSNN: Low-cost fault tolerance for spiking neural network
+     accelerators under soft errors,” in Proc. 59th ACM/IEEE Design Autom.
+     Conf. (DAC), 2022, pp. 151–156.
+[38] O. M. Ikechukwu, K. N. Dang, and A. B. Abdallah, “On the design of
+     a fault-tolerant scalable three dimensional NoC-based digital neuromor-
+     phic system with on-chip learning,” IEEE Access, vol. 9, pp. 64 331–
+     64 345, 2021.
+[39] K. N. Dang, N. A. V. Doan, and A. B. Abdallah, “MigSpike: A migration
+     based algorithms and architecture for scalable robust neuromorphic
+     systems,” IEEE Trans. Emerg. Topics Comput., vol. 10, no. 2, pp. 602–
+     617, 2022.
+[40] W. Y. Yerima, O. M. Ikechukwu, K. N. Dang, and A. B. Abdallah,
+     “Fault-tolerant spiking neural network mapping algorithm and architec-
+     ture to 3D-NoC-based neuromorphic systems,” IEEE Access, vol. 11,
+     pp. 52 429–52 443, 2023.
+[41] T. Titirsha, S. Song, A. Das, J. Krichmar, N. Dutt, N. Kandasamy, and
+     F. Catthoor, “Endurance-aware mapping of spiking neural networks to
+     neuromorphic hardware,” IEEE Trans. Parallel Distrib. Syst., vol. 33,
+     no. 2, pp. 288–301, 2022.
+[42] M. A. Hanif and M. Shafique, “SalvageDNN: Salvaging deep neural
+     network accelerators with permanent faults through saliency-driven
+     fault-aware mapping,” Philos. Trans. Roy. Soc. A, vol. 378, no. 2164, p.
+     20190164, 2020.
+[43] M. Naeem, L. J. McDaid, J. Harkin, J. J. Wade, and J. Marsland, “On
+     the role of astroglial syncytia in self-repairing spiking neural networks,”
+     IEEE Trans. Neural Netw. Learn. Syst., vol. 26, no. 10, pp. 2348–2362,
+     2015.
+[44] J.-D. Guerrero-Balaguera, R. Limas-Sierra, O. Sensoz, J. E. R. Condia,
+     M. G. B. Escobar, M. L. Crespo, S. Carrato, and M. S. Reorda, “SHAD-
+     OWFI: An open-source framework for fault evaluation of complex IC
+     designs using hyperscale computing,” IEEE Trans. Emerg. Sel. Topics
+     Circuits Syst., 2025.
+[45] C. Frenkel, M. Lefebvre, J. Legat, and D. Bol, “A 0.086-mm2 12.7-
+     pj/sop 64k-synapse 256-neuron online-learning digital spiking neuro-
+     morphic processor in 28-nm CMOS,” IEEE Trans. Biomed. Circuits
+     Syst., vol. 13, no. 1, pp. 145–158, 2019.
+
+Ali Roshani received the B.Sc. degree in computer engineering from the
+Kermanshah University of Technology (KUT), Kermanshah, Iran, in 2023.
+He is currently pursuing the M.Sc. degree in computer hardware and system
+design engineering with the Sharif University of Technology (SUT), Tehran,
+Iran. He is also a member of the Cyber-Physical Systems (CPS) Laboratory,
+Department of Computer Engineering, Sharif University of Technology. His
+research interests include neuroprosthetics, neuromorphic engineering, edge
+artificial intelligence (Edge AI), hardware-aware spiking neural networks, and
+fault-tolerant VLSI design.
+
+Mohsen Ansari received the Ph.D. degree in computer engineering from
+the Sharif University of Technology, Tehran, Iran, in 2021. He is currently
+an Assistant Professor in computer engineering with the Sharif University
+
