@@ -43,6 +43,7 @@
 | [`17-biovision-results-csv.md`](17-biovision-results-csv.md) | **BioVision:** تحلیل `results_all.csv` و تطبیق ۱۴ عدد گزارش (همه برابر) |
 | [`18-working-conventions.md`](18-working-conventions.md) | قرارداد کاری: خروجی‌ها، ورودی‌ها، نکتهٔ CLAUDE.md |
 | [`19-thesis-structure-plan.md`](19-thesis-structure-plan.md) | **طرح ساختار پایان‌نامه (۹ فصل)**، ۲۴ ضعف و ۱۱ خانوادهٔ شتاب‌دهی، نگاشت فصل ۱ قبلی به فصل‌های جدید، و مطالب بدون منبع |
+| [`20-core-idea-narrative.md`](20-core-idea-narrative.md) | **ایدهٔ اصلی تز به روایت پژوهشگر:** دستگاه لبه به‌جای برون‌سپاری، ODIN و time-multiplexing، چهار جزء آسیب‌پذیر، سه فاز (H‑ASIZH، GateScan، BioVision) و فاز آسیب‌پذیری |
 
 ## ۳. نقشهٔ ذهنی یک‌خطی
 ```
