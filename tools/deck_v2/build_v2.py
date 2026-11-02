@@ -337,7 +337,7 @@ picture(s14, f'{EQ}/hw.png', 1.6, 4.46, 5.4, 0.94)
 tb(s14, 1.42, 5.52, 5.75, 0.55, [[('Contraction keeps the state near [−0.5, 1.5]: ', {'size': 11.5, 'color': INK}), ('free guard bits ', {'size': 11.5, 'bold': True, 'color': TEAL}), ('in the Q7.19 word.', {'size': 11.5, 'color': INK})]])
 rrect(s14, 7.35, 1.32, 5.57, 4.74, WHITE, LINE, 0.04)
 picture(s14, f'{FIG}/fig02_nine_patterns.png', 7.45, 1.4, 5.37, 4.3)
-tb(s14, 7.45, 5.72, 5.37, 0.3, [[('Bio vs hardware model: nine patterns overlap, RMSE < 10⁻¹³', {'size': 10.5, 'italic': True, 'color': MUTED})]], align='c')
+tb(s14, 7.45, 5.72, 5.37, 0.3, [[('Bio vs hardware model: the nine firing patterns overlap', {'size': 10.5, 'italic': True, 'color': MUTED})]], align='c')
 banner(s14, 'Exact and shift-friendly  —  ', 'yet one stuck-at still drives it into a digital seizure')
 
 # ---- Slide 15: homeostasis guided by Lyapunov
@@ -400,19 +400,84 @@ banner(s17, 'Placed and routed in SkyWater 130 nm  —  ', 'the controller adds 
 
 # ---- Slide 18: case study
 s18 = D.new(); D.chrome(s18, 3, 'Case Study: Does Learning Survive on the Core?',
-    footer='Roshani et al., TCAS-I (submitted), Sec. VI and VII-E, Figs. 8 and 10 · MNIST downsampled to 16 × 16, TTFS in 15 time steps')
+    footer='Roshani et al., TCAS-I (submitted), Sec. VI, Fig. 8 · MNIST downsampled to 16 × 16, TTFS in 15 time steps')
 rrect(s18, 1.42, 1.32, 6.25, 4.72, WHITE, LINE, 0.03)
 picture(s18, f'{FIG}/fig08_case_study_system.png', 1.5, 1.4, 6.09, 4.56)
-stats = [('256 → 1024 → 10', 'TTFS SNN built only from our cores · STDP + first-K WTA (K = 3) · delta-rule readout', BLUE, WHITE),
-         ('2 cores · 1,034 logical neurons', 'time-multiplexed · 4-bit weights · 2.26 Mib of state and weight memory', BLUE, WHITE),
-         ('182.8 µW', 'both hardened cores together — 0.177 µW per logical neuron', BLUE, WHITE),
-         ('81.8 % on MNIST · 1020 / 1024 active', 'the adaptive threshold keeps the whole population alive while it learns', WHITE, TEAL)]
-for k, (h, t, hc, fill) in enumerate(stats):
+expl18 = [('1', 'Network', '256 → 1024 → 10, TTFS-coded, built only from our neuron cores.'),
+          ('2', 'On-chip learning', 'Hidden layer: unsupervised STDP with first-K winner-take-all (K = 3).'),
+          ('3', 'Read-out', 'Output layer: delta rule with teacher annealing; the first spike decides the class.'),
+          ('4', 'Hardware', 'Two physical cores serve all logical neurons (time-multiplexed), with weight and state RAMs under one master FSM.')]
+for k, (n, h, t) in enumerate(expl18):
     y = 1.32 + k * 1.2
-    rrect(s18, 7.85, y, 5.07, 1.1, fill, LINE if fill == WHITE else None, 0.1)
-    tb(s18, 8.02, y + 0.08, 4.8, 0.4, [[(h, {'size': 17 if k < 3 else 15.5, 'bold': True, 'color': hc, 'font': HFONT})]])
-    tb(s18, 8.02, y + 0.5, 4.8, 0.58, [[(t, {'size': 10.5, 'color': INK if fill == WHITE else 'E6F4F4'})]])
-banner(s18, 'Fault tolerance did not cost learning  —  ', 'it kept the population alive')
+    rrect(s18, 7.85, y, 5.07, 1.1, WHITE, LINE, 0.1)
+    o = oval(s18, 8.0, y + 0.14, 0.4, 'E3EEF7'); write(o, [(n, {'size': 13, 'bold': True, 'color': BLUE})], align='c', anchor='m')
+    tb(s18, 8.52, y + 0.1, 4.3, 0.34, [[(h, {'size': 15, 'bold': True, 'color': INK, 'font': HFONT})]])
+    tb(s18, 8.52, y + 0.46, 4.3, 0.62, [[(t, {'size': 11, 'color': INK})]])
+banner(s18, 'One question for the results:  ', 'does learning survive on the fault-tolerant core?')
 
-D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18])
+# ================= Phase 2 · fault-assessment campaign (slides 19–22)
+# ---- Slide 19: how do we assess the core? FARM + census
+s19 = D.new(); D.chrome(s19, 3, 'Phase 2 · How Do We Assess the Core?',
+    footer='Arlat et al., IEEE TSE 1990 (FARM) · Leveugle et al., DATE 2009 · Roshani et al., TCAS-I (submitted), Sec. V')
+rrect(s19, 1.42, 1.3, 11.5, 0.56, 'EEF6F6', 'B9DADC', 0.2)
+tb(s19, 1.6, 1.33, 11.2, 0.5, [[('Phase 1 gave a core that rides out a parasitic current in simulation. ', {'size': 12.5, 'color': INK}),
+                                 ('Now: how do we assess it — fault by fault, on the real netlist?', {'size': 12.5, 'bold': True, 'color': TEAL})]], anchor='m')
+picture(s19, f'{FIG}/farm.png', 1.42, 1.98, 7.45, 4.07)
+rrect(s19, 9.05, 1.98, 3.87, 4.07, WHITE, LINE, 0.05)
+tb(s19, 9.22, 2.04, 3.6, 0.34, [[('Census, not sampling', {'size': 15, 'bold': True, 'color': INK, 'font': HFONT})]])
+tb(s19, 9.22, 2.38, 3.6, 0.26, [[('LEVEUGLE SAMPLE SIZE', {'size': 9, 'bold': True, 'color': 'C98A1E'})]])
+picture(s19, f'{EQ}/leveugle.png', 9.2, 2.62, 3.55, 0.95)
+tb(s19, 9.22, 3.66, 3.6, 1.2, [[('One core has only a few thousand faults, so the sample is already most of N ', {'size': 11, 'color': INK}),
+                                 ('(e.g. N = 5,000 → n ≈ 3,300 at e = 1 %, 95 %).', {'size': 11, 'color': MUTED})]])
+rrect(s19, 9.2, 4.62, 3.57, 1.02, 'FFF7E6', 'F1CD8A', 0.1)
+tb(s19, 9.32, 4.66, 3.35, 0.95, [[('So we injected every site, in both polarities — ', {'size': 11.5, 'color': INK}), ('no fault collapsing, no fault dropping.', {'size': 11.5, 'bold': True, 'color': '9A6A12'})]], anchor='m')
+banner(s19, 'Netlist · site and value · workload · injection time  —  ', 'every node, both polarities')
+
+# ---- Slide 20: the GLFI engine
+s20 = D.new(); D.chrome(s20, 3, 'The GLFI Engine: Faults Woven Into the Netlist',
+    footer='Roshani et al., TCAS-I (submitted), Sec. V, Fig. 7 · github.com/aliroshanidino/GLFI_fault_campaign')
+rrect(s20, 1.42, 1.3, 11.5, 4.2, WHITE, LINE, 0.03)
+picture(s20, f'{FIG}/fig07_glfi_framework.png', 1.55, 1.36, 11.24, 4.08)
+rrect(s20, 1.42, 5.58, 3.35, 0.46, INK, None, 0.2)
+tb(s20, 1.47, 5.6, 3.25, 0.42, [[('net = (fi_en && id==ID) ? fi_val : hook', {'size': 8.5, 'color': 'E3EEF7', 'font': 'Consolas'})]], anchor='m', align='c')
+chips20 = [('Shadow Hook', 'one instrumented netlist serves the whole campaign'), ('4-valued Icarus', 'X and Z propagate — no optimistic branch'), ('Neuro-metric', 'masked · tolerant · critical · fatal')]
+for k, (a, b) in enumerate(chips20):
+    x = 4.87 + k * 2.69
+    rrect(s20, x, 5.58, 2.6, 0.46, 'EEF6F6', 'B9DADC', 0.2)
+    tb(s20, x + 0.08, 5.59, 2.45, 0.44, [[(a + ': ', {'size': 9.5, 'bold': True, 'color': TEAL}), (b, {'size': 9.5, 'color': INK})]], anchor='m')
+banner(s20, 'Faults are compiled into the circuit  —  ', 'not forced by the simulator')
+
+# ---- Slide 21: spin-off — GLFI grows into GateScan
+s21 = D.new(); D.chrome(s21, 3, 'Spin-off: From GLFI to GateScan',
+    footer='Roshani et al., GateScan, IEEE TCAD (draft), Fig. 1 · github.com/gatescan-dev/gatescanMarkIII')
+rrect(s21, 1.42, 1.3, 8.75, 4.72, WHITE, LINE, 0.03)
+picture(s21, f'{FIG}/gs_arch.png', 1.5, 1.38, 8.59, 4.56)
+cards21 = [('Any circuit in', 'GLFI grew into a general tool: give it RTL, it returns a certified report.', BLUE),
+           ('Agents only propose', 'Five LLM roles write workloads, triggers and metrics — as data.', 'C05A8A'),
+           ('The core decides', 'Two simulators and a formal oracle compute every verdict; a wrong agent can only widen the bracket.', '2E7D4F')]
+for k, (h, t, col) in enumerate(cards21):
+    y = 1.3 + k * 1.6
+    rrect(s21, 10.35, y, 2.57, 1.5, WHITE, LINE, 0.08); rect(s21, 10.35, y + 0.14, 0.06, 1.22, col)
+    tb(s21, 10.5, y + 0.06, 2.38, 0.34, [[(h, {'size': 13, 'bold': True, 'color': col, 'font': HFONT})]])
+    tb(s21, 10.5, y + 0.42, 2.38, 1.05, [[(t, {'size': 10.5, 'color': INK})]])
+banner(s21, 'Agents propose, the core decides  —  ', 'an answer that comes with a guarantee')
+
+# ---- Slide 22: three classes to eleven + the certified bracket
+s22 = D.new(); D.chrome(s22, 3, 'From Three Classes to Eleven — and a Certified Bracket',
+    footer='Roshani et al., GateScan, IEEE TCAD (draft), Sec. III and Fig. 2 · Clopper & Pearson 1934 · hypergeometric and Hoeffding–Serfling intervals')
+rrect(s22, 1.42, 1.3, 5.3, 4.72, WHITE, LINE, 0.03)
+picture(s22, f'{FIG}/gs_classes.png', 1.52, 1.38, 5.1, 4.56)
+rrect(s22, 6.9, 1.3, 6.02, 2.25, WHITE, LINE, 0.05)
+picture(s22, f'{FIG}/bracket.png', 6.95, 1.33, 5.92, 2.19)
+rrect(s22, 6.9, 3.65, 6.02, 0.82, 'FFF7E6', 'F1CD8A', 0.12)
+picture(s22, f'{EQ}/bracket.png', 7.0, 3.7, 5.8, 0.72)
+pts22 = [('“Masked” splits into four:', ' ESC (a vulnerability with a replayed witness), MSK, BEN / HEAL and INE.'),
+         ('Exact intervals', ' for every sampled share, and an escape certificate that bounds what still hides in U.')]
+for k, (a, b) in enumerate(pts22):
+    y = 4.57 + k * 0.74
+    rrect(s22, 6.9, y, 6.02, 0.66, WHITE, LINE, 0.12)
+    tb(s22, 7.05, y + 0.03, 5.75, 0.6, [[(a, {'size': 11.5, 'bold': True, 'color': TEAL}), (b, {'size': 11.5, 'color': INK})]], anchor='m')
+banner(s22, '“Masked” is not harmless  —  ', 'we report what is proven, and say what is not')
+
+D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
