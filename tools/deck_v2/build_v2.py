@@ -147,22 +147,41 @@ bn = rrect(s8, 1.42, 6.08, 11.5, 0.54, INK, None, 0.2)
 write(bn, [[('Alone at the edge, nothing can outvote a faulty core  →  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
             ('harden the shared neuron core first', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
 
-# ---- Slide 9: research gaps (5 short real-world gaps + schematic for gap 1)
-s9 = D.new(); D.chrome(s9, 1, 'Research Gaps',
-    footer='Buttazzo, Hard Real-Time Computing Systems (hard / firm / soft deadlines) · ISO 14708-1:2014 · ISO 26262:2018 · Hochschild et al. 2021 · SpikeYOLO (Luo et al. 2024)')
-gaps9 = [('timer-alert-outline', 'No deterministic guarantees', 'Deadline, power, energy and accuracy limits are met only statistically.'),
-         ('clipboard-alert-outline', 'Standards rarely met', 'Safety limits such as ISO 14708 (≤ 2 °C implant heating) are seldom demonstrated.'),
-         ('chip', 'The device is assumed correct, even in harsh settings', 'Its reliability, availability and security are barely studied — or certified.'),
-         ('brain', 'Neuromorphic is not mature', 'Far more efficient, yet still below YOLO-class accuracy on COCO.'),
-         ('school-outline', 'No learning in the field', 'Devices drift and wear, yet dependable on-chip learning is rarely shown.')]
-for k, (ic, h, t) in enumerate(gaps9):
-    y = 1.42 + k * 1.0; first = k == 0
-    rrect(s9, 1.42, y, 11.5, 0.9, WHITE, LINE, 0.12, 0.75)
-    rect(s9, 1.42, y + 0.18, 0.07, 0.54, RED)
-    oval(s9, 1.72, y + 0.13, 0.64, 'E3EEF7'); picture(s9, f'{IC}/g9_{ic}.png', 1.83, y + 0.24, 0.42, 0.42)
-    tb(s9, 2.6, y + 0.07, 10.1, 0.42, [[(f'G{k+1}   ', {'size': 13, 'bold': True, 'color': RED}), (h, {'size': 18, 'bold': True, 'color': INK, 'font': HFONT})]])
-    tb(s9, 2.6, y + 0.48, 10.1, 0.38, [[(t, {'size': 14, 'color': INK})]])
-tb(s9, 1.42, 6.42, 11.5, 0.26, [[('Out of scope: security attacks and rare long-tail events.', {'size': 11, 'italic': True, 'color': MUTED})]])
+# ---- Slide 9: research gaps -> contributions (one row per gap; one sentence per answer)
+s9 = D.new(); D.chrome(s9, 1, 'Research Gaps and Contributions',
+    footer='Buttazzo, Hard Real-Time Computing Systems · ISO 14708-1:2014 · ISO 26262:2018 · Roshani et al., TCAS-I (submitted) · Roshani et al., GateScan, TCAD (draft)')
+CON = {'C1': ('C1 · H-ASIZH neuron core', TEAL, 'Phase 1'), 'C2': ('C2 · GateScan', BLUE, 'Phase 2'),
+       'C3': ('C3 · BioVision', '6B4FA0', 'Phase 3'), 'C4': ('C4 · On-chip learning', 'B7791A', 'Phase 1')}
+rows9 = [('timer-alert-outline', 'No deterministic guarantees', 'deadline · power · energy · accuracy met only statistically',
+          'C1', 'Deterministic by design: one-cycle update, Lyapunov-bounded, 182.8 µW for two cores.'),
+         ('clipboard-alert-outline', 'Standards rarely met', 'e.g. ISO 14708: ≤ 2 °C implant heating',
+          'C2', 'Certified fault brackets instead of percentages — evidence a standard can accept.'),
+         ('chip', 'The device is assumed correct', 'reliability, availability, security barely studied',
+          'C1', 'A self-protecting core: more than 4× better than full TMR, with one-third less silicon.'),
+         ('brain', 'Neuromorphic is not mature', 'still below YOLO-class accuracy on COCO',
+          'C3', 'Brain-like spiking vision with local learning: classification done, COCO detection next.'),
+         ('school-outline', 'No learning in the field', 'devices drift and wear; learning stops',
+          'C4', 'STDP learning on the hardened core: 1020 / 1024 neurons stay active, 81.8 % on MNIST.')]
+tb(s9, 1.42, 1.3, 4.35, 0.3, [[('THE GAP', {'size': 10.5, 'bold': True, 'color': RED})]])
+tb(s9, 6.42, 1.3, 6.5, 0.3, [[('OUR ANSWER', {'size': 10.5, 'bold': True, 'color': TEAL})]])
+for k, (ic, h, sub, c, ans) in enumerate(rows9):
+    y = 1.6 + k * 0.94
+    # gap card
+    rrect(s9, 1.42, y, 4.35, 0.84, WHITE, LINE, 0.12, 0.75)
+    rect(s9, 1.42, y + 0.15, 0.06, 0.54, RED)
+    oval(s9, 1.6, y + 0.15, 0.54, 'F9E5E5'); picture(s9, f'{IC}/g9r_{ic}.png', 1.69, y + 0.24, 0.36, 0.36)
+    tb(s9, 2.25, y + 0.07, 3.48, 0.38, [[(f'G{k+1}  ', {'size': 11, 'bold': True, 'color': RED}), (h, {'size': 14, 'bold': True, 'color': INK, 'font': HFONT})]])
+    tb(s9, 2.25, y + 0.45, 3.48, 0.34, [[(sub, {'size': 10.5, 'color': MUTED})]])
+    # arrow
+    shape(s9, MSO_SHAPE.RIGHT_ARROW, 5.88, y + 0.27, 0.42, 0.3, '9DB4CB', None)
+    # answer card
+    name, col, ph = CON[c]
+    rrect(s9, 6.42, y, 6.5, 0.84, 'F7FBFB', 'B9DADC', 0.12, 0.75)
+    pill = rrect(s9, 6.58, y + 0.1, 0.105 * len(name) * 0.68 + 0.4, 0.3, col, None, 0.5)
+    write(pill, [(name, {'size': 10.5, 'bold': True, 'color': WHITE})], align='c', anchor='m')
+    tb(s9, 11.6, y + 0.08, 1.2, 0.3, [[(ph, {'size': 10, 'italic': True, 'color': MUTED})]], align='r')
+    tb(s9, 6.58, y + 0.43, 6.25, 0.38, [[(ans, {'size': 12.5, 'color': INK})]])
+tb(s9, 1.42, 6.34, 11.5, 0.26, [[('Out of scope: security attacks and rare long-tail events.', {'size': 10.5, 'italic': True, 'color': MUTED})]])
 
 D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
