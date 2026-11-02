@@ -196,22 +196,22 @@ fam = {'A': ('Edge-vision\naccelerators', 'E3EEF7', BLUE), 'B': ('Fault-tolerant
        'C': ('Neuromorphic\nprocessors', 'E0F1F2', TEAL), 'D': ('SNN fault\ntolerance', 'E0F1F2', TEAL),
        'E': ('Fault-injection\ntools', 'FBF1DE', '9A6A12'), 'F': ('Spiking vision\nsystems', 'FBF1DE', '9A6A12')}
 # columns: work, edge vision, ASIC, FPGA, compute, permanent, transient, campaign, learning
-data = [('A', 'Eyeriss · JSSC 2017', Y, (Y, '65 nm'), N_, 'NPU', N_, N_, N_, N_),
-        ('A', 'Suh et al. (UAV) · TRETS 2023', Y, N_, Y, 'NPU', N_, N_, N_, N_),
-        ('B', 'Zhang et al. · VTS 2018', N_, (P_, 'model'), N_, 'NPU', (Y, 'stuck-at'), N_, 'behavioural simulation', N_),
-        ('B', 'YOLO on Versal (BYU) · 2026', (P_, 'space'), N_, Y, 'NPU', N_, (Y, 'SEU'), 'config-memory injection + proton beam', N_),
-        ('C', 'ODIN · TBioCAS 2019', (P_, 'MNIST'), (Y, '28 nm'), N_, 'SNN', N_, N_, N_, Y),
-        ('C', 'Speck · Nat. Commun. 2024', (Y, 'DVS'), Y, N_, 'SNN', N_, N_, N_, N_),
-        ('C', 'Loihi 2 · 2021', N_, (Y, 'Intel 4'), N_, 'SNN', N_, N_, N_, Y),
-        ('D', 'Spyrou et al. · DATE 2021', (P_, 'N-MNIST'), N_, N_, 'SNN', (Y, 'dead / sat.'), N_, 'behavioural', N_),
-        ('D', 'SoftSNN · DAC 2022', (P_, 'MNIST'), (Y, '65 nm'), N_, 'SNN', N_, (Y, 'soft err.'), 'behavioural', N_),
-        ('D', 'RescueSNN · Front. Neuro. 2023', (P_, 'MNIST'), (Y, '65 nm'), N_, 'SNN', (Y, 'stuck-at'), N_, 'behavioural', N_),
-        ('E', 'ShadowFI · IEEE Access 2025', N_, (Y, 'netlists'), (Y, 'emul.'), 'NPU', '—', '—', 'gate-level · 2-valued · SDC / DUE / masked', N_),
-        ('E', 'SpikeFI · 2024', N_, N_, N_, 'SNN', '—', '—', 'software (PyTorch)', N_),
-        ('F', 'Kheradpisheh et al. · 2018', N_, N_, N_, 'SNN', N_, N_, N_, (P_, 'STDP, SW')),
-        ('F', 'SpikeYOLO · ECCV 2024', N_, N_, N_, 'SNN', N_, N_, N_, N_)]
-thesis = ('★', 'This thesis', (Y, 'µW cores'), (Y, 'Sky130'), N_, 'SNN', (Y, 'all nodes'), (P_, 'assessed'), 'gate-level · 4-valued · certified bracket', (Y, 'STDP'))
-widths = [1.19, 2.3, 0.8, 0.62, 0.62, 0.78, 0.88, 0.88, 2.53, 0.9]
+data = [('A', 'Eyeriss · JSSC 2017', Y, (Y, '65 nm'), N_, 'CNN PE array', N_, N_, N_, N_),
+        ('A', 'Suh et al. (UAV) · TRETS 2023', Y, N_, Y, 'CNN engine', N_, N_, N_, N_),
+        ('B', 'Zhang et al. · VTS 2018', N_, (P_, 'model'), N_, 'Systolic array', (Y, 'stuck-at'), N_, 'behavioural simulation', N_),
+        ('B', 'YOLO on Versal (BYU) · 2026', (P_, 'space'), N_, Y, 'CNN engine', N_, (Y, 'SEU'), 'config-memory injection + proton beam', N_),
+        ('C', 'ODIN · TBioCAS 2019', (P_, 'MNIST'), (Y, '28 nm'), N_, 'Neuromorphic NPU', N_, N_, N_, Y),
+        ('C', 'Speck · Nat. Commun. 2024', (Y, 'DVS'), Y, N_, 'Neuromorphic NPU', N_, N_, N_, N_),
+        ('C', 'Loihi 2 · 2021', N_, (Y, 'Intel 4'), N_, 'Neuromorphic NPU', N_, N_, N_, Y),
+        ('D', 'Spyrou et al. · DATE 2021', (P_, 'N-MNIST'), N_, N_, 'SW model', (Y, 'dead / sat.'), N_, 'behavioural', N_),
+        ('D', 'SoftSNN · DAC 2022', (P_, 'MNIST'), (Y, '65 nm'), N_, 'Neuromorphic NPU', N_, (Y, 'soft err.'), 'behavioural', N_),
+        ('D', 'RescueSNN · Front. Neuro. 2023', (P_, 'MNIST'), (Y, '65 nm'), N_, 'Neuromorphic NPU', (Y, 'stuck-at'), N_, 'behavioural', N_),
+        ('E', 'ShadowFI · IEEE Access 2025', N_, (Y, 'netlists'), (Y, 'emul.'), 'GPU units', '—', '—', 'gate-level · 2-valued · SDC / DUE / masked', N_),
+        ('E', 'SpikeFI · 2024', N_, N_, N_, 'GPU (SW)', '—', '—', 'software (PyTorch)', N_),
+        ('F', 'Kheradpisheh et al. · 2018', N_, N_, N_, 'CPU / GPU (SW)', N_, N_, N_, (P_, 'STDP, SW')),
+        ('F', 'SpikeYOLO · ECCV 2024', N_, N_, N_, 'GPU (SW)', N_, N_, N_, N_)]
+thesis = ('★', 'This thesis', (Y, 'µW cores'), (Y, 'Sky130'), N_, 'Neuromorphic NPU', (Y, 'all nodes'), (P_, 'assessed'), 'gate-level · 4-valued · certified bracket', (Y, 'STDP'))
+widths = [1.19, 2.12, 0.8, 0.62, 0.62, 1.22, 0.86, 0.86, 2.31, 0.9]
 nrows = 2 + len(data) + 1
 gt = s11.shapes.add_table(nrows, len(widths), Inches(1.42), Inches(1.32), Inches(sum(widths)), Inches(4.7))
 tbl = gt.table
@@ -237,22 +237,22 @@ def cell_fmt(c, fill=None):
     for side in ('lnL', 'lnR', 'lnT', 'lnB'): _ln(c, side, None, 0)
 def put(c, runs, align='c', fill=None):
     cell_fmt(c, fill); write(c.text_frame, [runs], align=align)
-SYMC = {Y: TEAL, N_: 'B8C4D2', P_: 'C98A1E'}
+SYMC = {Y: '4E9F8C', N_: 'C8D0DA', P_: 'DDA445'}
 def sym(v, bold_row=False):
     if isinstance(v, tuple):
         return [(v[0], {'size': 11, 'bold': True, 'color': SYMC[v[0]]}), (f' {v[1]}', {'size': 8, 'color': MUTED})]
     if v in SYMC: return [(v, {'size': 11, 'bold': True, 'color': SYMC[v]})]
     return [(v, {'size': 9, 'bold': bold_row, 'color': INK})]
 # header
-H1 = [('Family', 0), ('Work', 0), ('Edge vision', 0), ('Hardware', 1), (None, 2), ('Compute', 0), ('Fault tolerance', 1), (None, 2), ('Fault-assessment campaign', 0), ('On-chip learning', 0)]
+H1 = [('Family', 0), ('Work', 0), ('Edge vision', 0), ('Hardware', 1), (None, 2), ('Accelerator type', 0), ('Fault tolerance', 1), (None, 2), ('Fault-assessment campaign', 0), ('On-chip learning', 0)]
 H2 = [None, None, None, 'ASIC', 'FPGA', None, 'Permanent', 'Transient', None, None]
-hdr = {'size': 9.5, 'bold': True, 'color': WHITE}
+hdr = {'size': 9.5, 'bold': True, 'color': INK}
 for j, (t, kind) in enumerate(H1):
-    if t is not None: put(tbl.cell(0, j), [(t, hdr)], fill=INK, align='l' if j < 2 else 'c')
-    else: cell_fmt(tbl.cell(0, j), INK)
+    if t is not None: put(tbl.cell(0, j), [(t, hdr)], fill='DCE6F0', align='l' if j < 2 else 'c')
+    else: cell_fmt(tbl.cell(0, j), 'DCE6F0')
     sub = H2[j]
-    if sub: put(tbl.cell(1, j), [(sub, {'size': 9, 'bold': True, 'color': 'DCE6F0'})], fill='18406A')
-    else: cell_fmt(tbl.cell(1, j), INK)
+    if sub: put(tbl.cell(1, j), [(sub, {'size': 9, 'bold': True, 'color': '3D5A78'})], fill='EBF1F7')
+    else: cell_fmt(tbl.cell(1, j), 'DCE6F0')
 for j, (t, kind) in enumerate(H1):
     if kind == 0: tbl.cell(0, j).merge(tbl.cell(1, j))
     if kind == 1: tbl.cell(0, j).merge(tbl.cell(0, j + 1))
@@ -264,7 +264,7 @@ for row in data:
     put(tbl.cell(r, 1), [(row[1], {'size': 9.5, 'color': INK})], align='l', fill='FFFFFF')
     for j, v in enumerate(row[2:], start=2):
         put(tbl.cell(r, j), sym(v), fill='FFFFFF', align='l' if (j == 8 and v not in SYMC) else 'c')
-    for j in range(len(widths)): _ln(tbl.cell(r, j), 'lnB', 'E3EAF2', 0.6)
+    for j in range(len(widths)): _ln(tbl.cell(r, j), 'lnB', 'ECF0F5', 0.6)
     r += 1
 # family cells (merged)
 order = list(dict.fromkeys(x[0] for x in data))
@@ -276,19 +276,19 @@ for f in order:
     name, tint, col = fam[f]
     cell_fmt(c, tint); write(c.text_frame, [[(f'{f}  ', {'size': 10, 'bold': True, 'color': col, 'font': HFONT}), (name.split('\n')[0], {'size': 8.5, 'bold': True, 'color': INK})],
                                             [(name.split('\n')[1], {'size': 8.5, 'color': MUTED})]], align='l')
-    for j in range(len(widths)): _ln(tbl.cell(r1, j), 'lnB', 'B8C9DA', 1.0)
+    for j in range(len(widths)): _ln(tbl.cell(r1, j), 'lnB', 'D3DEE9', 1.0)
 # thesis row
-put(tbl.cell(r, 0), [('★', {'size': 12, 'bold': True, 'color': AMBER})], fill='FFF3D6', align='c')
-put(tbl.cell(r, 1), [('This thesis', {'size': 10.5, 'bold': True, 'color': INK, 'font': HFONT})], fill='FFF3D6', align='l')
+put(tbl.cell(r, 0), [('★', {'size': 12, 'bold': True, 'color': AMBER})], fill='FFF7E6', align='c')
+put(tbl.cell(r, 1), [('This thesis', {'size': 10.5, 'bold': True, 'color': INK, 'font': HFONT})], fill='FFF7E6', align='l')
 for j, v in enumerate(thesis[2:], start=2):
     runs = sym(v, True)
-    put(tbl.cell(r, j), runs, fill='FFF3D6', align='c' if j != 8 else 'l')
+    put(tbl.cell(r, j), runs, fill='FFF7E6', align='c' if j != 8 else 'l')
 for j in range(len(widths)):
-    _ln(tbl.cell(r, j), 'lnT', AMBER, 1.5); _ln(tbl.cell(r, j), 'lnB', AMBER, 1.5)
-tb(s11, 1.42, 6.08, 11.5, 0.24, [[('✓ ', {'size': 10, 'bold': True, 'color': TEAL}), ('yes    ', {'size': 9.5, 'color': MUTED}),
-                                   ('◐ ', {'size': 10, 'bold': True, 'color': 'C98A1E'}), ('partial / model only / assessed only    ', {'size': 9.5, 'color': MUTED}),
-                                   ('✗ ', {'size': 10, 'bold': True, 'color': 'B8C4D2'}), ('no    ', {'size': 9.5, 'color': MUTED}),
-                                   ('Edge vision = vision on a low-power edge device (not a GPU / PC)  ·  NPU = dense DNN accelerator', {'size': 9.5, 'color': MUTED})]])
+    _ln(tbl.cell(r, j), 'lnT', 'F1CD8A', 1.25); _ln(tbl.cell(r, j), 'lnB', 'F1CD8A', 1.25)
+tb(s11, 1.42, 6.08, 11.5, 0.24, [[('✓ ', {'size': 10, 'bold': True, 'color': '4E9F8C'}), ('yes    ', {'size': 9.5, 'color': MUTED}),
+                                   ('◐ ', {'size': 10, 'bold': True, 'color': 'DDA445'}), ('partial / model / assessed only    ', {'size': 9.5, 'color': MUTED}),
+                                   ('✗ ', {'size': 10, 'bold': True, 'color': 'C8D0DA'}), ('no    ', {'size': 9.5, 'color': MUTED}),
+                                   ('Edge vision = on a low-power edge device, not a GPU / PC  ·  NPU = neural processing unit (neuromorphic)  ·  systolic / PE array = dense DNN accelerator', {'size': 9, 'color': MUTED})]])
 bn = rrect(s11, 1.42, 6.33, 11.5, 0.38, INK, None, 0.25)
 write(bn, [[('Only this thesis combines ', {'size': 12.5, 'color': WHITE, 'font': HFONT}),
             ('edge vision · permanent-fault tolerance · a faithful campaign · on-chip learning', {'size': 12.5, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
