@@ -317,5 +317,102 @@ for k, (ph, name, col, paras) in enumerate(road):
     if k < 2: shape(s13, MSO_SHAPE.RIGHT_ARROW, x + cw13 + 0.05, 1.87, 0.22, 0.22, AMBER, None)
 picture(s13, f'{FIG}/toolbox.png', 1.42, 2.76, 11.5, 3.9)
 
-D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13])
+# ================= Phase 1 · fault-tolerant neuron core (slides 14–18)
+EQ = f'{FIG}/eq'
+def lab(sl, x, y, w, t, col='C98A1E'):
+    tb(sl, x, y, w, 0.24, [[(t, {'size': 9, 'bold': True, 'color': col})]])
+def banner(sl, a, b):
+    bn = rrect(sl, 1.42, 6.12, 11.5, 0.5, INK, None, 0.2)
+    write(bn, [[(a, {'size': 14, 'color': WHITE, 'font': HFONT}), (b, {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
+
+# ---- Slide 14: starting point
+s14 = D.new(); D.chrome(s14, 3, 'Phase 1 · Starting Point: the Izhikevich Neuron',
+    footer='Izhikevich, IEEE TNN 2003 · Roshani et al., H-ASIZH, IEEE TCAS-I (submitted), Sec. II')
+rrect(s14, 1.42, 1.32, 5.75, 1.78, WHITE, LINE, 0.06); lab(s14, 1.6, 1.38, 5, 'IZHIKEVICH MODEL (2003) · RICH FIRING FROM FOUR PARAMETERS a, b, c, d')
+picture(s14, f'{EQ}/izh.png', 1.6, 1.62, 5.4, 1.42)
+rrect(s14, 1.42, 3.2, 5.75, 0.86, 'FFF7E6', 'F1CD8A', 0.12); lab(s14, 1.6, 3.24, 5.4, 'EXACT AFFINE MAP · ÷64 IS A FREE RIGHT-SHIFT', '9A6A12')
+picture(s14, f'{EQ}/map.png', 1.6, 3.46, 5.4, 0.56)
+rrect(s14, 1.42, 4.16, 5.75, 1.3, WHITE, LINE, 0.08); lab(s14, 1.6, 4.22, 5.4, 'HARDWARE FORM · SAME NULLCLINES, SAME PHASE PORTRAIT')
+picture(s14, f'{EQ}/hw.png', 1.6, 4.46, 5.4, 0.94)
+tb(s14, 1.42, 5.52, 5.75, 0.55, [[('Contraction keeps the state near [−0.5, 1.5]: ', {'size': 11.5, 'color': INK}), ('free guard bits ', {'size': 11.5, 'bold': True, 'color': TEAL}), ('in the Q7.19 word.', {'size': 11.5, 'color': INK})]])
+rrect(s14, 7.35, 1.32, 5.57, 4.74, WHITE, LINE, 0.04)
+picture(s14, f'{FIG}/fig02_nine_patterns.png', 7.45, 1.4, 5.37, 4.3)
+tb(s14, 7.45, 5.72, 5.37, 0.3, [[('Bio vs hardware model: nine patterns overlap, RMSE < 10⁻¹³', {'size': 10.5, 'italic': True, 'color': MUTED})]], align='c')
+banner(s14, 'Exact and shift-friendly  —  ', 'yet one stuck-at still drives it into a digital seizure')
+
+# ---- Slide 15: homeostasis guided by Lyapunov
+s15 = D.new(); D.chrome(s15, 3, 'Adding Homeostasis, Guided by Lyapunov',
+    footer='Khalil, Nonlinear Systems · Slotine & Li, Applied Nonlinear Control · Roshani et al., TCAS-I (submitted), Sec. III')
+rrect(s15, 1.42, 1.32, 5.9, 2.36, WHITE, LINE, 0.05); lab(s15, 1.6, 1.38, 5.6, 'H-ASIZH · THE THRESHOLD θ BECOMES A SLOW STATE VARIABLE')
+picture(s15, f'{EQ}/hasizh.png', 1.6, 1.62, 5.55, 2.0)
+chips = [('α = 2⁻⁶', 'leak · ≫ 6', 'θ returns to θ₀ when healthy'), ('γ = 2⁻³', 'penalty · ≫ 3', 'every spike raises θ'), ('β = 2³', 'brake · ≪ 3', 'deeper reset after a burst')]
+for k, (a, b, c) in enumerate(chips):
+    x = 1.42 + k * 2.0
+    rrect(s15, x, 3.78, 1.9, 0.86, 'FFF7E6', 'F1CD8A', 0.14)
+    tb(s15, x + 0.08, 3.8, 1.75, 0.3, [[(a, {'size': 14, 'bold': True, 'color': '9A6A12', 'font': HFONT}), ('  ' + b, {'size': 9, 'color': MUTED})]])
+    tb(s15, x + 0.08, 4.18, 1.78, 0.42, [[(c, {'size': 10.5, 'color': INK})]])
+rrect(s15, 1.42, 4.74, 5.9, 1.3, 'EEF6F6', 'B9DADC', 0.06); lab(s15, 1.6, 4.8, 5.6, 'LYAPUNOV ARGUMENT', TEAL)
+picture(s15, f'{EQ}/lyap.png', 1.6, 5.02, 5.55, 0.98)
+rrect(s15, 7.5, 1.32, 5.42, 3.62, WHITE, LINE, 0.04)
+picture(s15, f'{FIG}/fig04_phase_space.png', 7.58, 1.4, 5.26, 3.1)
+tb(s15, 7.58, 4.52, 5.26, 0.36, [[('Normal: 2-D cycle  ·  Fault: collapse  ·  H-ASIZH: bounded 3-D attractor', {'size': 10.5, 'italic': True, 'color': MUTED})]], align='c')
+rrect(s15, 7.5, 5.04, 5.42, 1.0, 'EEF6F6', 'B9DADC', 0.1)
+tb(s15, 7.68, 5.1, 5.1, 0.9, [[('The firing rate is ', {'size': 13, 'color': INK}), ('uniformly ultimately bounded', {'size': 13, 'bold': True, 'color': TEAL}),
+                               (' — the band is set by γ, not by the size of the fault.', {'size': 13, 'color': INK})]], anchor='m')
+banner(s15, 'θ makes the neuron its own controller  —  ', 'no external monitor, no redundancy')
+
+# ---- Slide 16: the controller is a learning rule
+s16 = D.new(); D.chrome(s16, 3, 'The Same Equation Is a Learning Rule',
+    footer='Diehl & Cook, Front. Comput. Neurosci. 2015 (adaptive threshold for STDP learning) · Johnson et al., TCAS-I 2018 · Roshani et al., TCAS-I (submitted)')
+rrect(s16, 1.42, 1.32, 11.5, 1.32, WHITE, LINE, 0.08); lab(s16, 1.62, 1.38, 9, 'OUR FAULT-TOLERANCE CONTROLLER (H-ASIZH)', TEAL)
+picture(s16, f'{EQ}/ours.png', 1.62, 1.6, 11.1, 0.98)
+eqv = oval(s16, 6.93, 2.6, 0.48, AMBER); write(eqv, [('≡', {'size': 20, 'bold': True, 'color': WHITE})], align='c', anchor='m')
+rrect(s16, 1.42, 3.0, 11.5, 1.32, WHITE, LINE, 0.08); lab(s16, 1.62, 3.06, 9, 'ADAPTIVE-THRESHOLD HOMEOSTASIS USED FOR UNSUPERVISED STDP LEARNING (DIEHL & COOK 2015)', BLUE)
+picture(s16, f'{EQ}/dc.png', 1.62, 3.28, 11.1, 0.98)
+rrect(s16, 3.4, 4.4, 7.55, 0.52, 'FFF7E6', 'F1CD8A', 0.3)
+picture(s16, f'{EQ}/map2.png', 3.5, 4.43, 7.35, 0.46)
+cards16 = [('Biology', 'α ↔ Ca²⁺ clearance · γ ↔ Ca²⁺ influx per spike · β ↔ Ca²⁺-dependent hyperpolarization', TEAL),
+           ('Hardware', 'Controller = three shifters, two adders, one comparator — no multiplier.', BLUE),
+           ('Learning', 'The same θ prevents neuron death and dominance in competitive learning.', '9A6A12')]
+for k, (h, t, col) in enumerate(cards16):
+    x = 1.42 + k * 3.9
+    rrect(s16, x, 5.04, 3.7, 0.98, WHITE, LINE, 0.1); rect(s16, x, 5.16, 0.06, 0.74, col)
+    tb(s16, x + 0.16, 5.07, 3.45, 0.3, [[(h, {'size': 12.5, 'bold': True, 'color': col, 'font': HFONT})]])
+    tb(s16, x + 0.16, 5.37, 3.45, 0.62, [[(t, {'size': 10.5, 'color': INK})]])
+banner(s16, 'Silicon bought for fault tolerance also buys on-chip learning  —  ', 'overhead ≈ α, β, γ')
+
+# ---- Slide 17: micro-architecture
+s17 = D.new(); D.chrome(s17, 3, 'A One-Cycle, Multiplier-Free Micro-Architecture',
+    footer='Roshani et al., TCAS-I (submitted), Sec. IV, Figs. 5–6 · RTL: GLFI_fault_campaign/rtl/mark2_homeostatic.vhd')
+rrect(s17, 1.42, 1.32, 7.35, 4.36, WHITE, LINE, 0.03)
+picture(s17, f'{FIG}/fig06_microarchitecture.png', 1.5, 1.4, 7.19, 4.04)
+tb(s17, 1.5, 5.4, 7.19, 0.26, [[('EX: PWL estimator · V and U datapaths · homeostatic engine     WB: clamping · fast-bleed valve · spike generator', {'size': 9.5, 'italic': True, 'color': MUTED})]], align='c')
+rrect(s17, 8.95, 1.32, 3.97, 1.98, WHITE, LINE, 0.06)
+picture(s17, f'{FIG}/fig05_q719_word.png', 9.03, 1.38, 3.81, 1.86)
+rrect(s17, 8.95, 3.4, 3.97, 2.28, WHITE, LINE, 0.06); lab(s17, 9.1, 3.45, 3.7, 'V² WITHOUT A MULTIPLIER · 4-SEGMENT PWL')
+picture(s17, f'{EQ}/pwl.png', 9.05, 3.7, 3.77, 1.9)
+chips17 = [('1 update / cycle', 'no latency jitter in a timing code'), ('shifts & adds only', 'no multiplier on the critical path'), ('safety inside the core', 'clamping · fast-bleed · β-brake')]
+for k, (a, b) in enumerate(chips17):
+    x = 1.42 + k * 3.9
+    rrect(s17, x, 5.78, 3.7, 0.28, 'EEF6F6', 'B9DADC', 0.4)
+    tb(s17, x + 0.1, 5.79, 3.5, 0.26, [[(a + '  ', {'size': 10.5, 'bold': True, 'color': TEAL}), (b, {'size': 10, 'color': INK})]], align='c')
+banner(s17, 'Placed and routed in SkyWater 130 nm  —  ', 'the controller adds only shifters, adders and a comparator')
+
+# ---- Slide 18: case study
+s18 = D.new(); D.chrome(s18, 3, 'Case Study: Does Learning Survive on the Core?',
+    footer='Roshani et al., TCAS-I (submitted), Sec. VI and VII-E, Figs. 8 and 10 · MNIST downsampled to 16 × 16, TTFS in 15 time steps')
+rrect(s18, 1.42, 1.32, 6.25, 4.72, WHITE, LINE, 0.03)
+picture(s18, f'{FIG}/fig08_case_study_system.png', 1.5, 1.4, 6.09, 4.56)
+stats = [('256 → 1024 → 10', 'TTFS SNN built only from our cores · STDP + first-K WTA (K = 3) · delta-rule readout', BLUE, WHITE),
+         ('2 cores · 1,034 logical neurons', 'time-multiplexed · 4-bit weights · 2.26 Mib of state and weight memory', BLUE, WHITE),
+         ('182.8 µW', 'both hardened cores together — 0.177 µW per logical neuron', BLUE, WHITE),
+         ('81.8 % on MNIST · 1020 / 1024 active', 'the adaptive threshold keeps the whole population alive while it learns', WHITE, TEAL)]
+for k, (h, t, hc, fill) in enumerate(stats):
+    y = 1.32 + k * 1.2
+    rrect(s18, 7.85, y, 5.07, 1.1, fill, LINE if fill == WHITE else None, 0.1)
+    tb(s18, 8.02, y + 0.08, 4.8, 0.4, [[(h, {'size': 17 if k < 3 else 15.5, 'bold': True, 'color': hc, 'font': HFONT})]])
+    tb(s18, 8.02, y + 0.5, 4.8, 0.58, [[(t, {'size': 10.5, 'color': INK if fill == WHITE else 'E6F4F4'})]])
+banner(s18, 'Fault tolerance did not cost learning  —  ', 'it kept the population alive')
+
+D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
