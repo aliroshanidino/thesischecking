@@ -147,5 +147,13 @@ bn = rrect(s8, 1.42, 6.08, 11.5, 0.54, INK, None, 0.2)
 write(bn, [[('Alone at the edge, nothing can outvote a faulty core  →  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
             ('harden the shared neuron core first', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
 
-D.finalize([s1, s2, s3, s4, s5, s6, s7, s8])
+# ---- Slide 9: research gaps (stack figure: 5 gaps, one sentence each + banner)
+s9 = D.new(); D.chrome(s9, 1, 'Research Gaps: Where the Stack Breaks',
+    footer='Ch. 1 §1.8 · Neurosurgeon (Kang et al. 2017) · SPANNER 2018 · ReSpawn / RescueSNN (Putra et al. 2021–23) · Spyrou et al. 2021 · ShadowFI 2025')
+picture(s9, f'{FIG}/gaps.png', 1.42, 1.34, 11.5, 4.72)
+bn = rrect(s9, 1.42, 6.12, 11.5, 0.5, INK, None, 0.2)
+write(bn, [[('No prior work closes all five together  →  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
+            ('this thesis attacks them bottom-up, from the neuron core', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
+
+D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
