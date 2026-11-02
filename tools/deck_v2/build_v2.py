@@ -147,13 +147,26 @@ bn = rrect(s8, 1.42, 6.08, 11.5, 0.54, INK, None, 0.2)
 write(bn, [[('Alone at the edge, nothing can outvote a faulty core  →  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
             ('harden the shared neuron core first', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
 
-# ---- Slide 9: research gaps (stack figure: 5 gaps, one sentence each + banner)
-s9 = D.new(); D.chrome(s9, 1, 'Research Gaps: Where the Stack Breaks',
-    footer='Ch. 1 §1.8 · Neurosurgeon (Kang et al. 2017) · SPANNER 2018 · ReSpawn / RescueSNN (Putra et al. 2021–23) · Spyrou et al. 2021 · ShadowFI 2025')
-picture(s9, f'{FIG}/gaps.png', 1.42, 1.34, 11.5, 4.72)
+# ---- Slide 9: research gaps (5 short real-world gaps + schematic for gap 1)
+s9 = D.new(); D.chrome(s9, 1, 'Research Gaps',
+    footer='Buttazzo, Hard Real-Time Computing Systems (hard / firm / soft deadlines) · ISO 14708-1:2014 · ISO 26262:2018 · Hochschild et al. 2021 · SpikeYOLO (Luo et al. 2024)')
+gaps9 = [('timer-alert-outline', 'No deterministic guarantees', 'Deadline, power, energy and accuracy limits are met only statistically.'),
+         ('clipboard-alert-outline', 'Standards rarely met', 'Safety limits such as ISO 14708 (≤ 2 °C implant heating) are seldom demonstrated.'),
+         ('chip', 'The device is assumed correct, even in harsh settings', 'Its reliability, availability and security are barely studied — or certified.'),
+         ('brain', 'Neuromorphic is not mature', 'Far more efficient, yet still below YOLO-class accuracy on COCO.'),
+         ('school-outline', 'No learning in the field', 'Devices drift and wear, yet dependable on-chip learning is rarely shown.')]
+for k, (ic, h, t) in enumerate(gaps9):
+    y = 1.38 + k * 0.895; first = k == 0
+    rrect(s9, 1.42, y, 6.62, 0.82, 'FDF4F4' if first else WHITE, 'E8B4B4' if first else LINE, 0.14, 1.25 if first else 0.75)
+    rect(s9, 1.42, y + 0.16, 0.06, 0.5, RED)
+    oval(s9, 1.62, y + 0.13, 0.56, 'E3EEF7'); picture(s9, f'{IC}/g9_{ic}.png', 1.72, y + 0.23, 0.36, 0.36)
+    tb(s9, 2.32, y + 0.06, 5.6, 0.36, [[(f'G{k+1}  ', {'size': 11, 'bold': True, 'color': RED}), (h, {'size': 15, 'bold': True, 'color': INK, 'font': HFONT})]])
+    tb(s9, 2.32, y + 0.42, 5.65, 0.38, [[(t, {'size': 12, 'color': INK})]])
+tb(s9, 1.42, 5.84, 6.62, 0.24, [[('Out of scope: security attacks and rare long-tail events.', {'size': 10.5, 'italic': True, 'color': MUTED})]])
+picture(s9, f'{FIG}/gap1.png', 8.25, 1.38, 4.67, 4.40)
 bn = rrect(s9, 1.42, 6.12, 11.5, 0.5, INK, None, 0.2)
-write(bn, [[('No prior work closes all five together  →  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
-            ('this thesis attacks them bottom-up, from the neuron core', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
+write(bn, [[('Close the loop on the device  —  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
+            ('deterministic · within standards · dependable · still learning', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
 
 D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
