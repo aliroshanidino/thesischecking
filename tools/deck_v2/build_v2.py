@@ -296,5 +296,26 @@ write(bn, [[('Only this thesis combines ', {'size': 12.5, 'color': WHITE, 'font'
 # ---- Slide 12: divider 03 Methodology
 s12 = D.new(); divider(D, s12, 3, 'Methodology', f'{FIG}/hero_method.png')
 
-D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12])
+# ---- Slide 13: methodology roadmap (3 phases) + redrawn toolbox
+s13 = D.new(); D.chrome(s13, 3, 'Our Path and Our Toolbox',
+    footer='Toolbox: Yosys · OpenROAD · OpenSTA · Magic · GHDL · cocotb · Icarus Verilog · SkyWater 130 nm PDK · WSL 2 · Docker · VS Code')
+road = [('PHASE 1', 'Fault-tolerant neuron core', TEAL,
+         [[('Of the four vulnerable parts of an ODIN-style accelerator, we harden the Izhikevich / LIF neuron first — with Lyapunov-guided homeostasis, not redundancy.', {'size': 10, 'color': INK})],
+          [('Bonus: the adaptive threshold is also a learning rule — overhead ≈ only α, β, γ.', {'size': 10, 'bold': True, 'color': '9A6A12'})]]),
+        ('PHASE 2', 'Fault-assessment campaign', BLUE,
+         [[('We build GLFI, grow it into GateScan, and test every node of the core with it.', {'size': 10.5, 'color': INK})]]),
+        ('PHASE 3', 'Bio-inspired edge-vision network', '6B4FA0',
+         [[('We scale the hardened core into a network and build BioVision on it.', {'size': 10.5, 'color': INK})]])]
+cws = [4.3, 3.28, 3.28]; xs = [1.42, 1.42 + 4.3 + 0.32, 1.42 + 4.3 + 0.32 + 3.28 + 0.32]
+for k, (ph, name, col, paras) in enumerate(road):
+    x, cw13 = xs[k], cws[k]
+    rrect(s13, x, 1.3, cw13, 1.36, WHITE, LINE, 0.1, 0.75)
+    rect(s13, x, 1.42, 0.06, 1.12, col)
+    tb(s13, x + 0.14, 1.32, cw13 - 0.2, 0.22, [[(ph, {'size': 9, 'bold': True, 'color': 'C98A1E'})]])
+    tb(s13, x + 0.14, 1.5, cw13 - 0.2, 0.3, [[(name, {'size': 13, 'bold': True, 'color': INK, 'font': HFONT})]])
+    tb(s13, x + 0.14, 1.8, cw13 - 0.22, 0.86, paras, space_after=1)
+    if k < 2: shape(s13, MSO_SHAPE.RIGHT_ARROW, x + cw13 + 0.05, 1.87, 0.22, 0.22, AMBER, None)
+picture(s13, f'{FIG}/toolbox.png', 1.42, 2.76, 11.5, 3.9)
+
+D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
