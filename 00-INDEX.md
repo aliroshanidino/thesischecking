@@ -50,6 +50,7 @@
 | [`24-reference-confidence-audit.md`](24-reference-confidence-audit.md) | **ممیزی مراجع:** حدود ۲۵۰ مرجع یکتا؛ سطح اطمینان Claude (H/M/L) برای ۱۰۴ کار مرور ادبیات؛ برنامهٔ رساندن دستهٔ D به سطح H |
 | [`25-biovision-drawio-architecture.md`](25-biovision-drawio-architecture.md) | **شکل پایهٔ BioVision (draw.io):** آناتومی بلوک‌به‌بلوک با معادله‌ها، چهار حلقهٔ بازخورد، تعداد وزن و نورون، وضعیت هر بلوک، ناسازگاری‌ها، پیش‌بینی و ریسک |
 | [`26-biovision-complete-technical-report.md`](26-biovision-complete-technical-report.md) | **گزارش فنی کامل BioVision (2026-11-02):** معماری نرم‌افزار و ماژول‌ها، 108 آزمون واحد، متن کامل فاز ۰، طراحی و اثبات‌های فاز ۱، همهٔ 57 اجرای فاز ۱ به ترتیب زمانی (شبیه‌ساز متوازن، تطبیق تضاد، نرمال‌سازی محلی تضاد، فقط magno)، ناوردایی، نقطه‌های خطا، دفتر تصمیم‌ها D1 تا D29 و بازتولید. جایگزین کامل‌ترِ `15` و `16` |
+| [`27-gatescan-lesson.md`](27-gatescan-lesson.md) | **درسنامهٔ GateScan:** نقشهٔ ده فصل، هفت معیار اطمینان‌پذیری ابزار ارزیابی (C1 تا C7)، مقایسه با VC Z01X، ۳۷۸ آزمون خودکار |
 | [`code/biovision-snn/`](code/biovision-snn/) | **کد کامل BioVision-SNN** (snapshot شاخهٔ `phase-1`، commit `739ff3e`)؛ تفاوت‌ها با مخزن کاری در `SNAPSHOT.md` |
 | [`code/biovision-snn-runs/`](code/biovision-snn-runs/) | **سوابق خام همهٔ 136 اجرای 19 کمپین:** `cmd.json`، `log.txt`، `metrics.json`، `campaign.log` |
 | [`deliverables/thesis_progress_deck.pptx`](deliverables/thesis_progress_deck.pptx) | **خروجی:** دک اسلاید تز (به‌همراه PDF)؛ ساخته‌شده با `tools/build_thesis_deck.py` |

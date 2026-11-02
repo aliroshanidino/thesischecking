@@ -293,5 +293,8 @@ bn = rrect(s11, 1.42, 6.33, 11.5, 0.38, INK, None, 0.25)
 write(bn, [[('Only this thesis combines ', {'size': 12.5, 'color': WHITE, 'font': HFONT}),
             ('edge vision · permanent-fault tolerance · a faithful campaign · on-chip learning', {'size': 12.5, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
 
-D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11])
+# ---- Slide 12: divider 03 Methodology
+s12 = D.new(); divider(D, s12, 3, 'Methodology', f'{FIG}/hero_method.png')
+
+D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
