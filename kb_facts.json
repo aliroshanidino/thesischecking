@@ -516,6 +516,166 @@
    "bounds": "theta0<=theta<=theta0+gamma/alpha",
    "calcium": "C=(alpha/gamma)*(theta-theta0)",
    "phase1_issue": "floor theta>=theta0 silenced S1; replaced by two-sided rate homeostasis eta=rho=2^-5"
+  },
+  "drawio_architecture": {
+   "_source": "Untitled Diagram-Architecture.drawio.svg (repo root), page 'arch': 186 vertices, 61 edges",
+   "wave_T_steps": 15,
+   "neuron": "non-leaky IF, <=1 spike per wave (TTFS)",
+   "weights": {
+    "S1": 1800,
+    "S2t": 4800,
+    "S2p": 4800,
+    "S2k": 9600,
+    "S3": 51200,
+    "S4": 73728,
+    "MT": 9600,
+    "total_shared": 155528,
+    "readout_per_class": 1152,
+    "coco_total_Nc80": 247688
+   },
+   "virtual_neurons_per_wave_derived": 5957492,
+   "feedback_loops": [
+    "attention a(x) -> LGN",
+    "border-ownership Phi+- V4 -> V2 pale (phase 5)",
+    "goal g PFC -> priority map",
+    "reward r PFC -> R-STDP"
+   ]
+  }
+ },
+ "gatescan": {
+  "_source": "originals/GateScan_TCAD_draft_2026-10-26.pdf; gatescanMarkIII@b294d6d docs/results/paper_data.json",
+  "paper_title": "Masked Is Not Harmless: Certified Gate-Level Fault Vulnerability Analysis with LLM Agents That Propose and Engines That Decide",
+  "venue": "IEEE TCAD (draft, 2026-10)",
+  "classes": [
+   "DUE",
+   "SDC",
+   "TOL",
+   "DLY",
+   "LAT",
+   "ESC",
+   "UNK",
+   "MSK",
+   "HEAL",
+   "BEN",
+   "INE"
+  ],
+  "agent_roles": [
+   "analyzer",
+   "scenario",
+   "critic",
+   "interpreter",
+   "trigger"
+  ],
+  "shadowfi": {
+   "SFUv1": {
+    "cells": 22344,
+    "faults": "3000 of 3976",
+    "sdc": 94.3,
+    "sdc_ci": [
+     93.9,
+     94.7
+    ],
+    "shadowfi_sdc": 92,
+    "bracket_given": [
+     96.6,
+     99.8
+    ],
+    "bracket_agents": [
+     98.8,
+     99.5
+    ],
+    "masked_3class": 171,
+    "esc": 70,
+    "s_per_fault": 0.78,
+    "shadowfi_s_per_fault": 4.7
+   },
+   "TCU": {
+    "cells": 103280,
+    "faults": "3000 of 3524",
+    "sdc": 72.3,
+    "sdc_ci": [
+     71.7,
+     72.9
+    ],
+    "shadowfi_sdc": 72,
+    "bracket_given": [
+     72.5,
+     100
+    ],
+    "bracket_agents": [
+     87.5,
+     100
+    ],
+    "masked_3class": 831,
+    "esc": 457,
+    "s_per_fault": 25.6,
+    "shadowfi_s_per_fault": 1.4,
+    "seu_avf": 74.7,
+    "seu_avf_ci": [
+     72.9,
+     76.4
+    ]
+   },
+   "SFUv2": {
+    "cells": 44782,
+    "faults": "2720 (census)",
+    "sdc": 86.4,
+    "shadowfi_sdc": 80,
+    "bracket_given": [
+     88.2,
+     100
+    ],
+    "bracket_agents": [
+     94.7,
+     100
+    ],
+    "masked_3class": 369,
+    "esc": 48,
+    "s_per_fault": 42.6,
+    "shadowfi_s_per_fault": 16.0
+   }
+  },
+  "trigger_tcu": {
+   "undecided_start": 825,
+   "round1_new": 304,
+   "lower_after_r1": 82.6,
+   "round2_new": 147,
+   "lower_after_r2": 87.5,
+   "population_lower_95": 87.1,
+   "remaining": 374
+  },
+  "itc99": {
+   "circuits": 20,
+   "cells_range": [
+    39,
+    104873
+   ],
+   "faults_range": [
+    82,
+    209838
+   ],
+   "b09_formal": [
+    81.5,
+    98.0
+   ],
+   "b18_bracket": [
+    3.2,
+    99.6
+   ]
+  },
+  "validation": {
+   "gates_passed": "165/165",
+   "two_engine_experiments": 1834,
+   "disagreements": 0,
+   "x_dependent": 104,
+   "mutants_killed": "22/23"
+  },
+  "code_loc": {
+   "gatescan": 6876,
+   "backend_app": 1156,
+   "frontend": 1079,
+   "scripts": 1424,
+   "tests": 2954
   }
  }
 }

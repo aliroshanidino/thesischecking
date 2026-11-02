@@ -46,6 +46,9 @@
 | [`20-core-idea-narrative.md`](20-core-idea-narrative.md) | **ایدهٔ اصلی تز به روایت پژوهشگر:** دستگاه لبه به‌جای برون‌سپاری، ODIN و time-multiplexing، چهار جزء آسیب‌پذیر، سه فاز (H‑ASIZH، GateScan، BioVision) و فاز آسیب‌پذیری |
 | [`21-literature-review-database.md`](21-literature-review-database.md) | **پایگاه مرور ادبیات:** ۶ دسته (A شتاب‌دهندهٔ بینایی، B شتاب‌دهندهٔ مقاوم، C نورومورفیک، D تحمل خطای SNN، E ابزار FI، F بینایی اسپایکی)، ماتریس جایگاه، پیوندهای جست‌وجو |
 | [`22-thesis-deck-outline-draft.md`](22-thesis-deck-outline-draft.md) | طرح نهایی **دک اسلاید تز (۳۸ اسلاید)** و منشأ هر اسلاید |
+| [`23-gatescan-phase2-achievements.md`](23-gatescan-phase2-achievements.md) | **فاز ۲ · GateScan:** مقالهٔ TCAD «Masked Is Not Harmless» و کد Mark III؛ بازهٔ تضمین‌شده، ۱۱ رده، پنج نقش عامل، حلقهٔ تریگر، نتایج ShadowFI و ITC'99، سه نسل ابزار، ممیزی مقاله در برابر مخزن |
+| [`24-reference-confidence-audit.md`](24-reference-confidence-audit.md) | **ممیزی مراجع:** حدود ۲۵۰ مرجع یکتا؛ سطح اطمینان Claude (H/M/L) برای ۱۰۴ کار مرور ادبیات؛ برنامهٔ رساندن دستهٔ D به سطح H |
+| [`25-biovision-drawio-architecture.md`](25-biovision-drawio-architecture.md) | **شکل پایهٔ BioVision (draw.io):** آناتومی بلوک‌به‌بلوک با معادله‌ها، چهار حلقهٔ بازخورد، تعداد وزن و نورون، وضعیت هر بلوک، ناسازگاری‌ها، پیش‌بینی و ریسک |
 | [`deliverables/thesis_progress_deck.pptx`](deliverables/thesis_progress_deck.pptx) | **خروجی:** دک اسلاید تز (به‌همراه PDF)؛ ساخته‌شده با `tools/build_thesis_deck.py` |
 
 ## ۳. نقشهٔ ذهنی یک‌خطی
