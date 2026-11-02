@@ -1,0 +1,70 @@
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  name: m0_paper
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.calcium={lam: 0.9}'
+  name: m1_calcium
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.calcium={lam: 0.9}'
+  - rstdp.teacher=0.5
+  name: m2_calcium_teacher
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.calcium={lam: 0.9}'
+  - rstdp.margin=2
+  name: m3_calcium_margin
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - rstdp.maps_per_class=20
+  name: m4_mpc20
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - rstdp.rule=sdsp
+  - 'rstdp.sdsp={kappa: 0.0, lam: 0.99, ca_up: 0.05, silent_ltd: true}'
+  name: m5_rsdsp
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - rstdp.rule=sdsp
+  - 'rstdp.sdsp={kappa: 0.3, lam: 0.99, ca_up: 0.05, silent_ltd: true}'
+  name: m6_rsdsp_k03
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'hardware={enabled: true, bits: 16}'
+  name: m7_hw
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=4
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'rstdp={maps_per_class: 10, kernel: 8, threshold: 200, rates: {a_plus: 0.01, a_minus:
+    0.0035, p_minus: 0.01, p_plus: 0.0006}, dropout: 0.4, epochs: 40, eval_every:
+    5, input: {threshold_scale: 0.5, wta: false}}'
+  name: f1_conv2_dense
+  args:
+  - --load-weights
+  - A:/image recognition accelerator/work/campaigns/eth80_main/screen/e1_maps800/s0/weights.pt

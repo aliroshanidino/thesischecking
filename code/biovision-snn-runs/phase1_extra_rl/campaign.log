@@ -1,0 +1,7 @@
+[2026-10-20 08:35:38] campaign phase1_extra_rl: 1 stages, slots 1, max jobs 3
+[2026-10-20 08:35:38] stage screen_x: 2 groups, 2 runs to do
+[2026-10-20 08:43:49] start screen_x/x_rl_c1p2_fixed/s0
+[2026-10-20 09:16:09] done  screen_x/x_rl_c1p2_fixed/s0: validation acc 0.6738; best variant  0.6738
+[2026-10-20 09:23:49] start screen_x/x_rl_c1p2_fixed_calcium/s0
+[2026-10-20 09:52:09] done  screen_x/x_rl_c1p2_fixed_calcium/s0: validation acc 0.6524; best variant  0.6524
+[2026-10-20 09:52:39] campaign phase1_extra_rl finished

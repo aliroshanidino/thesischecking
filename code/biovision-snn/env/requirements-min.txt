@@ -1,0 +1,7 @@
+# Minimal set needed for the Section 6.1 unit tests (installed first while the rest downloads).
+numpy
+pyyaml
+pillow
+pytest
+torch
+torchvision

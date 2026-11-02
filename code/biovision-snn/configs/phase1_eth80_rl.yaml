@@ -1,0 +1,4 @@
+# Phase 1, RL front (main): first-spike R-STDP decision on C4 of the colour ventral stream (Phase 1 network).
+base: phase1_eth80.yaml
+rstdp: {maps_per_class: 10, kernel: 8, threshold: auto, threshold_frac: 0.2, view: 0,
+        rates: {a_plus: 0.01, a_minus: 0.0035, p_minus: 0.01, p_plus: 0.0006}, dropout: 0.4, epochs: 80, eval_every: 10}

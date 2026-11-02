@@ -1,0 +1,24 @@
+[09:11:20] phase1_eth80_rlc1 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_main\screen_rl\r_c1_pk_fixed\s0
+[09:11:27] data: 1312 train / 328 test images (6 s)
+[09:13:56] encoded (156 s); input spikes per test image 14589
+[09:13:57] conv1: threshold calibrated to 20.33
+[09:14:07]   layer 0: iter 500, C_l = 0.1670
+[09:14:16]   layer 0: iter 1000, C_l = 0.1779
+[09:14:25]   layer 0: iter 1500, C_l = 0.1878
+[09:14:35]   layer 0: iter 2000, C_l = 0.1956
+[09:14:44]   layer 0: iter 2500, C_l = 0.2015
+[09:14:53]   layer 0: iter 3000, C_l = 0.2047
+[09:14:53] conv1: 3000 iterations, C_l = 0.2047, 57 s
+[09:15:18] decision-layer input: 266 spikes per image
+[09:15:18] decision threshold calibrated to 42.6
+[09:17:12] R-STDP epoch 10: train 0.5938 test 0.4329 (silent 0.000)
+[09:19:20] R-STDP epoch 20: train 0.7066 test 0.5000 (silent 0.000)
+[09:21:40] R-STDP epoch 30: train 0.7622 test 0.5671 (silent 0.000)
+[09:23:57] R-STDP epoch 40: train 0.8102 test 0.6006 (silent 0.000)
+[09:26:35] R-STDP epoch 50: train 0.8354 test 0.6311 (silent 0.000)
+[09:29:53] R-STDP epoch 60: train 0.8559 test 0.6159 (silent 0.000)
+[09:33:05] R-STDP epoch 70: train 0.8674 test 0.6159 (silent 0.000)
+[09:36:05] R-STDP epoch 80: train 0.8902 test 0.6341 (silent 0.000)
+[09:36:05] R-STDP selected epoch 80 (best train): test 0.6341; final 0.6341; best-test (optimistic) 0.6341
+[09:36:14] feature figure conv1 skipped: AttributeError
+[09:36:15] done: test accuracy 0.6341 (paper None)

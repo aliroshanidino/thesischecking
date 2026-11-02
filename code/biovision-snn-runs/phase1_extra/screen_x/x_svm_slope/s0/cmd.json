@@ -1,0 +1,17 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase1_eth80.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "validation.instances=1",
+ "--set",
+ "retina.l_min=-0.5",
+ "--set",
+ "retina.per_channel=false",
+ "--set",
+ "hardware.stab=slope"
+]

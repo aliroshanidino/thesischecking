@@ -1,0 +1,29 @@
+[11:32:32] phase0_eth80_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_attention\eth_screen\a0_no_attention\s0
+[11:32:34] data: 1312 train / 328 test images (2 s)
+[11:33:00] encoded (27 s); input spikes per test image 961
+[11:33:00] decision-layer input: 961 spikes per image
+[11:33:12]   layer 0: iter 500, C_l = 0.2152
+[11:33:23]   layer 0: iter 1000, C_l = 0.1885
+[11:33:35]   layer 0: iter 1500, C_l = 0.1272
+[11:33:47]   layer 0: iter 2000, C_l = 0.0843
+[11:33:59]   layer 0: iter 2500, C_l = 0.0598
+[11:34:11]   layer 0: iter 3000, C_l = 0.0450
+[11:34:22]   layer 0: iter 3500, C_l = 0.0351
+[11:34:34]   layer 0: iter 4000, C_l = 0.0282
+[11:34:46]   layer 0: iter 4500, C_l = 0.0231
+[11:34:58]   layer 0: iter 5000, C_l = 0.0194
+[11:35:09]   layer 0: iter 5500, C_l = 0.0165
+[11:35:21]   layer 0: iter 6000, C_l = 0.0143
+[11:35:23] hidden layer: STDP pre-training 141 s; decision-layer input 93 spikes per image
+[11:40:58] R-STDP epoch 10: train 0.3537 test 0.1982 (silent 0.012), attention updates 0
+[11:46:33] R-STDP epoch 20: train 0.5236 test 0.2470 (silent 0.018), attention updates 0
+[11:52:07] R-STDP epoch 30: train 0.6989 test 0.3262 (silent 0.018), attention updates 0
+[11:57:43] R-STDP epoch 40: train 0.7332 test 0.3415 (silent 0.024), attention updates 0
+[12:03:13] R-STDP epoch 50: train 0.7614 test 0.3933 (silent 0.030), attention updates 0
+[12:08:47] R-STDP epoch 60: train 0.8171 test 0.4817 (silent 0.034), attention updates 0
+[12:14:14] R-STDP epoch 70: train 0.8034 test 0.4665 (silent 0.040), attention updates 0
+[12:19:47] R-STDP epoch 80: train 0.8003 test 0.4055 (silent 0.055), attention updates 0
+[12:19:47] R-STDP selected epoch 60 (best train): test 0.4817; final 0.4055; best-test (optimistic) 0.4817
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[12:19:48] done: test accuracy 0.4817 (paper 0.828)

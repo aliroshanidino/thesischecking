@@ -1,0 +1,10 @@
+# Phase 1, RL front baseline (architecture A of Phase 0 in colour): learned S1 -> C1 -> 4x4 pooling -> first-spike
+# R-STDP decision with a whole-image window (as Mozafari's S2 on C1).
+base: phase1_eth80.yaml
+layers:
+  - {type: conv, maps: 12, kernel: 5, padding: 2, threshold: auto, k: 12, radius: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: pool, kernel: 4, stride: 4}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [3000]}
+rstdp: {maps_per_class: 10, kernel: 16, threshold: auto, threshold_frac: 0.2, view: 0,
+        rates: {a_plus: 0.01, a_minus: 0.0035, p_minus: 0.01, p_plus: 0.0006}, dropout: 0.4, epochs: 80, eval_every: 10}

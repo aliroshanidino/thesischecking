@@ -1,0 +1,22 @@
+- seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  - retina.l_min=adaptive
+  - retina.adapt_floor=2
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+  - 'rstdp.calcium={lam: 0.9}'
+  name: a_rl_adapt_f2
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=adaptive
+  - retina.adapt_floor=2
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+  - retina.channels=pkm
+  - 'readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]'
+  name: a_svm_adapt_f2
+  config: configs/phase1_eth80.yaml

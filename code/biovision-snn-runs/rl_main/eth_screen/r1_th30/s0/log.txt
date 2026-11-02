@@ -1,0 +1,6 @@
+[10:46:02] phase0_eth80 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_main\eth_screen\r1_th30\s0
+[10:46:08] data: 1312 train / 328 test images (6 s)
+[10:46:23] encoded (21 s); input spikes per test image 2795
+[10:46:24] loaded STDP weights from A:/image recognition accelerator/work/campaigns/eth80_main/screen/e1_maps800/s0/weights.pt (no STDP training)
+[10:53:32] R-STDP epoch 5: train 0.2866 test 0.1433 (silent 0.000)
+[10:58:28] R-STDP epoch 10: train 0.4459 test 0.1890 (silent 0.000)

@@ -1,0 +1,30 @@
+# Source documents, drafts and papers stay local (not part of the code repo)
+*.docx
+*.pdf
+~*.tmp
+~$*
+/خردپیشه و گنجتابش/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Never keep wheels or datasets on the laptop
+/wheels/
+/data/
+
+# Results fetched from the HPC: only the registry is committed
+/results/*
+!/results/registry.csv
+!/results/all_runs.csv
+!/results/invariance.csv
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+
+# Laptop GPU environment (DECISIONS D14)
+.venv/

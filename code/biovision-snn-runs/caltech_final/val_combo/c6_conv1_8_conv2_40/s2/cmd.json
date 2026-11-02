@@ -1,0 +1,19 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase0_caltech_ours.yaml",
+ "--seed",
+ "2",
+ "--set",
+ "validation.fraction=0.3",
+ "--set",
+ "layers.0.maps=8",
+ "--set",
+ "layers.0.k=8",
+ "--set",
+ "layers.2.maps=40",
+ "--set",
+ "layers.2.k=40"
+]

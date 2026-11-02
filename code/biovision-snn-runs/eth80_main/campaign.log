@@ -1,0 +1,45 @@
+[2026-10-19 08:52:20] campaign eth80_main: 4 stages, slots 2, max jobs 3
+[2026-10-19 08:52:20] stage screen: 7 groups, 7 runs to do
+[2026-10-19 08:52:21] start screen/e0_ref/s0
+[2026-10-19 08:52:41] start screen/e1_maps800/s0
+[2026-10-19 09:56:01] done  screen/e0_ref/s0: validation acc 0.8262; best variant g4_l2_std 0.8323
+[2026-10-19 10:01:15] start screen/e2_hasizh/s0
+[2026-10-19 10:06:35] done  screen/e1_maps800/s0: validation acc 0.8323; best variant g4_l2_std 0.8445
+[2026-10-19 10:36:46] done  screen/e2_hasizh/s0: validation acc 0.8079; best variant g5_l2_std 0.8201
+[2026-10-19 10:38:35] campaign eth80_main: 4 stages, slots 2, max jobs 3
+[2026-10-19 10:38:35] stage screen: 7 groups, 4 runs to do
+[2026-10-19 10:45:08] campaign eth80_main: 3 stages, slots 2, max jobs 3
+[2026-10-19 10:45:08] stage screen: 7 groups, 4 runs to do
+[2026-10-19 10:45:40] start screen/e3_hasizh_brake/s0
+[2026-10-19 11:32:11] done  screen/e3_hasizh_brake/s0: validation acc 0.8201; best variant g3_l2_std 0.8323
+[2026-10-19 17:24:02] start screen/e4_sdsp/s0
+[2026-10-19 18:05:53] done  screen/e4_sdsp/s0: validation acc 0.8201; best variant g4_l2_std_Cauto 0.8262
+[2026-10-19 18:21:19] start screen/e5_sdsp_k03/s0
+[2026-10-19 18:57:56] done  screen/e5_sdsp_k03/s0: validation acc 0.8201; best variant g4_l2_std 0.8201
+[2026-10-19 18:57:57] start screen/e6_size300/s0
+[2026-10-19 20:16:47] done  screen/e6_size300/s0: validation acc 0.8262; best variant g5_l2_std 0.8415
+[2026-10-19 20:17:17] stage confirm: waiting for eth80_screen2, eth80_screen3
+[2026-10-19 23:48:31] campaign eth80_main: 3 stages, slots 2, max jobs 2
+[2026-10-19 23:48:31] stage screen: 7 groups, 0 runs to do
+[2026-10-19 23:48:31] stage confirm: waiting for eth80_screen2, eth80_screen3
+[2026-10-20 02:57:31] ranking for confirm (from screen, eth80_screen2/screen, eth80_screen3/screen):
+    h1_hasizh [g4_l2_std_flip]: mean 0.8567 over 1 runs
+    s2_scales3 [g4_l2_std_flip]: mean 0.8506 over 1 runs
+    h3_hasizh_sdsp [g4_l2_std_flip_Cauto]: mean 0.8506 over 1 runs
+    h2_hasizh_brake [g4_l2_std_flip]: mean 0.8476 over 1 runs
+    h4_calcium_homeo [g3_l2_std]: mean 0.8476 over 1 runs
+    e1_maps800 [g4_l2_std]: mean 0.8445 over 1 runs
+    e6_size300 [g5_l2_std]: mean 0.8415 over 1 runs
+    s3_maps1200 [g4_l2_std_flip]: mean 0.8354 over 1 runs
+    e0_ref [g4_l2_std]: mean 0.8323 over 1 runs
+    e3_hasizh_brake [g3_l2_std]: mean 0.8323 over 1 runs
+    s1_on_off [g4_l2_std_flip_Cauto]: mean 0.8323 over 1 runs
+    e4_sdsp [g4_l2_std_Cauto]: mean 0.8262 over 1 runs
+    e2_hasizh [g5_l2_std]: mean 0.8201 over 1 runs
+    e5_sdsp_k03 [g4_l2_std]: mean 0.8201 over 1 runs
+    s4_on_off_scales3 [g4_l2_std_flip]: mean 0.8140 over 1 runs
+[2026-10-20 02:57:31] stage confirm: 3 groups, 3 runs to do
+[2026-10-20 03:10:17] start confirm/h1_hasizh/s1
+[2026-10-20 03:29:58] start confirm/s2_scales3/s1
+[2026-10-20 04:41:19] done  confirm/h1_hasizh/s1: validation acc 0.8567; best variant g4_l2_std_flip_Cauto 0.9146
+[2026-10-20 04:41:19] start confirm/h3_hasizh_sdsp/s1

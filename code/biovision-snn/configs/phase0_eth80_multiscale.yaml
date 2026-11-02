@@ -1,0 +1,21 @@
+# ETH-80 in the style of Kheradpisheh et al. 2016 (arXiv 1504.03871): fixed Gabor S1/C1, ONE STDP layer (S2) whose
+# weights are shared over 5 image scales, per-map learning-rate schedule (a+ from 2^-6, doubled every 400 updates up
+# to 2^-2) and a 600-update budget per map, readout = max over positions and scales + linear SVM (paper: 81.1%).
+# Our additions are scored as readout variants (grid cells, standardisation).
+base: phase0_eth80.yaml
+data: {train_instances: 5, size: 300}
+time: {T: 30}
+retina:
+  mode: gabor_c1
+  gabor_size: 5
+  orientations: [67.5, 112.5, 157.5, 202.5]
+  pool: [7, 6]
+  lateral_inhibition: [0.15, 0.12, 0.10, 0.07, 0.05]
+  scales: [1.0, 0.71, 0.5, 0.3, 0.25]
+layers:
+  - {type: conv, maps: 400, kernel: 16, threshold: 64, k: 8, radius: 4,
+     schedule: {a_start: 0.015625, a_max: 0.25, every: 400, ratio: 0.75, budget: 600}}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.0, max_iter: [40000]}
+readout:
+  layers: [0]
+  variants: [{grid: 1}, {grid: 1, standardize: true}, {grid: 2, standardize: true}, {grid: 3, standardize: true, knn: 5}]

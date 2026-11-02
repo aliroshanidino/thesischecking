@@ -1,0 +1,21 @@
+# Phase 0 — Kheradpisheh et al. 2018, Caltech face/motorbike (paper p.7). Values marked (*) are not given
+# in the paper and were chosen by us (DECISIONS D16).
+base: base.yaml
+dataset: caltech
+classes: [Faces, Motorbikes]
+paper_test_acc: 0.991
+data: {train_per_class: 200, height: 160}
+time: {T: 30}
+retina:
+  dog_kernels: [[7, 1.0, 2.0]]      # ON-centre only, 7x7, sigma 1 and 2
+  threshold: 50                      # (*) on the 0..255 scale, as SpykeTorch
+  rank_per_channel: false
+init: {w_mean: 0.8, w_std: 0.05}
+layers:
+  - {type: conv, maps: 4, kernel: 5, threshold: 10, k: 4, radius: 2}     # (*) k = one winner per map, radius
+  - {type: pool, kernel: 7, stride: 6}
+  - {type: conv, maps: 20, kernel: 16, threshold: 60, k: 20, radius: 1}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: conv, maps: 10, kernel: 5, threshold: 2, k: 10, radius: 0}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [6000, 12000, 12000]}
+svm_C: 1.0

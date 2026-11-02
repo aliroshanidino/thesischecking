@@ -1,0 +1,5 @@
+[2026-10-20 11:48:32] campaign phase1_adapt2: 1 stages, slots 1, max jobs 3
+[2026-10-20 11:48:32] stage screen_inv: 2 groups, 2 runs to do
+[2026-10-20 12:15:14] start screen_inv/a_rl_adapt_f2/s0
+[2026-10-20 12:46:04] done  screen_inv/a_rl_adapt_f2/s0: validation acc 0.6402; best variant  0.6402
+[2026-10-20 12:46:05] start screen_inv/a_svm_adapt_f2/s0

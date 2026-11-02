@@ -1,0 +1,13 @@
+[11:38:47] phase1_caltech4 seed 2 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_main\final_controls\f_cal_grey\s2
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 443, in <module>
+    
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 222, in main
+    # ---- data and retina (DoG + rank-order code, Section 4.3 / paper) -----------------------------------
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 82, in load_data
+    else:  # keys inherited from an ETH-80 base config (train_instances, size) are not this loader's
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: load() got an unexpected keyword argument 'train_instances'

@@ -1,0 +1,17 @@
+# Phase 0 — Kheradpisheh et al. 2018, MNIST (paper p.14–15).
+base: base.yaml
+dataset: mnist
+classes: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+paper_test_acc: 0.984
+time: {T: 30}
+retina:
+  dog_kernels: [[7, 1.0, 2.0], [7, 2.0, 1.0]]   # ON- and OFF-centre, sigma 1 and 2
+  threshold: 50
+  rank_per_channel: false
+init: {w_mean: 0.8, w_std: 0.05}
+layers:
+  - {type: conv, maps: 30, kernel: 5, threshold: 15, k: 30, radius: 2}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: conv, maps: 100, kernel: 5, threshold: 10, k: 100, radius: 1}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [60000, 120000]}
+svm_C: 2.4

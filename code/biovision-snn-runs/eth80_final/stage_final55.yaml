@@ -1,0 +1,17 @@
+- name: h1_hasizh
+  config: configs/phase0_eth80.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true, flip: true}, {grid:
+    4, layers: [2], standardize: true, flip: true, C: auto}, {grid: 4, layers: [2],
+    standardize: true}, {grid: 1, layers: [2]}]'

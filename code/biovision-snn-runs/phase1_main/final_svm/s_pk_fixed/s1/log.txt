@@ -1,0 +1,76 @@
+[09:58:43] phase1_eth80 seed 1 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_main\final_svm\s_pk_fixed\s1
+[09:58:55] data: 1640 train / 1640 test images (12 s)
+[10:01:43] encoded (179 s); input spikes per test image 14183
+[10:01:44] conv1: threshold calibrated to 20.57
+[10:01:51]   layer 0: iter 500, C_l = 0.1679
+[10:02:00]   layer 0: iter 1000, C_l = 0.1797
+[10:02:08]   layer 0: iter 1500, C_l = 0.1901
+[10:02:17]   layer 0: iter 2000, C_l = 0.1983
+[10:02:25]   layer 0: iter 2500, C_l = 0.2039
+[10:02:31]   layer 0: iter 3000, C_l = 0.2063
+[10:02:31] conv1: 3000 iterations, C_l = 0.2063, 49 s
+[10:03:01] conv2: threshold calibrated to 26.22
+[10:03:07]   layer 2: iter 500, C_l = 0.2109
+[10:03:13]   layer 2: iter 1000, C_l = 0.2162
+[10:03:19]   layer 2: iter 1500, C_l = 0.1711
+[10:03:26]   layer 2: iter 2000, C_l = 0.1212
+[10:03:32]   layer 2: iter 2500, C_l = 0.0819
+[10:03:38]   layer 2: iter 3000, C_l = 0.0547
+[10:03:45]   layer 2: iter 3500, C_l = 0.0363
+[10:03:53]   layer 2: iter 4000, C_l = 0.0241
+[10:04:01]   layer 2: iter 4500, C_l = 0.0163
+[10:04:09]   layer 2: iter 5000, C_l = 0.0117
+[10:04:13] conv2: 5300 iterations, C_l = 0.0097, 102 s
+[10:05:16] conv3: threshold calibrated to 84.21
+[10:05:21]   layer 4: iter 500, C_l = 0.2035
+[10:05:26]   layer 4: iter 1000, C_l = 0.2303
+[10:05:31]   layer 4: iter 1500, C_l = 0.2198
+[10:05:36]   layer 4: iter 2000, C_l = 0.1847
+[10:05:41]   layer 4: iter 2500, C_l = 0.1432
+[10:05:46]   layer 4: iter 3000, C_l = 0.1074
+[10:05:51]   layer 4: iter 3500, C_l = 0.0799
+[10:05:56]   layer 4: iter 4000, C_l = 0.0594
+[10:06:01]   layer 4: iter 4500, C_l = 0.0445
+[10:06:08]   layer 4: iter 5000, C_l = 0.0328
+[10:06:14]   layer 4: iter 5500, C_l = 0.0242
+[10:06:20]   layer 4: iter 6000, C_l = 0.0179
+[10:06:26]   layer 4: iter 6500, C_l = 0.0136
+[10:06:33]   layer 4: iter 7000, C_l = 0.0108
+[10:06:35] conv3: 7200 iterations, C_l = 0.0098, 142 s
+[10:07:57] conv4: threshold calibrated to 22.27
+[10:08:01]   layer 6: iter 500, C_l = 0.1901
+[10:08:06]   layer 6: iter 1000, C_l = 0.2185
+[10:08:10]   layer 6: iter 1500, C_l = 0.2322
+[10:08:15]   layer 6: iter 2000, C_l = 0.2283
+[10:08:19]   layer 6: iter 2500, C_l = 0.2095
+[10:08:24]   layer 6: iter 3000, C_l = 0.1827
+[10:08:28]   layer 6: iter 3500, C_l = 0.1551
+[10:08:33]   layer 6: iter 4000, C_l = 0.1294
+[10:08:37]   layer 6: iter 4500, C_l = 0.1063
+[10:08:42]   layer 6: iter 5000, C_l = 0.0876
+[10:08:47]   layer 6: iter 5500, C_l = 0.0719
+[10:08:53]   layer 6: iter 6000, C_l = 0.0582
+[10:08:59]   layer 6: iter 6500, C_l = 0.0465
+[10:09:05]   layer 6: iter 7000, C_l = 0.0373
+[10:09:10]   layer 6: iter 7500, C_l = 0.0302
+[10:09:16]   layer 6: iter 8000, C_l = 0.0246
+[10:09:16] conv4: 8000 iterations, C_l = 0.0246, 161 s
+[10:12:32] SVM: train 1.0000, test 0.7512
+[10:14:12] invariance (SVM) brightness x0.25: 0.7463 (unperturbed 0.7561)
+[10:14:58] invariance (SVM) brightness x0.5: 0.7439 (unperturbed 0.7561)
+[10:15:43] invariance (SVM) brightness x2: 0.5024 (unperturbed 0.7561)
+[10:16:29] invariance (SVM) brightness x4: 0.1268 (unperturbed 0.7561)
+[10:17:16] invariance (SVM) gamma 0.5: 0.1293 (unperturbed 0.7561)
+[10:18:03] invariance (SVM) gamma 2: 0.7561 (unperturbed 0.7561)
+[10:18:50] invariance (SVM) scale 0.7: 0.3732 (unperturbed 0.7561)
+[10:19:37] invariance (SVM) scale 0.85: 0.6390 (unperturbed 0.7561)
+[10:20:24] invariance (SVM) scale 1.2: 0.5902 (unperturbed 0.7561)
+[10:21:12] invariance (SVM) scale 1.4: 0.2732 (unperturbed 0.7561)
+[10:21:57] invariance (SVM) shift 4px: 0.7341 (unperturbed 0.7561)
+[10:22:45] invariance (SVM) shift 8px: 0.6488 (unperturbed 0.7561)
+[10:23:25] invariance (SVM) shift 16px: 0.3537 (unperturbed 0.7561)
+[10:23:32] feature figure conv1 skipped: AttributeError
+[10:23:32] feature figure conv2 skipped: AttributeError
+[10:23:32] feature figure conv3 skipped: AttributeError
+[10:23:32] feature figure conv4 skipped: AttributeError
+[10:23:33] done: test accuracy 0.7512 (paper None)

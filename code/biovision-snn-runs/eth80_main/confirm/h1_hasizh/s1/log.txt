@@ -1,0 +1,85 @@
+[03:10:27] phase0_eth80 seed 1 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\eth80_main\confirm\h1_hasizh\s1
+[03:10:38] data: 1312 train / 328 test images (11 s)
+[03:10:45] encoded (18 s); input spikes per test image 2881
+[03:10:54]   layer 0: iter 500, C_l = 0.1349
+[03:11:03]   layer 0: iter 1000, C_l = 0.1043
+[03:11:12]   layer 0: iter 1500, C_l = 0.0743
+[03:11:21]   layer 0: iter 2000, C_l = 0.0551
+[03:11:30]   layer 0: iter 2500, C_l = 0.0443
+[03:11:39]   layer 0: iter 3000, C_l = 0.0368
+[03:11:48]   layer 0: iter 3500, C_l = 0.0321
+[03:11:57]   layer 0: iter 4000, C_l = 0.0289
+[03:12:06]   layer 0: iter 4500, C_l = 0.0256
+[03:12:15]   layer 0: iter 5000, C_l = 0.0221
+[03:12:24]   layer 0: iter 5500, C_l = 0.0185
+[03:12:33]   layer 0: iter 6000, C_l = 0.0150
+[03:12:42]   layer 0: iter 6500, C_l = 0.0123
+[03:12:51]   layer 0: iter 7000, C_l = 0.0101
+[03:12:52] conv1: 7050 iterations, C_l = 0.0100, 127 s
+[03:13:26]   layer 2: iter 500, C_l = 0.1667
+[03:13:46]   layer 2: iter 1000, C_l = 0.1757
+[03:14:06]   layer 2: iter 1500, C_l = 0.1843
+[03:14:26]   layer 2: iter 2000, C_l = 0.1925
+[03:14:45]   layer 2: iter 2500, C_l = 0.2003
+[03:15:05]   layer 2: iter 3000, C_l = 0.2074
+[03:15:25]   layer 2: iter 3500, C_l = 0.2138
+[03:15:45]   layer 2: iter 4000, C_l = 0.2194
+[03:16:04]   layer 2: iter 4500, C_l = 0.2240
+[03:16:24]   layer 2: iter 5000, C_l = 0.2277
+[03:16:44]   layer 2: iter 5500, C_l = 0.2303
+[03:17:04]   layer 2: iter 6000, C_l = 0.2319
+[03:17:23]   layer 2: iter 6500, C_l = 0.2325
+[03:17:43]   layer 2: iter 7000, C_l = 0.2321
+[03:18:03]   layer 2: iter 7500, C_l = 0.2307
+[03:18:23]   layer 2: iter 8000, C_l = 0.2284
+[03:18:43]   layer 2: iter 8500, C_l = 0.2252
+[03:19:03]   layer 2: iter 9000, C_l = 0.2212
+[03:19:23]   layer 2: iter 9500, C_l = 0.2166
+[03:19:43]   layer 2: iter 10000, C_l = 0.2114
+[03:20:03]   layer 2: iter 10500, C_l = 0.2056
+[03:20:23]   layer 2: iter 11000, C_l = 0.1994
+[03:20:42]   layer 2: iter 11500, C_l = 0.1930
+[03:21:02]   layer 2: iter 12000, C_l = 0.1863
+[03:21:23]   layer 2: iter 12500, C_l = 0.1794
+[03:21:43]   layer 2: iter 13000, C_l = 0.1725
+[03:22:03]   layer 2: iter 13500, C_l = 0.1657
+[03:22:23]   layer 2: iter 14000, C_l = 0.1588
+[03:22:43]   layer 2: iter 14500, C_l = 0.1519
+[03:23:03]   layer 2: iter 15000, C_l = 0.1453
+[03:23:23]   layer 2: iter 15500, C_l = 0.1388
+[03:23:43]   layer 2: iter 16000, C_l = 0.1325
+[03:24:03]   layer 2: iter 16500, C_l = 0.1264
+[03:24:23]   layer 2: iter 17000, C_l = 0.1206
+[03:24:43]   layer 2: iter 17500, C_l = 0.1150
+[03:25:03]   layer 2: iter 18000, C_l = 0.1096
+[03:25:23]   layer 2: iter 18500, C_l = 0.1045
+[03:25:43]   layer 2: iter 19000, C_l = 0.0997
+[03:26:04]   layer 2: iter 19500, C_l = 0.0951
+[03:26:24]   layer 2: iter 20000, C_l = 0.0907
+[03:26:44]   layer 2: iter 20500, C_l = 0.0866
+[03:27:04]   layer 2: iter 21000, C_l = 0.0826
+[03:27:24]   layer 2: iter 21500, C_l = 0.0789
+[03:27:44]   layer 2: iter 22000, C_l = 0.0755
+[03:28:04]   layer 2: iter 22500, C_l = 0.0722
+[03:28:24]   layer 2: iter 23000, C_l = 0.0691
+[03:28:45]   layer 2: iter 23500, C_l = 0.0661
+[03:29:05]   layer 2: iter 24000, C_l = 0.0634
+[03:29:25]   layer 2: iter 24500, C_l = 0.0607
+[03:29:45]   layer 2: iter 25000, C_l = 0.0583
+[03:29:59]   layer 2: iter 25500, C_l = 0.0560
+[03:30:07]   layer 2: iter 26000, C_l = 0.0538
+[03:30:19]   layer 2: iter 26500, C_l = 0.0517
+[03:30:39]   layer 2: iter 27000, C_l = 0.0498
+[03:31:02]   layer 2: iter 27500, C_l = 0.0479
+[03:31:25]   layer 2: iter 28000, C_l = 0.0462
+[03:31:48]   layer 2: iter 28500, C_l = 0.0445
+[03:32:11]   layer 2: iter 29000, C_l = 0.0429
+[03:32:35]   layer 2: iter 29500, C_l = 0.0414
+[03:32:58]   layer 2: iter 30000, C_l = 0.0401
+[03:32:58] conv2: 30000 iterations, C_l = 0.0401, 1206 s
+[03:35:56] SVM: train 1.0000, test 0.8567 [g4_l2_std]
+[03:36:13] SVM: train 1.0000, test 0.8750 [g3_l2_std]
+[03:37:55] SVM: train 1.0000, test 0.9085 [g4_l2_std_flip]
+[04:38:27] C by cross-validation on the training set: 0.03 (cv acc 0.8609) [g4_l2_std_flip_Cauto]
+[04:40:47] SVM: train 1.0000, test 0.9146 [g4_l2_std_flip_Cauto]
+[04:41:10] done: test accuracy 0.8567 (paper 0.828)

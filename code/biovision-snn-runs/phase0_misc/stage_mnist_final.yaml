@@ -1,0 +1,9 @@
+- name: mnist_g5
+  config: configs/phase0_mnist.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - 'readout.variants=[{grid: 5, layers: [2]}, {grid: 1, layers: [2]}, {grid: 4, layers:
+    [0, 2], standardize: true}]'

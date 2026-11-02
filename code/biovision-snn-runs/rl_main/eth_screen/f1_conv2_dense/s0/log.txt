@@ -1,0 +1,17 @@
+[16:02:32] phase0_eth80 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_main\eth_screen\f1_conv2_dense\s0
+[16:02:40] data: 1312 train / 328 test images (8 s)
+[16:02:48] encoded (16 s); input spikes per test image 2795
+[16:02:48] loaded STDP weights from A:/image recognition accelerator/work/campaigns/eth80_main/screen/e1_maps800/s0/weights.pt (no STDP training)
+[16:03:54] decision-layer input: 28611 spikes per image
+[16:06:22] R-STDP epoch 5: train 0.4398 test 0.2287 (silent 0.000)
+[16:08:48] R-STDP epoch 10: train 0.6098 test 0.3201 (silent 0.000)
+[16:11:15] R-STDP epoch 15: train 0.6730 test 0.3323 (silent 0.000)
+[16:13:41] R-STDP epoch 20: train 0.5884 test 0.3049 (silent 0.000)
+[16:16:08] R-STDP epoch 25: train 0.3392 test 0.2073 (silent 0.000)
+[16:18:35] R-STDP epoch 30: train 0.4085 test 0.2134 (silent 0.000)
+[16:21:01] R-STDP epoch 35: train 0.7378 test 0.3628 (silent 0.000)
+[16:23:28] R-STDP epoch 40: train 0.5488 test 0.2470 (silent 0.000)
+[16:23:28] R-STDP selected epoch 35 (best train): test 0.3628; final 0.2470; best-test (optimistic) 0.3628
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[16:23:59] done: test accuracy 0.3628 (paper 0.828)

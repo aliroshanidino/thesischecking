@@ -1,0 +1,51 @@
+[18:21:29] phase0_caltech_ours seed 2 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\caltech_final\val_combo\c6_conv1_8_conv2_40\s2
+[18:21:31] data: 280 train / 120 test images (2 s)
+[18:21:34] encoded (5 s); input spikes per test image 7219
+[18:21:55]   layer 0: iter 500, C_l = 0.1381
+[18:22:17]   layer 0: iter 1000, C_l = 0.1065
+[18:22:40]   layer 0: iter 1500, C_l = 0.0662
+[18:23:02]   layer 0: iter 2000, C_l = 0.0408
+[18:23:25]   layer 0: iter 2500, C_l = 0.0269
+[18:23:47]   layer 0: iter 3000, C_l = 0.0194
+[18:24:10]   layer 0: iter 3500, C_l = 0.0152
+[18:24:32]   layer 0: iter 4000, C_l = 0.0125
+[18:24:55]   layer 0: iter 4500, C_l = 0.0109
+[18:25:13] conv1: 4900 iterations, C_l = 0.0100, 219 s
+[18:25:36]   layer 2: iter 500, C_l = 0.1839
+[18:25:52]   layer 2: iter 1000, C_l = 0.2017
+[18:26:09]   layer 2: iter 1500, C_l = 0.2115
+[18:26:26]   layer 2: iter 2000, C_l = 0.2160
+[18:26:41]   layer 2: iter 2500, C_l = 0.2183
+[18:26:57]   layer 2: iter 3000, C_l = 0.2192
+[18:27:12]   layer 2: iter 3500, C_l = 0.2189
+[18:27:27]   layer 2: iter 4000, C_l = 0.2176
+[18:27:42]   layer 2: iter 4500, C_l = 0.2155
+[18:27:58]   layer 2: iter 5000, C_l = 0.2127
+[18:28:13]   layer 2: iter 5500, C_l = 0.2094
+[18:28:28]   layer 2: iter 6000, C_l = 0.2058
+[18:28:44]   layer 2: iter 6500, C_l = 0.2019
+[18:29:00]   layer 2: iter 7000, C_l = 0.1980
+[18:29:16]   layer 2: iter 7500, C_l = 0.1939
+[18:29:32]   layer 2: iter 8000, C_l = 0.1897
+[18:29:48]   layer 2: iter 8500, C_l = 0.1855
+[18:30:03]   layer 2: iter 9000, C_l = 0.1813
+[18:30:19]   layer 2: iter 9500, C_l = 0.1771
+[18:30:35]   layer 2: iter 10000, C_l = 0.1729
+[18:30:51]   layer 2: iter 10500, C_l = 0.1688
+[18:31:07]   layer 2: iter 11000, C_l = 0.1647
+[18:31:23]   layer 2: iter 11500, C_l = 0.1607
+[18:31:39]   layer 2: iter 12000, C_l = 0.1568
+[18:31:39] conv2: 12000 iterations, C_l = 0.1568, 386 s
+[18:32:02]   layer 4: iter 500, C_l = 0.2172
+[18:32:13]   layer 4: iter 1000, C_l = 0.2428
+[18:32:24]   layer 4: iter 1500, C_l = 0.2148
+[18:32:34]   layer 4: iter 2000, C_l = 0.1546
+[18:32:45]   layer 4: iter 2500, C_l = 0.0970
+[18:32:56]   layer 4: iter 3000, C_l = 0.0565
+[18:33:07]   layer 4: iter 3500, C_l = 0.0324
+[18:33:17]   layer 4: iter 4000, C_l = 0.0189
+[18:33:28]   layer 4: iter 4500, C_l = 0.0113
+[18:33:31] conv3: 4650 iterations, C_l = 0.0097, 112 s
+[18:33:48] SVM: train 1.0000, test 1.0000
+[18:33:48] KNN (k=3): test 0.9667
+[18:33:57] done: test accuracy 1.0000 (paper 0.991)

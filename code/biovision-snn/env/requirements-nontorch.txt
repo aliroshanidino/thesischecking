@@ -1,0 +1,17 @@
+# CLAUDE.md Section 3.5 Step B (everything except torch). Exact versions: env/requirements-lock.txt
+numpy
+scipy
+pandas
+pyyaml
+tqdm
+matplotlib
+pillow
+scikit-learn
+scikit-image
+opencv-python-headless
+h5py
+hdf5plugin
+pycocotools
+numba
+pytest
+tensorboard

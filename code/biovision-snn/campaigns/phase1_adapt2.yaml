@@ -1,0 +1,13 @@
+# Phase 1, contrast adaptation with a finite range (DECISIONS D28): with `l_min: adaptive` alone a channel without
+# signal is forced to fire ~7 % of its cells on noise; `adapt_floor: 2` keeps every channel's threshold at most two
+# octaves below its offline constant (30 ETH-80 images: input spikes under gamma 0.5 4451 vs 349 with the constants,
+# active-set overlap 0.77; ~7 % fewer noise spikes than without the floor). Same validation screen as phase1_adapt.
+name: phase1_adapt2
+slots: 1
+max_jobs: 3
+stages:
+  - name: screen_inv
+    defaults: {seeds: [0], set: [validation.instances=1, retina.l_min=adaptive, retina.adapt_floor=2, "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+    runs:
+      - {name: a_rl_adapt_f2, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}"]}
+      - {name: a_svm_adapt_f2, config: configs/phase1_eth80.yaml, set: [retina.channels=pkm, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}

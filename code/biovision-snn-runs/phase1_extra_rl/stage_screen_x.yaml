@@ -1,0 +1,16 @@
+- seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  name: x_rl_c1p2_fixed
+  config: configs/phase1_eth80_rlc1p2.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - 'rstdp.calcium={lam: 0.9}'
+  name: x_rl_c1p2_fixed_calcium
+  config: configs/phase1_eth80_rlc1p2.yaml

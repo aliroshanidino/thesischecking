@@ -1,0 +1,51 @@
+# Phase 1 (docs/phase1_design_fa.md, DECISIONS D26): colour ventral stream on the hardware-aware log-domain retina.
+# Screening on ETH-80 validation (1 held-out object per class), then 3-seed tests with invariance curves on ETH-80
+# (5/5 objects) and Caltech-101 colour 4 classes. Classifier front (SVM probe) and RL front (first-spike R-STDP).
+name: phase1_main
+slots: 2
+max_jobs: 4   # the Phase 0 ETH-80 final runs were CPU-bound (SVM) while the GPU idled
+stages:
+  - name: screen_svm
+    defaults: {config: configs/phase1_eth80.yaml, seeds: [0], set: [validation.instances=1]}
+    runs:
+      - {name: s_pk}
+      - {name: s_grey, set: [retina.channels=grey]}
+      - {name: s_p, set: [retina.channels=p]}
+      - {name: s_pkm, set: [retina.channels=pkm]}
+      - {name: s_pk_rank, set: [retina.coding=rank]}
+      - {name: s_pk_float, set: ["hardware={enabled: false}", retina.log=exact]}
+      - {name: s_pk_1level, set: [retina.levels=1]}
+      - {name: s_pk_fixed, set: [retina.l_min=-0.5, retina.per_channel=false]}   # first Phase 1 retina setting (78.96 % before the restart)
+  - name: screen_rl
+    defaults: {seeds: [0], set: [validation.instances=1]}
+    runs:
+      - {name: r_c1_pk, config: configs/phase1_eth80_rlc1.yaml}
+      - {name: r_c1_pk_calcium, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}"]}
+      - {name: r_c1_grey, config: configs/phase1_eth80_rlc1.yaml, set: [retina.channels=grey]}
+      - {name: r_c4_pk, config: configs/phase1_eth80_rl.yaml}
+      - {name: r_c1_pk_fixed, config: configs/phase1_eth80_rlc1.yaml, set: [retina.l_min=-0.5, retina.per_channel=false]}   # colour retina setting best on the SVM screen
+      - {name: r_c1_pk_fixed_calcium, config: configs/phase1_eth80_rlc1.yaml, set: [retina.l_min=-0.5, retina.per_channel=false, "rstdp.calcium={lam: 0.9}"]}
+      - {name: r_c4_pk_fixed, config: configs/phase1_eth80_rl.yaml, set: [retina.l_min=-0.5, retina.per_channel=false]}
+  - name: final_svm
+    from: screen_svm
+    top: 1
+    drop: [validation.]
+    seeds: [0, 1, 2]
+    set: ["invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]
+  - name: final_rl
+    from: screen_rl
+    top: 1
+    drop: [validation.]
+    seeds: [0, 1, 2]
+    set: ["invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]
+  - name: final_controls
+    runs:
+      - {name: f_eth_grey, config: configs/phase1_eth80.yaml, seeds: [0, 1, 2], set: [retina.channels=grey, "readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]"]}
+      - {name: f_cal_pk, config: configs/phase1_caltech4.yaml, seeds: [0, 1, 2], set: [retina.l_min=-0.5, retina.per_channel=false, "readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]", "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+      - {name: f_cal_grey, config: configs/phase1_caltech4.yaml, seeds: [0, 1, 2], set: [retina.channels=grey, "readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]"]}
+      - {name: f_cal_rl_c1, config: configs/phase1_caltech4_rlc1.yaml, seeds: [0, 1, 2], set: [retina.l_min=-0.5, retina.per_channel=false, "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+      - {name: f_cal_rl_c1_grey, config: configs/phase1_caltech4_rlc1.yaml, seeds: [0, 1, 2], set: [retina.channels=grey]}
+# 2026-10-20 11:40 (D27): this file is what the running campaign executes. f_cal_pk s0-s2 failed (the Caltech config
+# inherited `train_instances` from the ETH-80 base; fixed in load_data). The fixed contrast threshold codes the blue
+# ETH-80 background (97.7 % K-ON input spikes) and starves Caltech (643 spikes per image), so the Phase 1 finals with
+# the channel-balanced retina are in campaigns/phase1_bal.yaml.

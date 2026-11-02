@@ -1,0 +1,34 @@
+- seeds: &id001
+  - 0
+  name: m_eth_rl
+  config: configs/phase1_eth80_rlc1.yaml
+  set:
+  - validation.instances=1
+  - retina.channels=m
+  - 'rstdp.calcium={lam: 0.9}'
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+- seeds: *id001
+  name: m_cal_rl
+  config: configs/phase1_caltech4_rlc1.yaml
+  set:
+  - 'validation={fraction: 0.3}'
+  - retina.channels=m
+- seeds: *id001
+  name: g_cal_rl
+  config: configs/phase1_caltech4_rlc1.yaml
+  set:
+  - 'validation={fraction: 0.3}'
+  - retina.channels=grey
+- seeds: *id001
+  name: pk_cal_rl
+  config: configs/phase1_caltech4_rlc1.yaml
+  set:
+  - 'validation={fraction: 0.3}'
+- seeds: *id001
+  name: m_eth_svm
+  config: configs/phase1_eth80.yaml
+  set:
+  - validation.instances=1
+  - retina.channels=m
+  - 'readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]'

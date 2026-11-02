@@ -1,0 +1,39 @@
+# Defaults shared by all phases (CLAUDE.md Section 4-5). Phase configs override these keys.
+seed: 0
+device: auto          # auto | cpu | cuda (DECISIONS D14)
+deterministic: true
+
+time:
+  T: 15                 # steps per wave (Section 4.1)
+  dt_ms: 0.5            # hardware time model step
+  stage_delay: 0
+
+input:
+  size: 256
+  pyramid: [256, 181, 128]
+
+retina:
+  sigma_c: 1.0          # P centre
+  surround_ratio: 3.0   # sigma_s = 3 sigma_c
+  konio_ratio: 2.0      # sigma_k = 2 sigma_c
+  magno_ratio: 3.0      # M DoG sigma = 3 sigma_c
+  sigma_n: 3.0          # local mean luminance for divisive normalisation
+  eps: 1.0e-3
+  theta_in: 0.02        # minimum normalised response that emits a spike
+  coding: latency       # latency | rank
+  magno:
+    contrast_threshold: 0.2
+    microsaccades: [[1, 0, 0], [0, -1, 3], [-1, 0, 6], [0, 1, 9]]   # [dx, dy, step]
+
+learning:
+  flat_stdp: {a_plus: 0.004, a_minus: 0.003}
+  freeze_below: 0.01    # convergence index C_l
+  k_wta: {k: 5, radius: 2}
+
+sparsity_target: [0.01, 0.10]
+
+# Where data lives (DECISIONS D15). Relative paths are relative to the repo root;
+# env vars BIOVISION_RAW / BIOVISION_WORK override (e.g. on the HPC).
+paths:
+  raw: ../download/datasets     # staged, verified downloads (read-only)
+  work: ../work                 # proc/, cache/, runs/ live under here

@@ -1,0 +1,5 @@
+# Code runs on Linux (HPC): keep LF line endings everywhere
+* text=auto eol=lf
+*.png binary
+*.npz binary
+*.drawio text eol=lf

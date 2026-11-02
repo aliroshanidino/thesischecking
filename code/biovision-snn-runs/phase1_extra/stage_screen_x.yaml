@@ -1,0 +1,25 @@
+- seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - hardware.stab=slope
+  name: x_svm_slope
+  config: configs/phase1_eth80.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - hardware.stab=slope
+  name: x_rl_c1_slope
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - learning.max_iter=[8000, 6000, 8000, 8000]
+  name: x_svm_s1long
+  config: configs/phase1_eth80.yaml

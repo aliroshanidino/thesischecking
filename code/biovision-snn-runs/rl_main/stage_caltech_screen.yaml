@@ -1,0 +1,42 @@
+- config: configs/phase0_caltech_mozafari.yaml
+  seeds: &id001
+  - 0
+  set:
+  - validation.fraction=0.3
+  - data.per_class=435
+  - data.scale=0.5
+  name: cm0_paper
+- config: configs/phase0_caltech_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.fraction=0.3
+  - data.per_class=435
+  - data.scale=0.5
+  - 'rstdp.calcium={lam: 0.9}'
+  name: cm1_calcium
+- config: configs/phase0_caltech_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.fraction=0.3
+  - data.per_class=435
+  - data.scale=0.5
+  - 'rstdp.calcium={lam: 0.9}'
+  - rstdp.teacher=0.5
+  name: cm2_calcium_teacher
+- config: configs/phase0_caltech_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.fraction=0.3
+  - data.per_class=435
+  - data.scale=0.5
+  - rstdp.rule=sdsp
+  - 'rstdp.sdsp={kappa: 0.0, lam: 0.99, ca_up: 0.15, silent_ltd: true}'
+  name: cm5_rsdsp
+- config: configs/phase0_caltech_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.fraction=0.3
+  - data.per_class=435
+  - data.scale=0.5
+  - 'hardware={enabled: true, bits: 16}'
+  name: cm7_hw

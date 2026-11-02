@@ -1,0 +1,103 @@
+- config: configs/phase0_eth80.yaml
+  seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  name: e0_ref
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  - layers.2.maps=800
+  - layers.2.k=800
+  name: e1_maps800
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 0.5}'
+  name: e2_hasizh
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 0.5, brake: 2.0}'
+  name: e3_hasizh_brake
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 0.5}'
+  - layers.2.rule=sdsp
+  - 'layers.2.sdsp={kappa: 0.0, silent_ltd: true, ca_up: 0.35, ca_down: 0.02}'
+  name: e4_sdsp
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 0.5}'
+  - layers.2.rule=sdsp
+  - 'layers.2.sdsp={kappa: 0.3, silent_ltd: true, ca_up: 0.35, ca_down: 0.02}'
+  name: e5_sdsp_k03
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4,
+    layers: [2], standardize: true, C: auto}]'
+  - data.size=300
+  name: e6_size300

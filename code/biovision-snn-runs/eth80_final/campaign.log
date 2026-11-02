@@ -1,0 +1,5 @@
+[2026-10-20 04:50:23] campaign eth80_final: 1 stages, slots 3, max jobs 3
+[2026-10-20 04:50:23] stage final55: 1 groups, 3 runs to do
+[2026-10-20 04:50:23] start final55/h1_hasizh/s0
+[2026-10-20 04:50:44] start final55/h1_hasizh/s1
+[2026-10-20 04:51:05] start final55/h1_hasizh/s2

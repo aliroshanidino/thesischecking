@@ -1,0 +1,23 @@
+[17:02:40] phase0_eth80_mozafari seed 2 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_main\eth_final55\m0_paper\s2
+[17:02:44] data: 1640 train / 1640 test images (3 s)
+[17:03:17] encoded (36 s); input spikes per test image 961
+[17:03:17] decision-layer input: 961 spikes per image
+[17:06:17] R-STDP epoch 10: train 0.6323 test 0.4079 (silent 0.000)
+[17:09:20] R-STDP epoch 20: train 0.9177 test 0.7055 (silent 0.000)
+[17:12:21] R-STDP epoch 30: train 0.9652 test 0.7262 (silent 0.000)
+[17:15:23] R-STDP epoch 40: train 0.9823 test 0.7457 (silent 0.000)
+[17:18:53] R-STDP epoch 50: train 0.9829 test 0.7293 (silent 0.000)
+[17:22:20] R-STDP epoch 60: train 0.9799 test 0.7598 (silent 0.000)
+[17:25:51] R-STDP epoch 70: train 0.9927 test 0.7482 (silent 0.000)
+[17:30:30] R-STDP epoch 80: train 0.9909 test 0.7494 (silent 0.000)
+[17:35:10] R-STDP epoch 90: train 0.9921 test 0.7494 (silent 0.000)
+[17:39:55] R-STDP epoch 100: train 0.9884 test 0.7305 (silent 0.000)
+[17:44:53] R-STDP epoch 110: train 0.9957 test 0.7793 (silent 0.000)
+[17:49:43] R-STDP epoch 120: train 0.9970 test 0.7720 (silent 0.000)
+[17:54:11] R-STDP epoch 130: train 0.9963 test 0.7787 (silent 0.000)
+[17:57:27] R-STDP epoch 140: train 0.9951 test 0.7585 (silent 0.000)
+[18:00:46] R-STDP epoch 150: train 0.9976 test 0.7787 (silent 0.000)
+[18:00:46] R-STDP selected epoch 150 (best train): test 0.7787; final 0.7787; best-test (optimistic) 0.7793
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[18:00:47] done: test accuracy 0.7787 (paper 0.828)

@@ -1,0 +1,192 @@
+{
+ "dataset": "eth80",
+ "seed": 0,
+ "config_hash": "8e341f6722",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 1312,
+ "n_test": 328,
+ "test_acc": 0.8323170731707317,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   41,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   41,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   1,
+   3,
+   13,
+   0,
+   4,
+   16,
+   4,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   41,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   12,
+   0,
+   24,
+   3,
+   1,
+   1
+  ],
+  [
+   0,
+   0,
+   7,
+   0,
+   1,
+   33,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   41,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   39
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.009940442629158497,
+  "conv2": 0.024937761947512627
+ },
+ "iterations": {
+  "conv1": 6000,
+  "conv2": 30000
+ },
+ "train_time_s": {
+  "conv1": 172.78649806976318,
+  "conv2": 1821.3089725971222
+ },
+ "feature_images_per_s": 24.664417330350155,
+ "sparsity_per_layer": {
+  "0_conv": 0.013172961786755519,
+  "1_pool": 0.11346435546875,
+  "2_conv": 0.0012296496539792388
+ },
+ "spikes_per_image": {
+  "input": 2795.2865853658536,
+  "0_conv": 2024.21,
+  "1_pool": 464.75,
+  "2_conv": 284.295
+ },
+ "spikes_per_image_input_plus_conv": 5103.791585365854,
+ "paper_test_acc": 0.828,
+ "weights": 819300,
+ "limit": null,
+ "readout": "svm_grid1",
+ "loaded_weights": null,
+ "eval_split": "validation",
+ "overrides": [
+  "validation.instances=1",
+  "data.size=200",
+  "retina.threshold=15",
+  "n_layers=3",
+  "learning.max_iter=[8000, 30000]",
+  "layers.2.homeostasis={eta: 0.5, rho: 0.2}",
+  "readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers: [2], standardize: true}, {grid: 5, layers: [2], standardize: true}, {grid: 4, layers: [2], standardize: true, C: auto}]",
+  "layers.2.maps=800",
+  "layers.2.k=800"
+ ],
+ "variants": {
+  "g4_l2_std": {
+   "svm": 0.8445121951219512,
+   "train": 1.0,
+   "C": 0.03,
+   "cv": {
+    "0.003": 0.8415795586527294,
+    "0.01": 0.8384436701509872,
+    "0.03": 0.8416957026713124,
+    "0.1": 0.8362369337979093,
+    "0.3": 0.8317073170731707,
+    "1.0": 0.8279907084785133,
+    "3.0": 0.8232288037166086,
+    "10.0": 0.8033681765389084
+   },
+   "spec": {
+    "grid": 4,
+    "layers": [
+     2
+    ],
+    "standardize": true,
+    "C": "auto"
+   }
+  },
+  "g3_l2_std": {
+   "svm": 0.8384146341463414,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "grid": 3,
+    "layers": [
+     2
+    ],
+    "standardize": true
+   }
+  },
+  "g5_l2_std": {
+   "svm": 0.8262195121951219,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "grid": 5,
+    "layers": [
+     2
+    ],
+    "standardize": true
+   }
+  }
+ }
+}

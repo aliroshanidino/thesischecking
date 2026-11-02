@@ -1,0 +1,12 @@
+- name: c6_conv1_8_conv2_40
+  config: configs/phase0_caltech_ours.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - validation.fraction=0.3
+  - layers.0.maps=8
+  - layers.0.k=8
+  - layers.2.maps=40
+  - layers.2.k=40

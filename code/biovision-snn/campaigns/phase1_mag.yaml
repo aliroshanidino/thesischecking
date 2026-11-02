@@ -1,0 +1,17 @@
+# Phase 1 (user, 2026-10-20 14:10): "use only the magno channel, like a DVS camera" -- an event code from the four
+# microsaccades (|l_Y(t) - l_Y(ref)| >= C), the same idea as N-Caltech101 / N-MNIST (an event camera on a pan-tilt).
+# Fair comparison on VALIDATION with the same RL network: magno only vs grey vs colour P+K (balanced constants), on
+# ETH-80 (one held-out object per class) and Caltech-4 (30 % of the training images); the earlier Caltech grey 89.4 %
+# vs colour 55 % compared different retinas (the colour run had the starved global threshold, D27).
+name: phase1_mag
+slots: 2
+max_jobs: 4
+stages:
+  - name: screen
+    defaults: {seeds: [0]}
+    runs:
+      - {name: m_eth_rl, config: configs/phase1_eth80_rlc1.yaml, set: [validation.instances=1, retina.channels=m, "rstdp.calcium={lam: 0.9}", "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+      - {name: m_cal_rl, config: configs/phase1_caltech4_rlc1.yaml, set: ["validation={fraction: 0.3}", retina.channels=m]}
+      - {name: g_cal_rl, config: configs/phase1_caltech4_rlc1.yaml, set: ["validation={fraction: 0.3}", retina.channels=grey]}
+      - {name: pk_cal_rl, config: configs/phase1_caltech4_rlc1.yaml, set: ["validation={fraction: 0.3}"]}
+      - {name: m_eth_svm, config: configs/phase1_eth80.yaml, set: [validation.instances=1, retina.channels=m, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}

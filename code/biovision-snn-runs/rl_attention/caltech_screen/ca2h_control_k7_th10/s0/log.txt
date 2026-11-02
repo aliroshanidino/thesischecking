@@ -1,0 +1,25 @@
+[00:02:29] phase0_caltech_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_attention\caltech_screen\ca2h_control_k7_th10\s0
+[00:02:31] data: 280 train / 120 test images (2 s)
+[00:02:34] encoded (5 s); input spikes per test image 702
+[00:02:34] decision-layer input: 702 spikes per image
+[00:02:38]   layer 0: iter 500, C_l = 0.2099
+[00:02:43]   layer 0: iter 1000, C_l = 0.2028
+[00:02:47]   layer 0: iter 1500, C_l = 0.1669
+[00:02:52]   layer 0: iter 2000, C_l = 0.1255
+[00:02:56]   layer 0: iter 2500, C_l = 0.0909
+[00:03:00]   layer 0: iter 3000, C_l = 0.0657
+[00:03:05]   layer 0: iter 3500, C_l = 0.0484
+[00:03:09]   layer 0: iter 4000, C_l = 0.0364
+[00:03:09] hidden layer: STDP pre-training 35 s; decision-layer input 101 spikes per image
+[00:03:38] R-STDP epoch 10: train 0.7750 test 0.6333 (silent 0.017), attention updates 0
+[00:04:06] R-STDP epoch 20: train 0.8893 test 0.7250 (silent 0.017), attention updates 0
+[00:04:34] R-STDP epoch 30: train 0.9429 test 0.8417 (silent 0.017), attention updates 0
+[00:05:02] R-STDP epoch 40: train 0.9286 test 0.8250 (silent 0.017), attention updates 0
+[00:05:30] R-STDP epoch 50: train 0.9679 test 0.8500 (silent 0.017), attention updates 0
+[00:05:58] R-STDP epoch 60: train 0.9857 test 0.8750 (silent 0.017), attention updates 0
+[00:06:26] R-STDP epoch 70: train 0.9821 test 0.8667 (silent 0.017), attention updates 0
+[00:06:54] R-STDP epoch 80: train 0.9714 test 0.8583 (silent 0.017), attention updates 0
+[00:06:54] R-STDP selected epoch 60 (best train): test 0.8750; final 0.8583; best-test (optimistic) 0.8750
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[00:06:55] done: test accuracy 0.8750 (paper 0.991)

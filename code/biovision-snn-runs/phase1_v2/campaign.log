@@ -1,0 +1,10 @@
+[2026-10-20 13:10:46] campaign phase1_v2: 1 stages, slots 3, max jobs 3
+[2026-10-20 13:10:46] stage screen: 7 groups, 7 runs to do
+[2026-10-20 13:10:47] start screen/r2_lcn7/s0
+[2026-10-20 13:11:08] start screen/r2_lcn7_flip150/s0
+[2026-10-20 13:11:28] start screen/s2_lcn7/s0
+[2026-10-20 13:42:48] done  screen/r2_lcn7/s0: validation acc 0.6768; best variant  0.6768
+[2026-10-20 13:42:50] start screen/r2_lcn5/s0
+[2026-10-20 13:47:10] done  screen/s2_lcn7/s0: validation acc 0.6921; best variant g4_l4-6_std 0.6921
+[2026-10-20 14:14:47] done  screen/r2_lcn5/s0: validation acc 0.6555; best variant  0.6555
+[2026-10-20 14:35:48] done  screen/r2_lcn7_flip150/s0: validation acc 0.6799; best variant  0.6799

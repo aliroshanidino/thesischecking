@@ -1,0 +1,19 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase0_caltech_mozafari.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "validation.fraction=0.3",
+ "--set",
+ "data.per_class=435",
+ "--set",
+ "data.scale=0.5",
+ "--set",
+ "rstdp.rule=sdsp",
+ "--set",
+ "rstdp.sdsp={kappa: 0.0, lam: 0.99, ca_up: 0.15, silent_ltd: true}"
+]

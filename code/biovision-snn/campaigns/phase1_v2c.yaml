@@ -1,0 +1,14 @@
+# Phase 1 v2 (D29): LCN alone cost clean accuracy on both fronts (RL 71.3 -> 67.7 %, SVM 75.9 -> 69.2 % on validation)
+# because it removes surface colour, a strong ETH-80 cue; it fixed gamma (RL gamma 0.5: 19.8 -> 68.6 %). The dual retina
+# sends both codes (luminance-normalised surface channels = single-opponent cells, contrast-normalised edge channels =
+# double-opponent cells): twice the ventral channels. Runs next to phase1_v2 / phase1_v2b.
+name: phase1_v2c
+slots: 2
+max_jobs: 3
+stages:
+  - name: screen
+    defaults: {seeds: [0], set: [validation.instances=1, "retina.filters={lcn: 36, kappa: 0.0078125, dual: true}", "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+    runs:
+      - {name: r2_dual, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}"]}
+      - {name: s2_dual, config: configs/phase1_eth80.yaml, set: [retina.channels=pkm, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}, {grid: 4, layers: [4, 6], standardize: true, flip: true}]"]}
+      - {name: r2_dual_k12_flip150, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}", rstdp.kernel=12, rstdp.flip=true, rstdp.epochs=150]}

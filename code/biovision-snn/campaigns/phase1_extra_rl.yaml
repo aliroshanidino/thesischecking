@@ -1,0 +1,12 @@
+# Phase 1, RL front, decision-layer geometry: 32 x 32 x 12 window on C1 (pooling 2) instead of 16 x 16 x 12 (pooling 4),
+# colour retina with the fixed contrast threshold; runs next to phase1_main / phase1_extra when a job slot is free.
+# (D27: the channel-balanced versions of these runs are in campaigns/phase1_bal.yaml.)
+name: phase1_extra_rl
+slots: 1
+max_jobs: 3
+stages:
+  - name: screen_x
+    defaults: {seeds: [0], set: [validation.instances=1, retina.l_min=-0.5, retina.per_channel=false]}
+    runs:
+      - {name: x_rl_c1p2_fixed, config: configs/phase1_eth80_rlc1p2.yaml}
+      - {name: x_rl_c1p2_fixed_calcium, config: configs/phase1_eth80_rlc1p2.yaml, set: ["rstdp.calcium={lam: 0.9}"]}

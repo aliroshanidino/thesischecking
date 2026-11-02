@@ -1,0 +1,67 @@
+[18:08:31] phase0_caltech_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_attention\caltech_screen\ca0h_control\s0
+[18:08:33] data: 280 train / 120 test images (2 s)
+[18:08:37] encoded (6 s); input spikes per test image 702
+[18:08:38] decision-layer input: 702 spikes per image
+[18:08:44]   layer 0: iter 500, C_l = 0.2101
+[18:08:51]   layer 0: iter 1000, C_l = 0.2025
+[18:08:57]   layer 0: iter 1500, C_l = 0.1669
+[18:09:04]   layer 0: iter 2000, C_l = 0.1264
+[18:09:10]   layer 0: iter 2500, C_l = 0.0921
+[18:09:16]   layer 0: iter 3000, C_l = 0.0671
+[18:09:23]   layer 0: iter 3500, C_l = 0.0499
+[18:09:29]   layer 0: iter 4000, C_l = 0.0381
+[18:09:30] hidden layer: STDP pre-training 52 s; decision-layer input 100 spikes per image
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 381, in <module>
+    main()
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 274, in main
+    probe, extra = rstdp_readout(cfg, model, tr_in, tr_y, te_in, te_y, gen, device, log)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 143, in rstdp_readout
+    tr = readout.train_epoch(x_tr, tr_y)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\ventral\rstdp_attention.py", line 136, in train_epoch
+    return self.dec.train_epoch(inputs, labels, prepare=prepare, after=after)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\ventral\rstdp_global.py", line 105, in train_epoch
+    rstdp_update(self.layer.weight, x[0], winner, times, ok, rates, self.layer.padding)
+  File "A:\image recognition accelerator\biovision-snn\biovision\learning\rstdp.py", line 48, in rstdp_update
+    return flat_stdp_update(weight, pre_times, [winner], post_times, -rates.p_minus, -rates.p_plus, padding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\learning\flat_stdp.py", line 48, in flat_stdp_update
+    dw = flat_stdp_delta(weight[c], patch, int(post_times[c, y, x]), a_plus, a_minus)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\learning\flat_stdp.py", line 26, in flat_stdp_delta
+    return torch.where(ltp, a_plus * stab, -a_minus * stab)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (4) must match the size of tensor b (5) at non-singleton dimension 1
+[23:37:41] phase0_caltech_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_attention\caltech_screen\ca0h_control\s0
+[23:37:43] data: 280 train / 120 test images (2 s)
+[23:37:47] encoded (6 s); input spikes per test image 702
+[23:37:47] decision-layer input: 702 spikes per image
+[23:37:54]   layer 0: iter 500, C_l = 0.2101
+[23:38:00]   layer 0: iter 1000, C_l = 0.2025
+[23:38:06]   layer 0: iter 1500, C_l = 0.1669
+[23:38:12]   layer 0: iter 2000, C_l = 0.1264
+[23:38:19]   layer 0: iter 2500, C_l = 0.0921
+[23:38:25]   layer 0: iter 3000, C_l = 0.0671
+[23:38:31]   layer 0: iter 3500, C_l = 0.0499
+[23:38:37]   layer 0: iter 4000, C_l = 0.0381
+[23:38:38] hidden layer: STDP pre-training 50 s; decision-layer input 100 spikes per image
+[23:39:18] R-STDP epoch 10: train 0.5964 test 0.4917 (silent 0.192), attention updates 0
+[23:39:58] R-STDP epoch 20: train 0.6964 test 0.5750 (silent 0.200), attention updates 0
+[23:40:38] R-STDP epoch 30: train 0.6714 test 0.5583 (silent 0.233), attention updates 0
+[23:41:18] R-STDP epoch 40: train 0.7214 test 0.5500 (silent 0.225), attention updates 0
+[23:41:58] R-STDP epoch 50: train 0.6964 test 0.5333 (silent 0.233), attention updates 0
+[23:42:38] R-STDP epoch 60: train 0.6464 test 0.5250 (silent 0.225), attention updates 0
+[23:43:17] R-STDP epoch 70: train 0.6857 test 0.5500 (silent 0.225), attention updates 0
+[23:43:57] R-STDP epoch 80: train 0.7143 test 0.5250 (silent 0.250), attention updates 0
+[23:43:57] R-STDP selected epoch 40 (best train): test 0.5500; final 0.5250; best-test (optimistic) 0.5750
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[23:43:58] done: test accuracy 0.5500 (paper 0.991)

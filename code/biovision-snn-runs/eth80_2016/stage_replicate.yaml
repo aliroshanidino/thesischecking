@@ -1,0 +1,10 @@
+- name: s2_1250
+  config: configs/phase0_eth80_multiscale.yaml
+  seeds:
+  - 0
+  set:
+  - layers.0.maps=1250
+  - learning.max_iter=[150000]
+  - 'readout.variants=[{grid: 1, layers: [0], svm: ovo}, {grid: 1, layers: [0]}, {grid:
+    3, layers: [0], standardize: true}, {grid: 3, layers: [0], standardize: true,
+    knn: 5}]'

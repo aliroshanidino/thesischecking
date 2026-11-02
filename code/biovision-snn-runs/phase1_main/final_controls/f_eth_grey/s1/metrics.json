@@ -1,0 +1,166 @@
+{
+ "dataset": "eth80",
+ "seed": 1,
+ "config_hash": "08b1a8723f",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 1640,
+ "n_test": 1640,
+ "test_acc": 0.7445121951219512,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   162,
+   1,
+   1,
+   1,
+   0,
+   2,
+   0,
+   38
+  ],
+  [
+   0,
+   174,
+   4,
+   1,
+   16,
+   3,
+   7,
+   0
+  ],
+  [
+   0,
+   20,
+   118,
+   3,
+   34,
+   24,
+   3,
+   3
+  ],
+  [
+   0,
+   0,
+   7,
+   190,
+   0,
+   3,
+   0,
+   5
+  ],
+  [
+   2,
+   8,
+   16,
+   6,
+   148,
+   21,
+   2,
+   2
+  ],
+  [
+   2,
+   10,
+   65,
+   0,
+   32,
+   93,
+   2,
+   1
+  ],
+  [
+   0,
+   0,
+   0,
+   1,
+   0,
+   2,
+   202,
+   0
+  ],
+  [
+   65,
+   1,
+   2,
+   0,
+   1,
+   2,
+   0,
+   134
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.04293820634484291,
+  "conv2": 0.009632429108023643,
+  "conv3": 0.00973152182996273,
+  "conv4": 0.015041563659906387
+ },
+ "iterations": {
+  "conv1": 3000,
+  "conv2": 3900,
+  "conv3": 5650,
+  "conv4": 8000
+ },
+ "train_time_s": {
+  "conv1": 39.456461906433105,
+  "conv2": 78.03118300437927,
+  "conv3": 116.14958190917969,
+  "conv4": 151.71919107437134
+ },
+ "feature_images_per_s": 11.537510128204664,
+ "sparsity_per_layer": {
+  "0_conv": 0.017882176959325397,
+  "1_pool": 0.03539116753472222,
+  "2_conv": 0.0173956298828125,
+  "3_pool": 0.043476678757440476,
+  "4_conv": 0.01013212658110119,
+  "5_pool": 0.03129859561011905,
+  "6_conv": 0.006587146577380952,
+  "7_pool": 0.02439639136904762
+ },
+ "spikes_per_image": {
+  "input": 4708.7713414634145,
+  "0_conv": 4614.46,
+  "1_pool": 2283.155,
+  "2_conv": 2992.605,
+  "3_pool": 1869.845,
+  "4_conv": 871.525,
+  "5_pool": 673.045,
+  "6_conv": 283.3,
+  "7_pool": 262.31
+ },
+ "spikes_per_image_input_plus_conv": 13470.661341463414,
+ "paper_test_acc": null,
+ "weights": 135128,
+ "limit": null,
+ "readout": "svm_grid1",
+ "loaded_weights": null,
+ "eval_split": "test",
+ "overrides": [
+  "retina.channels=grey",
+  "readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]"
+ ],
+ "variants": {
+  "g4_l6_std_flip": {
+   "svm": 0.7445121951219512,
+   "train": 1.0,
+   "C": 1.0,
+   "cv": null,
+   "spec": {
+    "layers": [
+     6
+    ],
+    "grid": 4,
+    "standardize": true,
+    "flip": true
+   }
+  }
+ }
+}

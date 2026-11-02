@@ -1,0 +1,12 @@
+[2026-10-19 10:38:39] campaign eth80_screen3: 1 stages, slots 1, max jobs 3
+[2026-10-19 10:38:39] stage screen: 4 groups, 4 runs to do
+[2026-10-19 14:46:44] start screen/h1_hasizh/s0
+[2026-10-19 17:00:34] done  screen/h1_hasizh/s0: validation acc 0.8110; best variant g4_l2_std_flip 0.8567
+[2026-10-19 20:16:27] start screen/h2_hasizh_brake/s0
+[2026-10-19 22:19:17] done  screen/h2_hasizh_brake/s0: validation acc 0.8171; best variant g4_l2_std_flip 0.8476
+[2026-10-19 23:20:40] start screen/h3_hasizh_sdsp/s0
+[2026-10-19 23:48:49] campaign eth80_screen3: 1 stages, slots 1, max jobs 2
+[2026-10-19 23:48:49] stage screen: 4 groups, 2 runs to do
+[2026-10-20 01:21:19] start screen/h4_calcium_homeo/s0
+[2026-10-20 02:56:09] done  screen/h4_calcium_homeo/s0: validation acc 0.8262; best variant g3_l2_std 0.8476
+[2026-10-20 02:56:39] campaign eth80_screen3 finished

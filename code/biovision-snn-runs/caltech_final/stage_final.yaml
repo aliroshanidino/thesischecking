@@ -1,0 +1,9 @@
+- name: c5_conv1_8maps
+  config: configs/phase0_caltech_ours.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - layers.0.maps=8
+  - layers.0.k=8

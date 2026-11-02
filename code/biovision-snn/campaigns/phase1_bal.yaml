@@ -1,0 +1,27 @@
+# Phase 1 finals with the channel-balanced retina (DECISIONS D27). The fixed global contrast threshold (best SVM
+# screen, s_pk_fixed: 78.19 +- 3.08 % on test) codes the blue ETH-80 background (97.7 % of its input spikes are K-ON
+# cells on the background, an object silhouette) and leaves 643 input spikes per Caltech image, so the Phase 1
+# architecture uses per-channel thresholds (~7 % of each channel's cells spike) and per-channel latency references.
+# Runs next to phase1_main (its remaining controls) with at most three experiment processes on the laptop.
+name: phase1_bal
+slots: 2
+max_jobs: 3
+stages:
+  - name: screen_rl_bal      # RL decision window 32 x 32 x 12 on C1 (Mozafari-like geometry), balanced retina
+    defaults: {seeds: [0], set: [validation.instances=1]}
+    runs:
+      - {name: x_rl_c1p2, config: configs/phase1_eth80_rlc1p2.yaml}
+      - {name: x_rl_c1p2_calcium, config: configs/phase1_eth80_rlc1p2.yaml, set: ["rstdp.calcium={lam: 0.9}"]}
+  - name: final_svm_bal      # best balanced, hardware-mode SVM screen setting (s_pkm, P+K+M, readout S3 + S4 grid 4)
+    from: phase1_main/screen_svm
+    exclude: [s_pk_fixed, s_pk_float]
+    top: 1
+    drop: [validation.]
+    seeds: [0, 1, 2]
+    set: ["invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]
+  - name: controls_bal       # colour vs grey with the same readout; Caltech with the same network and retina
+    runs:
+      - {name: f_eth_grey46, config: configs/phase1_eth80.yaml, seeds: [0, 1, 2], set: [retina.channels=grey, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}
+      - {name: f_cal_pkm, config: configs/phase1_caltech4.yaml, seeds: [0, 1, 2], set: [retina.channels=pkm, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]", "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+      - {name: f_cal_grey46, config: configs/phase1_caltech4.yaml, seeds: [0, 1, 2], set: [retina.channels=grey, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}
+      - {name: f_cal_rl_c1_bal, config: configs/phase1_caltech4_rlc1.yaml, seeds: [0, 1, 2], set: ["invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}

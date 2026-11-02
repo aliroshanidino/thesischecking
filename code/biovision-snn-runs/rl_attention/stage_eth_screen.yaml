@@ -1,0 +1,66 @@
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  - 'rstdp.hidden={maps: 64, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter:
+    6000, homeostasis: {eta: 0.05, rho: 0.8}}'
+  - rstdp.kernel=9
+  - rstdp.threshold=30
+  - rstdp.epochs=80
+  - rstdp.eval_every=10
+  - 'rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}'
+  name: a1_rpe
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.hidden={maps: 64, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter:
+    6000, homeostasis: {eta: 0.05, rho: 0.8}}'
+  - rstdp.kernel=9
+  - rstdp.threshold=30
+  - rstdp.epochs=80
+  - rstdp.eval_every=10
+  - 'rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}'
+  - 'rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true, punish: false}'
+  name: a2_rpe_reward_only
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.hidden={maps: 64, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter:
+    6000, homeostasis: {eta: 0.05, rho: 0.8}}'
+  - rstdp.kernel=9
+  - rstdp.threshold=30
+  - rstdp.epochs=80
+  - rstdp.eval_every=10
+  - 'rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}'
+  - 'rstdp.attention={gate: 0.5, top: 0, scale: 0.0}'
+  name: a0h_control
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.hidden={maps: 64, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter:
+    6000, homeostasis: {eta: 0.05, rho: 0.8}}'
+  - rstdp.kernel=9
+  - rstdp.threshold=30
+  - rstdp.epochs=80
+  - rstdp.eval_every=10
+  - 'rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}'
+  - 'rstdp.attention={gate: 0.5, top: 8, scale: 0.2, rpe: true}'
+  name: a3_rpe_scale02_top8
+- config: configs/phase0_eth80_mozafari.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.hidden={maps: 64, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter:
+    6000, homeostasis: {eta: 0.05, rho: 0.8}}'
+  - rstdp.kernel=9
+  - rstdp.threshold=30
+  - rstdp.epochs=80
+  - rstdp.eval_every=10
+  - 'rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}'
+  - 'rstdp.hidden={maps: 128, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter:
+    6000, homeostasis: {eta: 0.05, rho: 0.8}}'
+  name: a4_rpe_h128

@@ -1,0 +1,78 @@
+[01:03:18] phase0_eth80 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\eth80_screen2\screen\s4_on_off_scales3\s0
+[01:03:41] data: 1312 train / 328 test images (22 s)
+[01:04:20] encoded (62 s); input spikes per test image 29115
+[01:04:31]   layer 0: iter 500, C_l = 0.1819
+[01:04:43]   layer 0: iter 1000, C_l = 0.1253
+[01:04:54]   layer 0: iter 1500, C_l = 0.0585
+[01:05:04]   layer 0: iter 2000, C_l = 0.0261
+[01:05:15]   layer 0: iter 2500, C_l = 0.0145
+[01:05:26]   layer 0: iter 3000, C_l = 0.0105
+[01:05:29] conv1: 3150 iterations, C_l = 0.0098, 69 s
+[01:06:17]   layer 2: iter 500, C_l = 0.1612
+[01:06:27]   layer 2: iter 1000, C_l = 0.1651
+[01:06:38]   layer 2: iter 1500, C_l = 0.1692
+[01:06:48]   layer 2: iter 2000, C_l = 0.1732
+[01:06:59]   layer 2: iter 2500, C_l = 0.1773
+[01:07:09]   layer 2: iter 3000, C_l = 0.1812
+[01:07:19]   layer 2: iter 3500, C_l = 0.1849
+[01:07:29]   layer 2: iter 4000, C_l = 0.1885
+[01:07:39]   layer 2: iter 4500, C_l = 0.1922
+[01:07:49]   layer 2: iter 5000, C_l = 0.1956
+[01:07:59]   layer 2: iter 5500, C_l = 0.1989
+[01:08:10]   layer 2: iter 6000, C_l = 0.2026
+[01:08:21]   layer 2: iter 6500, C_l = 0.2060
+[01:08:31]   layer 2: iter 7000, C_l = 0.2092
+[01:08:42]   layer 2: iter 7500, C_l = 0.2123
+[01:08:52]   layer 2: iter 8000, C_l = 0.2151
+[01:09:02]   layer 2: iter 8500, C_l = 0.2177
+[01:09:13]   layer 2: iter 9000, C_l = 0.2204
+[01:09:23]   layer 2: iter 9500, C_l = 0.2227
+[01:09:33]   layer 2: iter 10000, C_l = 0.2248
+[01:09:44]   layer 2: iter 10500, C_l = 0.2269
+[01:09:54]   layer 2: iter 11000, C_l = 0.2287
+[01:10:04]   layer 2: iter 11500, C_l = 0.2305
+[01:10:15]   layer 2: iter 12000, C_l = 0.2320
+[01:10:25]   layer 2: iter 12500, C_l = 0.2333
+[01:10:36]   layer 2: iter 13000, C_l = 0.2344
+[01:10:46]   layer 2: iter 13500, C_l = 0.2353
+[01:10:57]   layer 2: iter 14000, C_l = 0.2360
+[01:11:07]   layer 2: iter 14500, C_l = 0.2364
+[01:11:17]   layer 2: iter 15000, C_l = 0.2367
+[01:11:27]   layer 2: iter 15500, C_l = 0.2368
+[01:11:38]   layer 2: iter 16000, C_l = 0.2367
+[01:11:48]   layer 2: iter 16500, C_l = 0.2364
+[01:11:58]   layer 2: iter 17000, C_l = 0.2359
+[01:12:09]   layer 2: iter 17500, C_l = 0.2352
+[01:12:19]   layer 2: iter 18000, C_l = 0.2343
+[01:12:29]   layer 2: iter 18500, C_l = 0.2332
+[01:12:40]   layer 2: iter 19000, C_l = 0.2319
+[01:12:50]   layer 2: iter 19500, C_l = 0.2305
+[01:13:01]   layer 2: iter 20000, C_l = 0.2288
+[01:13:11]   layer 2: iter 20500, C_l = 0.2269
+[01:13:21]   layer 2: iter 21000, C_l = 0.2250
+[01:13:32]   layer 2: iter 21500, C_l = 0.2229
+[01:13:42]   layer 2: iter 22000, C_l = 0.2208
+[01:13:52]   layer 2: iter 22500, C_l = 0.2184
+[01:14:02]   layer 2: iter 23000, C_l = 0.2159
+[01:14:13]   layer 2: iter 23500, C_l = 0.2133
+[01:14:24]   layer 2: iter 24000, C_l = 0.2103
+[01:14:34]   layer 2: iter 24500, C_l = 0.2074
+[01:14:44]   layer 2: iter 25000, C_l = 0.2045
+[01:14:54]   layer 2: iter 25500, C_l = 0.2016
+[01:15:05]   layer 2: iter 26000, C_l = 0.1984
+[01:15:15]   layer 2: iter 26500, C_l = 0.1954
+[01:15:25]   layer 2: iter 27000, C_l = 0.1925
+[01:15:35]   layer 2: iter 27500, C_l = 0.1891
+[01:15:45]   layer 2: iter 28000, C_l = 0.1858
+[01:15:56]   layer 2: iter 28500, C_l = 0.1823
+[01:16:06]   layer 2: iter 29000, C_l = 0.1789
+[01:16:16]   layer 2: iter 29500, C_l = 0.1757
+[01:16:27]   layer 2: iter 30000, C_l = 0.1723
+[01:16:27] conv2: 30000 iterations, C_l = 0.1723, 658 s
+[01:20:27] SVM: train 1.0000, test 0.7957 [g4_l2_std]
+[01:20:44] SVM: train 1.0000, test 0.7805 [g3_l2_std]
+[01:22:37] SVM: train 1.0000, test 0.8140 [g4_l2_std_flip]
+[01:23:10] SVM: train 1.0000, test 0.7744 [g3_l2_std_flip]
+[02:31:17] C by cross-validation on the training set: 3.0 (cv acc 0.7893) [g4_l2_std_flip_Cauto]
+[02:33:46] SVM: train 1.0000, test 0.8079 [g4_l2_std_flip_Cauto]
+[02:34:20] done: test accuracy 0.7957 (paper 0.828)

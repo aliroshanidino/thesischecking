@@ -1,0 +1,142 @@
+[2026-10-19 10:45:13] campaign rl_main: 5 stages, slots 2, max jobs 3
+[2026-10-19 10:45:13] stage eth_screen: 7 groups, 7 runs to do
+[2026-10-19 10:45:49] campaign rl_main: 5 stages, slots 2, max jobs 4
+[2026-10-19 10:45:49] stage eth_screen: 7 groups, 7 runs to do
+[2026-10-19 10:45:50] start eth_screen/r1_th30/s0
+[2026-10-19 11:00:03] start eth_screen/r2_th60/s0
+[2026-10-19 11:01:50] campaign rl_main: 6 stages, slots 2, max jobs 4
+[2026-10-19 11:01:50] stage eth_screen: 9 groups, 9 runs to do
+[2026-10-19 11:01:51] start eth_screen/m0_paper/s0
+[2026-10-19 11:13:25] start eth_screen/m1_calcium/s0
+[2026-10-19 12:00:45] done  eth_screen/m0_paper/s0: validation acc 0.7957; best variant  0.7957
+[2026-10-19 12:00:46] start eth_screen/m2_calcium_teacher/s0
+[2026-10-19 12:10:36] done  eth_screen/m1_calcium/s0: validation acc 0.7774; best variant  0.7774
+[2026-10-19 12:10:37] start eth_screen/m3_calcium_margin/s0
+[2026-10-19 13:02:27] done  eth_screen/m2_calcium_teacher/s0: validation acc 0.7866; best variant  0.7866
+[2026-10-19 13:02:27] start eth_screen/m4_mpc20/s0
+[2026-10-19 13:21:47] done  eth_screen/m3_calcium_margin/s0: validation acc 0.7774; best variant  0.7774
+[2026-10-19 13:21:48] start eth_screen/m5_rsdsp/s0
+[2026-10-19 14:01:08] done  eth_screen/m4_mpc20/s0: validation acc 0.7073; best variant  0.7073
+[2026-10-19 14:01:09] start eth_screen/m6_rsdsp_k03/s0
+[2026-10-19 14:46:59] done  eth_screen/m5_rsdsp/s0: validation acc 0.7866; best variant  0.7866
+[2026-10-19 15:34:56] done  eth_screen/m6_rsdsp_k03/s0: validation acc 0.6890; best variant  0.6890
+[2026-10-19 15:34:56] start eth_screen/m7_hw/s0
+[2026-10-19 16:02:16] done  eth_screen/m7_hw/s0: validation acc 0.7866; best variant  0.7866
+[2026-10-19 16:02:17] start eth_screen/f1_conv2_dense/s0
+[2026-10-19 16:24:08] done  eth_screen/f1_conv2_dense/s0: validation acc 0.3628; best variant  0.3628
+[2026-10-19 16:24:38] stage caltech_screen: 5 groups, 5 runs to do
+[2026-10-19 16:24:39] start caltech_screen/cm0_paper/s0
+[2026-10-19 16:25:30] FAILED caltech_screen/cm0_paper/s0 (exit 1)
+[2026-10-19 16:25:31] start caltech_screen/cm1_calcium/s0
+[2026-10-19 16:26:22] FAILED caltech_screen/cm1_calcium/s0 (exit 1)
+[2026-10-19 16:26:24] start caltech_screen/cm2_calcium_teacher/s0
+[2026-10-19 16:27:15] FAILED caltech_screen/cm2_calcium_teacher/s0 (exit 1)
+[2026-10-19 16:27:16] start caltech_screen/cm5_rsdsp/s0
+[2026-10-19 16:28:07] FAILED caltech_screen/cm5_rsdsp/s0 (exit 1)
+[2026-10-19 16:28:09] start caltech_screen/cm7_hw/s0
+[2026-10-19 16:28:59] FAILED caltech_screen/cm7_hw/s0 (exit 1)
+[2026-10-19 16:29:29] ranking for eth_final55 (from eth_screen):
+    m0_paper [single readout]: mean 0.7957 over 1 runs
+    m2_calcium_teacher [single readout]: mean 0.7866 over 1 runs
+    m5_rsdsp [single readout]: mean 0.7866 over 1 runs
+    m7_hw [single readout]: mean 0.7866 over 1 runs
+    m1_calcium [single readout]: mean 0.7774 over 1 runs
+    m3_calcium_margin [single readout]: mean 0.7774 over 1 runs
+    m4_mpc20 [single readout]: mean 0.7073 over 1 runs
+    m6_rsdsp_k03 [single readout]: mean 0.6890 over 1 runs
+    f1_conv2_dense [single readout]: mean 0.3628 over 1 runs
+[2026-10-19 16:29:29] stage eth_final55: 1 groups, 3 runs to do
+[2026-10-19 16:29:30] start eth_final55/m0_paper/s0
+[2026-10-19 16:38:41] start eth_final55/m0_paper/s1
+[2026-10-19 17:02:31] done  eth_final55/m0_paper/s0: test acc 0.7823; best variant  0.7823
+[2026-10-19 17:02:32] start eth_final55/m0_paper/s2
+[2026-10-19 17:15:52] done  eth_final55/m0_paper/s1: test acc 0.7634; best variant  0.7634
+[2026-10-19 18:00:52] done  eth_final55/m0_paper/s2: test acc 0.7787; best variant  0.7787
+[2026-10-19 18:01:22] ranking for caltech_final (from caltech_screen):
+    
+[2026-10-19 18:01:22] stage caltech_final: 0 groups, 0 runs to do
+[2026-10-19 18:01:22] ranking for eth_final_loo (from eth_screen):
+    m0_paper [single readout]: mean 0.7957 over 1 runs
+    m2_calcium_teacher [single readout]: mean 0.7866 over 1 runs
+    m5_rsdsp [single readout]: mean 0.7866 over 1 runs
+    m7_hw [single readout]: mean 0.7866 over 1 runs
+    m1_calcium [single readout]: mean 0.7774 over 1 runs
+    m3_calcium_margin [single readout]: mean 0.7774 over 1 runs
+    m4_mpc20 [single readout]: mean 0.7073 over 1 runs
+    m6_rsdsp_k03 [single readout]: mean 0.6890 over 1 runs
+    f1_conv2_dense [single readout]: mean 0.3628 over 1 runs
+[2026-10-19 18:01:22] stage eth_final_loo: 1 groups, 10 runs to do
+[2026-10-19 18:01:23] start eth_final_loo/m0_paper/s0_f0
+[2026-10-19 18:05:54] start eth_final_loo/m0_paper/s0_f1
+[2026-10-19 19:20:44] done  eth_final_loo/m0_paper/s0_f0: test acc 0.8506; best variant  0.8506
+[2026-10-19 19:20:44] start eth_final_loo/m0_paper/s0_f2
+[2026-10-19 19:29:34] done  eth_final_loo/m0_paper/s0_f1: test acc 0.7409; best variant  0.7409
+[2026-10-19 19:29:35] start eth_final_loo/m0_paper/s0_f3
+[2026-10-19 21:04:25] done  eth_final_loo/m0_paper/s0_f2: test acc 0.8384; best variant  0.8384
+[2026-10-19 21:04:26] start eth_final_loo/m0_paper/s0_f4
+[2026-10-19 21:07:46] done  eth_final_loo/m0_paper/s0_f3: test acc 0.8354; best variant  0.8354
+[2026-10-19 21:07:48] start eth_final_loo/m0_paper/s0_f5
+[2026-10-19 21:58:08] done  eth_final_loo/m0_paper/s0_f4: test acc 0.8049; best variant  0.8049
+[2026-10-19 21:58:09] start eth_final_loo/m0_paper/s0_f6
+[2026-10-19 22:00:59] done  eth_final_loo/m0_paper/s0_f5: test acc 0.7043; best variant  0.7043
+[2026-10-19 22:01:00] start eth_final_loo/m0_paper/s0_f7
+[2026-10-19 22:47:02] campaign rl_main: 6 stages, slots 2, max jobs 3
+[2026-10-19 22:47:02] stage eth_screen: 9 groups, 0 runs to do
+[2026-10-19 22:47:02] stage caltech_screen: 5 groups, 5 runs to do
+[2026-10-19 23:11:36] start caltech_screen/cm0_paper/s0
+[2026-10-19 23:20:41] done  caltech_screen/cm0_paper/s0: validation acc 0.9583; best variant  0.9583
+[2026-10-20 00:07:08] start caltech_screen/cm1_calcium/s0
+[2026-10-20 00:16:17] done  caltech_screen/cm1_calcium/s0: validation acc 0.9917; best variant  0.9917
+[2026-10-20 00:16:18] start caltech_screen/cm2_calcium_teacher/s0
+[2026-10-20 00:25:28] done  caltech_screen/cm2_calcium_teacher/s0: validation acc 0.9917; best variant  0.9917
+[2026-10-20 00:25:28] start caltech_screen/cm5_rsdsp/s0
+[2026-10-20 00:38:49] done  caltech_screen/cm5_rsdsp/s0: validation acc 0.9583; best variant  0.9583
+[2026-10-20 00:38:50] start caltech_screen/cm7_hw/s0
+[2026-10-20 00:48:10] done  caltech_screen/cm7_hw/s0: validation acc 0.9750; best variant  0.9750
+[2026-10-20 00:48:40] ranking for eth_final55 (from eth_screen):
+    m0_paper [single readout]: mean 0.7957 over 1 runs
+    m2_calcium_teacher [single readout]: mean 0.7866 over 1 runs
+    m5_rsdsp [single readout]: mean 0.7866 over 1 runs
+    m7_hw [single readout]: mean 0.7866 over 1 runs
+    m1_calcium [single readout]: mean 0.7774 over 1 runs
+    m3_calcium_margin [single readout]: mean 0.7774 over 1 runs
+    m4_mpc20 [single readout]: mean 0.7073 over 1 runs
+    m6_rsdsp_k03 [single readout]: mean 0.6890 over 1 runs
+    f1_conv2_dense [single readout]: mean 0.3628 over 1 runs
+[2026-10-20 00:48:40] stage eth_final55: 1 groups, 0 runs to do
+[2026-10-20 00:48:40] ranking for caltech_final (from caltech_screen):
+    cm1_calcium [single readout]: mean 0.9917 over 1 runs
+    cm2_calcium_teacher [single readout]: mean 0.9917 over 1 runs
+    cm7_hw [single readout]: mean 0.9750 over 1 runs
+    cm0_paper [single readout]: mean 0.9583 over 1 runs
+    cm5_rsdsp [single readout]: mean 0.9583 over 1 runs
+[2026-10-20 00:48:40] stage caltech_final: 1 groups, 3 runs to do
+[2026-10-20 00:48:40] start caltech_final/cm1_calcium/s0
+[2026-10-20 00:51:05] start caltech_final/cm1_calcium/s1
+[2026-10-20 01:02:55] done  caltech_final/cm1_calcium/s0: test acc 0.9894; best variant  0.9894
+[2026-10-20 01:02:56] start caltech_final/cm1_calcium/s2
+[2026-10-20 01:05:46] done  caltech_final/cm1_calcium/s1: test acc 0.9809; best variant  0.9809
+[2026-10-20 01:21:16] done  caltech_final/cm1_calcium/s2: test acc 0.9894; best variant  0.9894
+[2026-10-20 01:21:47] ranking for eth_final_loo (from eth_screen):
+    m0_paper [single readout]: mean 0.7957 over 1 runs
+    m2_calcium_teacher [single readout]: mean 0.7866 over 1 runs
+    m5_rsdsp [single readout]: mean 0.7866 over 1 runs
+    m7_hw [single readout]: mean 0.7866 over 1 runs
+    m1_calcium [single readout]: mean 0.7774 over 1 runs
+    m3_calcium_margin [single readout]: mean 0.7774 over 1 runs
+    m4_mpc20 [single readout]: mean 0.7073 over 1 runs
+    m6_rsdsp_k03 [single readout]: mean 0.6890 over 1 runs
+    f1_conv2_dense [single readout]: mean 0.3628 over 1 runs
+[2026-10-20 01:21:47] stage eth_final_loo: 1 groups, 2 runs to do
+[2026-10-20 01:21:47] start eth_final_loo/m0_paper/s0_f8
+[2026-10-20 02:17:51] done  eth_final_loo/m0_paper/s0_f8: test acc 0.8537; best variant  0.8537
+[2026-10-20 02:17:52] start eth_final_loo/m0_paper/s0_f9
+[2026-10-20 02:56:12] done  eth_final_loo/m0_paper/s0_f9: test acc 0.8689; best variant  0.8689
+[2026-10-20 02:56:42] stage replicate_mozafari: 1 groups, 3 runs to do
+[2026-10-20 02:56:43] start replicate_mozafari/caltech_mozafari_paper/s0
+[2026-10-20 02:57:04] start replicate_mozafari/caltech_mozafari_paper/s1
+[2026-10-20 03:10:24] done  replicate_mozafari/caltech_mozafari_paper/s0: test acc 0.9723; best variant  0.9723
+[2026-10-20 03:10:24] done  replicate_mozafari/caltech_mozafari_paper/s1: test acc 0.9617; best variant  0.9617
+[2026-10-20 03:10:25] start replicate_mozafari/caltech_mozafari_paper/s2
+[2026-10-20 03:30:15] done  replicate_mozafari/caltech_mozafari_paper/s2: test acc 0.9617; best variant  0.9617
+[2026-10-20 03:30:45] campaign rl_main finished

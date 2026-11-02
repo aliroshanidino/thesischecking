@@ -1,0 +1,7 @@
+# Phase 1, RL front (D28): as phase1_eth80_rlc1.yaml with 24 S1 maps (richer colour / orientation features for the
+# first-spike decision layer).
+base: phase1_eth80_rlc1.yaml
+layers:
+  - {type: conv, maps: 24, kernel: 5, padding: 2, threshold: auto, k: 24, radius: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: pool, kernel: 4, stride: 4}

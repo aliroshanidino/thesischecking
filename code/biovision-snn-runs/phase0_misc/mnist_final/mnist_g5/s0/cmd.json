@@ -1,0 +1,11 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase0_mnist.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "readout.variants=[{grid: 5, layers: [2]}, {grid: 1, layers: [2]}, {grid: 4, layers: [0, 2], standardize: true}]"
+]

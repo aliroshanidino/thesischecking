@@ -1,0 +1,9 @@
+- name: caltech_mozafari_paper
+  config: configs/phase0_caltech_mozafari.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - data.per_class=435
+  - data.scale=0.5

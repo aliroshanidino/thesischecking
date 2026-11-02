@@ -1,0 +1,68 @@
+- name: h1_hasizh
+  config: configs/phase0_eth80.yaml
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}'
+  args: []
+  seeds: &id001
+  - 1
+  folds: null
+  selected_from:
+    mean: 0.8567073170731707
+    runs: 1
+    variant: g4_l2_std_flip
+- name: s2_scales3
+  config: configs/phase0_eth80.yaml
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2}'
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 3, layers: [2], standardize: true, flip: true}, {grid: 4, layers: [2],
+    standardize: true, flip: true, C: auto}]'
+  - retina.scales=[1.0, 0.71, 0.5]
+  args: []
+  seeds: *id001
+  folds: null
+  selected_from:
+    mean: 0.850609756097561
+    runs: 1
+    variant: g4_l2_std_flip
+- name: h3_hasizh_sdsp
+  config: configs/phase0_eth80.yaml
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}'
+  - layers.2.rule=sdsp
+  - 'layers.2.sdsp={kappa: 0.0, silent_ltd: true, ca_up: 0.5, ca_down: 0.02}'
+  args: []
+  seeds: *id001
+  folds: null
+  selected_from:
+    mean: 0.850609756097561
+    runs: 1
+    variant: g4_l2_std_flip_Cauto

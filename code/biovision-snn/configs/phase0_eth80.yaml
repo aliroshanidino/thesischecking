@@ -1,0 +1,20 @@
+# Phase 0 — Kheradpisheh et al. 2018, ETH-80 (paper p.12–13): as Caltech but 400 maps in conv2 and conv3.
+base: base.yaml
+dataset: eth80
+classes: [apple, car, cow, cup, dog, horse, pear, tomato]
+paper_test_acc: 0.828
+data: {train_instances: 5, size: 160}   # (*) image size not given in the paper
+time: {T: 30}
+retina:
+  dog_kernels: [[7, 1.0, 2.0]]
+  threshold: 50
+  rank_per_channel: false
+init: {w_mean: 0.8, w_std: 0.05}
+layers:
+  - {type: conv, maps: 4, kernel: 5, threshold: 10, k: 4, radius: 2}
+  - {type: pool, kernel: 7, stride: 6}
+  - {type: conv, maps: 400, kernel: 16, threshold: 60, k: 400, radius: 1}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: conv, maps: 400, kernel: 5, threshold: 2, k: 400, radius: 0}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [6000, 20000, 20000]}
+svm_C: 1.2

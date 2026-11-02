@@ -1,0 +1,8 @@
+# Phase 1, RL front: as phase1_eth80_rlc1.yaml but a 2x2 (not 4x4) extra pooling after C1, so the decision layer reads
+# 32 x 32 x 12 (Mozafari's ETH-80 decision window is 31 x 31 on C1); the 4x4 pooling left 317 input spikes per image.
+base: phase1_eth80_rlc1.yaml
+layers:
+  - {type: conv, maps: 12, kernel: 5, padding: 2, threshold: auto, k: 12, radius: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: pool, kernel: 2, stride: 2}
+rstdp: {kernel: 32}

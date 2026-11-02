@@ -1,0 +1,17 @@
+# Phase 0+ (ours): STDP-learned conv1 + Mozafari 2018 R-STDP global readout (first-spike decision, no SVM).
+# R-STDP settings from SpykeTorch's MozafariShallow (Caltech): 10 maps/class, 17x17 on C1, threshold 42,
+# rates (0.005, 0.0025) reward / (0.005, 0.0005) punishment, dropout 0.5. DoG threshold 25 (our V7).
+base: phase0_caltech.yaml
+retina: {dog_kernels: [[7, 1.0, 2.0]], threshold: 25, rank_per_channel: false}
+layers:
+  - {type: conv, maps: 4, kernel: 5, threshold: 10, k: 4, radius: 2}
+  - {type: pool, kernel: 7, stride: 6}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [8000]}
+rstdp:
+  maps_per_class: 10
+  kernel: 17
+  threshold: 42
+  rates: {a_plus: 0.005, a_minus: 0.0025, p_minus: 0.005, p_plus: 0.0005}
+  dropout: 0.5
+  epochs: 200
+  eval_every: 10

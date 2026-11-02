@@ -1,0 +1,213 @@
+{
+ "dataset": "mnist",
+ "seed": 2,
+ "config_hash": "8ebd873ca4",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 60000,
+ "n_test": 10000,
+ "test_acc": 0.9857,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   974,
+   0,
+   0,
+   0,
+   0,
+   0,
+   4,
+   0,
+   2,
+   0
+  ],
+  [
+   1,
+   1125,
+   1,
+   1,
+   1,
+   3,
+   2,
+   0,
+   1,
+   0
+  ],
+  [
+   2,
+   1,
+   1015,
+   3,
+   1,
+   0,
+   0,
+   4,
+   6,
+   0
+  ],
+  [
+   0,
+   0,
+   3,
+   1000,
+   0,
+   3,
+   0,
+   2,
+   2,
+   0
+  ],
+  [
+   1,
+   0,
+   1,
+   0,
+   970,
+   0,
+   2,
+   0,
+   4,
+   4
+  ],
+  [
+   4,
+   0,
+   1,
+   6,
+   0,
+   874,
+   3,
+   1,
+   3,
+   0
+  ],
+  [
+   1,
+   2,
+   1,
+   0,
+   2,
+   3,
+   947,
+   0,
+   1,
+   1
+  ],
+  [
+   0,
+   4,
+   4,
+   2,
+   4,
+   0,
+   0,
+   1010,
+   1,
+   3
+  ],
+  [
+   4,
+   0,
+   2,
+   2,
+   2,
+   1,
+   0,
+   1,
+   959,
+   3
+  ],
+  [
+   0,
+   3,
+   0,
+   2,
+   8,
+   5,
+   0,
+   5,
+   3,
+   983
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.009997147135436535,
+  "conv2": 0.009986861608922482
+ },
+ "iterations": {
+  "conv1": 6900,
+  "conv2": 22350
+ },
+ "train_time_s": {
+  "conv1": 148.25688123703003,
+  "conv2": 881.2570939064026
+ },
+ "feature_images_per_s": 119.40065577897148,
+ "sparsity_per_layer": {
+  "0_conv": 0.018617766203703704,
+  "1_pool": 0.04895486111111111,
+  "2_conv": 0.005140625
+ },
+ "spikes_per_image": {
+  "input": 404.1122,
+  "0_conv": 321.715,
+  "1_pool": 211.485,
+  "2_conv": 32.9
+ },
+ "spikes_per_image_input_plus_conv": 758.7271999999999,
+ "paper_test_acc": 0.984,
+ "weights": 76500,
+ "limit": null,
+ "readout": "svm_grid1",
+ "loaded_weights": null,
+ "eval_split": "test",
+ "overrides": [
+  "readout.variants=[{grid: 5, layers: [2]}, {grid: 1, layers: [2]}, {grid: 4, layers: [0, 2], standardize: true}]"
+ ],
+ "variants": {
+  "g5_l2": {
+   "svm": 0.9857,
+   "train": 1.0,
+   "C": 2.4,
+   "cv": null,
+   "spec": {
+    "grid": 5,
+    "layers": [
+     2
+    ]
+   }
+  },
+  "g1_l2": {
+   "svm": 0.9179,
+   "train": 0.9168666666666667,
+   "C": 2.4,
+   "cv": null,
+   "spec": {
+    "grid": 1,
+    "layers": [
+     2
+    ]
+   }
+  },
+  "g4_l0-2_std": {
+   "svm": 0.9858,
+   "train": 1.0,
+   "C": 2.4,
+   "cv": null,
+   "spec": {
+    "grid": 4,
+    "layers": [
+     0,
+     2
+    ],
+    "standardize": true
+   }
+  }
+ }
+}

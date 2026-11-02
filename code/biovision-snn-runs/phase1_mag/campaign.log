@@ -1,0 +1,8 @@
+[2026-10-20 14:11:40] campaign phase1_mag: 1 stages, slots 2, max jobs 4
+[2026-10-20 14:11:40] stage screen: 5 groups, 5 runs to do
+[2026-10-20 14:11:41] start screen/m_eth_rl/s0
+[2026-10-20 14:14:35] start screen/m_cal_rl/s0
+[2026-10-20 14:22:26] done  screen/m_cal_rl/s0: validation acc 0.8083; best variant  0.8083
+[2026-10-20 14:22:26] start screen/g_cal_rl/s0
+[2026-10-20 14:30:16] done  screen/g_cal_rl/s0: validation acc 0.8750; best variant  0.8750
+[2026-10-20 14:30:17] start screen/pk_cal_rl/s0

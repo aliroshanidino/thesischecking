@@ -1,0 +1,13 @@
+# Phase 1 v2 (D29): with the contour-like LCN code the whole-image R-STDP window (16 x 16 on a 16 x 16 map) loses the
+# geometric tolerance (RL validation, shift 16 px: 52.4 -> 28.1 %, scale 1.2: 62.5 -> 29.6 %). A convolutional decision
+# window (12 x 12, 25 positions, first spike anywhere = position tolerance as in IT) with mirrored images and 150
+# epochs; with and without LCN. Runs next to phase1_v2 (shared limit of three experiment processes).
+name: phase1_v2b
+slots: 2
+max_jobs: 3
+stages:
+  - name: screen
+    defaults: {seeds: [0], set: [validation.instances=1, "rstdp.calcium={lam: 0.9}", rstdp.kernel=12, rstdp.flip=true, rstdp.epochs=150, "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+    runs:
+      - {name: r2_lcn7_k12_flip150, config: configs/phase1_eth80_rlc1.yaml, set: ["retina.filters={lcn: 36, kappa: 0.0078125}"]}
+      - {name: r2_base_k12_flip150, config: configs/phase1_eth80_rlc1.yaml}

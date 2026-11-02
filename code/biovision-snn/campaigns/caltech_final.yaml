@@ -1,0 +1,19 @@
+# Caltech face/motorbike: the configuration chosen on validation (sweep 20261019-0619_caltech_sweep_val3, mean over
+# 3 validation splits: conv1 with 8 maps 100.0 %, conv2 with 40 maps 99.17 %, reference 97.22 %) tested with the
+# paper protocol (200 random training images per class, the rest for testing), 3 seeds.
+name: caltech_final
+slots: 1
+max_jobs: 3
+stages:
+  - name: final
+    runs:
+      - name: c5_conv1_8maps
+        config: configs/phase0_caltech_ours.yaml
+        seeds: [0, 1, 2]
+        set: [layers.0.maps=8, layers.0.k=8]
+  - name: val_combo
+    runs:
+      - name: c6_conv1_8_conv2_40
+        config: configs/phase0_caltech_ours.yaml
+        seeds: [0, 1, 2]
+        set: [validation.fraction=0.3, layers.0.maps=8, layers.0.k=8, layers.2.maps=40, layers.2.k=40]

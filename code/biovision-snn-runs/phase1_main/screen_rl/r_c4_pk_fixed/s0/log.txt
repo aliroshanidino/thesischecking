@@ -1,0 +1,73 @@
+[09:36:33] phase1_eth80_rl seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_main\screen_rl\r_c4_pk_fixed\s0
+[09:36:39] data: 1312 train / 328 test images (6 s)
+[09:38:54] encoded (141 s); input spikes per test image 14589
+[09:38:55] conv1: threshold calibrated to 20.33
+[09:39:04]   layer 0: iter 500, C_l = 0.1668
+[09:39:13]   layer 0: iter 1000, C_l = 0.1751
+[09:39:22]   layer 0: iter 1500, C_l = 0.1863
+[09:39:31]   layer 0: iter 2000, C_l = 0.1940
+[09:39:40]   layer 0: iter 2500, C_l = 0.1998
+[09:39:50]   layer 0: iter 3000, C_l = 0.2039
+[09:39:50] conv1: 3000 iterations, C_l = 0.2039, 56 s
+[09:40:22] conv2: threshold calibrated to 22.99
+[09:40:31]   layer 2: iter 500, C_l = 0.2097
+[09:40:39]   layer 2: iter 1000, C_l = 0.2176
+[09:40:48]   layer 2: iter 1500, C_l = 0.1746
+[09:40:57]   layer 2: iter 2000, C_l = 0.1256
+[09:41:06]   layer 2: iter 2500, C_l = 0.0858
+[09:41:15]   layer 2: iter 3000, C_l = 0.0582
+[09:41:23]   layer 2: iter 3500, C_l = 0.0390
+[09:41:32]   layer 2: iter 4000, C_l = 0.0263
+[09:41:42]   layer 2: iter 4500, C_l = 0.0180
+[09:41:50]   layer 2: iter 5000, C_l = 0.0130
+[09:41:58] conv2: 5450 iterations, C_l = 0.0100, 129 s
+[09:43:01] conv3: threshold calibrated to 85.21
+[09:43:08]   layer 4: iter 500, C_l = 0.1991
+[09:43:15]   layer 4: iter 1000, C_l = 0.2295
+[09:43:22]   layer 4: iter 1500, C_l = 0.2230
+[09:43:29]   layer 4: iter 2000, C_l = 0.1914
+[09:43:36]   layer 4: iter 2500, C_l = 0.1528
+[09:43:43]   layer 4: iter 3000, C_l = 0.1151
+[09:43:50]   layer 4: iter 3500, C_l = 0.0849
+[09:43:57]   layer 4: iter 4000, C_l = 0.0625
+[09:44:04]   layer 4: iter 4500, C_l = 0.0465
+[09:44:11]   layer 4: iter 5000, C_l = 0.0344
+[09:44:18]   layer 4: iter 5500, C_l = 0.0252
+[09:44:25]   layer 4: iter 6000, C_l = 0.0189
+[09:44:33]   layer 4: iter 6500, C_l = 0.0145
+[09:44:40]   layer 4: iter 7000, C_l = 0.0114
+[09:44:44] conv3: 7300 iterations, C_l = 0.0100, 166 s
+[09:46:06] conv4: threshold calibrated to 22.30
+[09:46:13]   layer 6: iter 500, C_l = 0.1874
+[09:46:20]   layer 6: iter 1000, C_l = 0.2168
+[09:46:26]   layer 6: iter 1500, C_l = 0.2316
+[09:46:33]   layer 6: iter 2000, C_l = 0.2286
+[09:46:39]   layer 6: iter 2500, C_l = 0.2108
+[09:46:46]   layer 6: iter 3000, C_l = 0.1851
+[09:46:52]   layer 6: iter 3500, C_l = 0.1577
+[09:46:59]   layer 6: iter 4000, C_l = 0.1324
+[09:47:06]   layer 6: iter 4500, C_l = 0.1089
+[09:47:12]   layer 6: iter 5000, C_l = 0.0874
+[09:47:19]   layer 6: iter 5500, C_l = 0.0717
+[09:47:26]   layer 6: iter 6000, C_l = 0.0588
+[09:47:32]   layer 6: iter 6500, C_l = 0.0478
+[09:47:39]   layer 6: iter 7000, C_l = 0.0386
+[09:47:46]   layer 6: iter 7500, C_l = 0.0312
+[09:47:52]   layer 6: iter 8000, C_l = 0.0252
+[09:47:52] conv4: 8000 iterations, C_l = 0.0252, 188 s
+[09:48:53] decision-layer input: 184 spikes per image
+[09:48:53] decision threshold calibrated to 29.4
+[09:50:48] R-STDP epoch 10: train 0.4756 test 0.2835 (silent 0.000)
+[09:52:14] R-STDP epoch 20: train 0.6608 test 0.3628 (silent 0.000)
+[09:53:05] R-STDP epoch 30: train 0.7218 test 0.4360 (silent 0.000)
+[09:53:56] R-STDP epoch 40: train 0.7805 test 0.4787 (silent 0.000)
+[09:54:47] R-STDP epoch 50: train 0.8270 test 0.4878 (silent 0.000)
+[09:55:40] R-STDP epoch 60: train 0.8338 test 0.5152 (silent 0.000)
+[09:56:32] R-STDP epoch 70: train 0.8537 test 0.5366 (silent 0.000)
+[09:57:23] R-STDP epoch 80: train 0.8598 test 0.5427 (silent 0.000)
+[09:57:23] R-STDP selected epoch 80 (best train): test 0.5427; final 0.5427; best-test (optimistic) 0.5427
+[09:57:30] feature figure conv1 skipped: AttributeError
+[09:57:30] feature figure conv2 skipped: AttributeError
+[09:57:30] feature figure conv3 skipped: AttributeError
+[09:57:30] feature figure conv4 skipped: AttributeError
+[09:57:30] done: test accuracy 0.5427 (paper None)

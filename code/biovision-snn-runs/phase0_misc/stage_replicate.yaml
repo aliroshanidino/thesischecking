@@ -1,0 +1,9 @@
+- name: eth80_sdnn_paper
+  config: configs/phase0_eth80.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - 'readout.variants=[{grid: 1, layers: [4]}, {grid: 4, layers: [2], standardize:
+    true}]'

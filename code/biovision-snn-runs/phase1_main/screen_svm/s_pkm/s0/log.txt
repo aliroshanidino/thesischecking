@@ -1,0 +1,83 @@
+[07:52:49] phase1_eth80 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_main\screen_svm\s_pkm\s0
+[07:52:54] data: 1312 train / 328 test images (5 s)
+[07:52:56] retina contrast thresholds per channel: [-2.06, -1.95, -2.06, -1.88, 0.63, -1.36]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 438, in <module>
+    main()
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 276, in main
+    tr_in = [encode(x) for x in tr_x]
+             ^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 250, in encode
+    v = [encode_bio3(lev, T, ch, r.get("coding", "log"), r.get("delta", 0.25), r.get("log", "mitchell"),
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\retina\hw_retina.py", line 157, in encode_bio3
+    t = torch.cat([t, magno_times(rgb01, T, log=log, **(magno or {}))])
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: magno_times() got an unexpected keyword argument 'contrast_threshold'
+[08:12:54] phase1_eth80 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_main\screen_svm\s_pkm\s0
+[08:13:01] data: 1312 train / 328 test images (7 s)
+[08:13:03] retina contrast thresholds per channel: [-2.06, -1.95, -2.06, -1.88, 0.63, -1.36]
+[08:17:00] encoded (246 s); input spikes per test image 10729
+[08:17:01] conv1: threshold calibrated to 53.10
+[08:17:09]   layer 0: iter 500, C_l = 0.2063
+[08:17:17]   layer 0: iter 1000, C_l = 0.2144
+[08:17:25]   layer 0: iter 1500, C_l = 0.1764
+[08:17:33]   layer 0: iter 2000, C_l = 0.1318
+[08:17:42]   layer 0: iter 2500, C_l = 0.0957
+[08:17:53]   layer 0: iter 3000, C_l = 0.0700
+[08:17:53] conv1: 3000 iterations, C_l = 0.0700, 53 s
+[08:18:21] conv2: threshold calibrated to 32.60
+[08:18:27]   layer 2: iter 500, C_l = 0.2216
+[08:18:33]   layer 2: iter 1000, C_l = 0.2172
+[08:18:40]   layer 2: iter 1500, C_l = 0.1576
+[08:18:46]   layer 2: iter 2000, C_l = 0.1022
+[08:18:51]   layer 2: iter 2500, C_l = 0.0648
+[08:18:56]   layer 2: iter 3000, C_l = 0.0411
+[08:19:01]   layer 2: iter 3500, C_l = 0.0267
+[08:19:06]   layer 2: iter 4000, C_l = 0.0176
+[08:19:11]   layer 2: iter 4500, C_l = 0.0126
+[08:19:17] conv2: 4950 iterations, C_l = 0.0100, 84 s
+[08:19:40] conv3: threshold calibrated to 73.14
+[08:19:42]   layer 4: iter 500, C_l = 0.2047
+[08:19:45]   layer 4: iter 1000, C_l = 0.2334
+[08:19:48]   layer 4: iter 1500, C_l = 0.2218
+[08:19:51]   layer 4: iter 2000, C_l = 0.1855
+[08:19:54]   layer 4: iter 2500, C_l = 0.1436
+[08:19:57]   layer 4: iter 3000, C_l = 0.1078
+[08:19:59]   layer 4: iter 3500, C_l = 0.0803
+[08:20:02]   layer 4: iter 4000, C_l = 0.0597
+[08:20:05]   layer 4: iter 4500, C_l = 0.0432
+[08:20:08]   layer 4: iter 5000, C_l = 0.0316
+[08:20:12]   layer 4: iter 5500, C_l = 0.0234
+[08:20:15]   layer 4: iter 6000, C_l = 0.0173
+[08:20:18]   layer 4: iter 6500, C_l = 0.0129
+[08:20:21] conv3: 6950 iterations, C_l = 0.0100, 64 s
+[08:20:45] conv4: threshold calibrated to 21.69
+[08:20:48]   layer 6: iter 500, C_l = 0.1879
+[08:20:50]   layer 6: iter 1000, C_l = 0.2143
+[08:20:53]   layer 6: iter 1500, C_l = 0.2300
+[08:20:56]   layer 6: iter 2000, C_l = 0.2304
+[08:20:59]   layer 6: iter 2500, C_l = 0.2174
+[08:21:01]   layer 6: iter 3000, C_l = 0.1958
+[08:21:04]   layer 6: iter 3500, C_l = 0.1724
+[08:21:07]   layer 6: iter 4000, C_l = 0.1484
+[08:21:09]   layer 6: iter 4500, C_l = 0.1258
+[08:21:12]   layer 6: iter 5000, C_l = 0.1065
+[08:21:15]   layer 6: iter 5500, C_l = 0.0887
+[08:21:18]   layer 6: iter 6000, C_l = 0.0742
+[08:21:20]   layer 6: iter 6500, C_l = 0.0625
+[08:21:23]   layer 6: iter 7000, C_l = 0.0522
+[08:21:26]   layer 6: iter 7500, C_l = 0.0435
+[08:21:28]   layer 6: iter 8000, C_l = 0.0365
+[08:21:28] conv4: 8000 iterations, C_l = 0.0365, 68 s
+[08:23:56] SVM: train 1.0000, test 0.7500 [g4_l6_std_flip]
+[08:24:02] SVM: train 1.0000, test 0.7256 [g4_l6_std]
+[08:24:09] SVM: train 1.0000, test 0.7591 [g4_l4-6_std]
+[08:24:11] SVM: train 0.8575, test 0.5945 [g1_l6]
+[08:24:18] feature figure conv1 skipped: AttributeError
+[08:24:18] feature figure conv2 skipped: AttributeError
+[08:24:18] feature figure conv3 skipped: AttributeError
+[08:24:18] feature figure conv4 skipped: AttributeError
+[08:24:18] done: test accuracy 0.7500 (paper None)

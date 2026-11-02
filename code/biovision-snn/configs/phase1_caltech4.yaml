@@ -1,0 +1,6 @@
+# Phase 1, Caltech-101 colour, 4 classes (Faces, Motorbikes, airplanes, Leopards): 200 random images per class
+# (100 train / 100 test), letterboxed to 128 x 128 (CLAUDE.md 4.2); same network as phase1_eth80.yaml.
+base: phase1_eth80.yaml
+dataset: caltech
+classes: [Faces, Motorbikes, airplanes, Leopards]
+data: {train_per_class: 100, per_class: 200, colour: true, square: 128, classes: [Faces, Motorbikes, airplanes, Leopards]}

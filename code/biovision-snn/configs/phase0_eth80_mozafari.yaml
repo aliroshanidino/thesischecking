@@ -1,0 +1,21 @@
+# ETH-80 with the Mozafari et al. 2018 network (fixed Gabor S1/C1 + R-STDP, first-spike decision), settings of
+# SpykeTorch's MozafariShallow (ETH): close128 images, C1 pool 5/4, S2 31x31 (whole image), threshold 160.
+base: phase0_eth80.yaml
+data: {train_instances: 5, size: 128, variant: cropped-close128}
+time: {T: 15}
+retina:
+  mode: gabor_c1
+  gabor_size: 5
+  orientations: [67.5, 112.5, 157.5, 202.5]
+  pool: [5, 4]
+  lateral_inhibition: [0.15, 0.12, 0.10, 0.07, 0.05]
+layers: []
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: []}
+rstdp:
+  maps_per_class: 10
+  kernel: 31
+  threshold: 160
+  rates: {a_plus: 0.01, a_minus: 0.0035, p_minus: 0.01, p_plus: 0.0006}
+  dropout: 0.4
+  epochs: 150
+  eval_every: 10

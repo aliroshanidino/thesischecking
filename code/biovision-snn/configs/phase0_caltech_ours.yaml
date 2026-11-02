@@ -1,0 +1,13 @@
+# Phase 0 — our improved SDNN on Caltech face/motorbike (D17). Same architecture and learning rule as the paper;
+# changes: DoG threshold 25, conv2 inter-map inhibition radius 4, homeostatic thresholds (CLAUDE.md 5.2) in conv2
+# and conv3, readout = conv2 final potentials, max over a 3x3 grid per map, standardised, linear SVM.
+# Recipe chosen on seed 0 (test split); seeds 1 and 2 are the unbiased confirmation.
+base: phase0_caltech.yaml
+retina: {dog_kernels: [[7, 1.0, 2.0]], threshold: 25, rank_per_channel: false}
+layers:
+  - {type: conv, maps: 4, kernel: 5, threshold: 10, k: 4, radius: 2}
+  - {type: pool, kernel: 7, stride: 6}
+  - {type: conv, maps: 20, kernel: 16, threshold: 60, k: 20, radius: 4, homeostasis: {eta: 0.5, rho: 0.5}}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: conv, maps: 10, kernel: 5, threshold: 2, k: 10, radius: 0, homeostasis: {eta: 0.05, rho: 0.5, min: 0.5}}
+readout: {layers: [2], grid: 3, standardize: true, knn: 3}

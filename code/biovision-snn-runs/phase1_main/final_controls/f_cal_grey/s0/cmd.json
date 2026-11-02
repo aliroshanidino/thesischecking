@@ -1,0 +1,13 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase1_caltech4.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "retina.channels=grey",
+ "--set",
+ "readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]"
+]

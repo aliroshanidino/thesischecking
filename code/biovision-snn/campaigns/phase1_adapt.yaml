@@ -1,0 +1,18 @@
+# Phase 1, contrast adaptation (DECISIONS D28): the per-channel contrast thresholds are offline constants, so a gamma
+# change silences the retina (gamma 0.5: 6881 -> 349 input spikes per image) or floods it (gamma 2: 40 216), and the
+# test accuracy falls to ~10 %. `retina.l_min: adaptive` sets each channel's threshold per image (~7 % of the cells,
+# a histogram + prefix sum in hardware). Validation screen WITH invariance tests (all 328 validation images), against
+# the same settings with the constant thresholds; both fronts.
+name: phase1_adapt
+slots: 2
+max_jobs: 3
+stages:
+  - name: screen_inv
+    defaults: {seeds: [0], set: [validation.instances=1, "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"]}
+    runs:
+      - {name: a_rl_base, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}"]}
+      - {name: a_rl_adapt, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}", retina.l_min=adaptive]}
+      - {name: a_rl_adapt_rank, config: configs/phase1_eth80_rlc1.yaml, set: ["rstdp.calcium={lam: 0.9}", retina.l_min=adaptive, retina.coding=rank]}
+      - {name: a_svm_base, config: configs/phase1_eth80.yaml, set: [retina.channels=pkm, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}
+      - {name: a_svm_adapt, config: configs/phase1_eth80.yaml, set: [retina.channels=pkm, retina.l_min=adaptive, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}
+      - {name: a_svm_adapt_rank, config: configs/phase1_eth80.yaml, set: [retina.channels=pkm, retina.l_min=adaptive, retina.coding=rank, "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]"]}

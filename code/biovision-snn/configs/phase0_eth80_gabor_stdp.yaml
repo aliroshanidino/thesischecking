@@ -1,0 +1,17 @@
+# ETH-80: fixed Gabor S1/C1 front end (cleaner edges than DoG on ETH) + our STDP layers (paper's conv2/conv3 sizes)
+# + homeostasis + conv-layer grid readout.
+base: phase0_eth80.yaml
+data: {train_instances: 5, size: 200}
+time: {T: 30}
+retina:
+  mode: gabor_c1
+  gabor_size: 5
+  orientations: [67.5, 112.5, 157.5, 202.5]
+  pool: [7, 6]
+  lateral_inhibition: [0.15, 0.12, 0.10, 0.07, 0.05]
+layers:
+  - {type: conv, maps: 400, kernel: 16, threshold: 60, k: 400, radius: 1, homeostasis: {eta: 0.5, rho: 0.2}}
+  - {type: pool, kernel: 2, stride: 2}
+  - {type: conv, maps: 400, kernel: 5, threshold: 2, k: 400, radius: 0, homeostasis: {eta: 0.05, rho: 0.2, min: 0.5}}
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [30000, 30000]}
+readout: {layers: [0, 2], grid: 3, standardize: true, knn: 5}

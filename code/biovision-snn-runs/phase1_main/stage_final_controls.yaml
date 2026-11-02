@@ -1,0 +1,49 @@
+- name: f_eth_grey
+  config: configs/phase1_eth80.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - retina.channels=grey
+  - 'readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]'
+- name: f_cal_pk
+  config: configs/phase1_caltech4.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - 'readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]'
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+- name: f_cal_grey
+  config: configs/phase1_caltech4.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - retina.channels=grey
+  - 'readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]'
+- name: f_cal_rl_c1
+  config: configs/phase1_caltech4_rlc1.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+- name: f_cal_rl_c1_grey
+  config: configs/phase1_caltech4_rlc1.yaml
+  seeds:
+  - 0
+  - 1
+  - 2
+  set:
+  - retina.channels=grey

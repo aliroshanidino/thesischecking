@@ -1,0 +1,109 @@
+[2026-10-20 05:51:32] campaign phase1_main: 5 stages, slots 2, max jobs 3
+[2026-10-20 05:51:32] stage screen_svm: 7 groups, 7 runs to do
+[2026-10-20 06:22:29] campaign phase1_main: 5 stages, slots 2, max jobs 4
+[2026-10-20 06:22:29] stage screen_svm: 7 groups, 7 runs to do
+[2026-10-20 06:22:30] start screen_svm/s_pk/s0
+[2026-10-20 06:40:58] done  screen_svm/s_pk/s0: validation acc 0.7896; best variant g4_l4-6_std 0.7988
+[2026-10-20 06:40:59] start screen_svm/s_grey/s0
+[2026-10-20 06:55:18] start screen_svm/s_p/s0
+[2026-10-20 06:56:08] done  screen_svm/s_grey/s0: validation acc 0.2470; best variant g4_l6_std_flip 0.2470
+[2026-10-20 07:02:33] campaign phase1_main: 5 stages, slots 2, max jobs 4
+[2026-10-20 07:02:33] stage screen_svm: 7 groups, 7 runs to do
+[2026-10-20 07:02:34] start screen_svm/s_pk/s0
+[2026-10-20 07:21:02] done  screen_svm/s_pk/s0: validation acc 0.7348; best variant g4_l4-6_std 0.7561
+[2026-10-20 07:21:03] start screen_svm/s_grey/s0
+[2026-10-20 07:21:47] campaign phase1_main: 5 stages, slots 2, max jobs 4
+[2026-10-20 07:21:47] stage screen_svm: 8 groups, 7 runs to do
+[2026-10-20 07:36:49] start screen_svm/s_p/s0
+[2026-10-20 07:52:41] done  screen_svm/s_p/s0: validation acc 0.7165; best variant g4_l4-6_std 0.7409
+[2026-10-20 07:52:41] start screen_svm/s_pkm/s0
+[2026-10-20 07:53:02] start screen_svm/s_pk_rank/s0
+[2026-10-20 07:53:52] FAILED screen_svm/s_pkm/s0 (exit 1)
+[2026-10-20 07:53:52] start screen_svm/s_pk_float/s0
+[2026-10-20 07:55:00] campaign phase1_main: 5 stages, slots 2, max jobs 4
+[2026-10-20 07:55:00] stage screen_svm: 8 groups, 5 runs to do
+[2026-10-20 07:55:01] start screen_svm/s_pk_1level/s0
+[2026-10-20 07:55:22] start screen_svm/s_pk_fixed/s0
+[2026-10-20 08:12:42] done  screen_svm/s_pk_1level/s0: validation acc 0.7195; best variant g4_l4-6_std 0.7591
+[2026-10-20 08:12:43] start screen_svm/s_pkm/s0
+[2026-10-20 08:19:33] done  screen_svm/s_pk_fixed/s0: validation acc 0.7896; best variant g4_l4-6_std 0.7988
+[2026-10-20 08:20:17] campaign phase1_main: 5 stages, slots 2, max jobs 4
+[2026-10-20 08:20:17] stage screen_svm: 8 groups, 1 runs to do
+[2026-10-20 08:24:47] stage screen_rl: 7 groups, 7 runs to do
+[2026-10-20 08:24:47] start screen_rl/r_c1_pk/s0
+[2026-10-20 08:25:08] start screen_rl/r_c1_pk_calcium/s0
+[2026-10-20 08:43:58] done  screen_rl/r_c1_pk/s0: validation acc 0.7073; best variant  0.7073
+[2026-10-20 08:43:59] start screen_rl/r_c1_grey/s0
+[2026-10-20 08:44:49] done  screen_rl/r_c1_pk_calcium/s0: validation acc 0.7134; best variant  0.7134
+[2026-10-20 08:44:49] start screen_rl/r_c4_pk/s0
+[2026-10-20 09:11:09] done  screen_rl/r_c1_grey/s0: validation acc 0.6402; best variant  0.6402
+[2026-10-20 09:11:10] start screen_rl/r_c1_pk_fixed/s0
+[2026-10-20 09:24:00] done  screen_rl/r_c4_pk/s0: validation acc 0.6524; best variant  0.6524
+[2026-10-20 09:24:01] start screen_rl/r_c1_pk_fixed_calcium/s0
+[2026-10-20 09:36:21] done  screen_rl/r_c1_pk_fixed/s0: validation acc 0.6341; best variant  0.6341
+[2026-10-20 09:36:22] start screen_rl/r_c4_pk_fixed/s0
+[2026-10-20 09:49:42] done  screen_rl/r_c1_pk_fixed_calcium/s0: validation acc 0.6494; best variant  0.6494
+[2026-10-20 09:57:42] done  screen_rl/r_c4_pk_fixed/s0: validation acc 0.5427; best variant  0.5427
+[2026-10-20 09:58:12] ranking for final_svm (from screen_svm):
+    s_pk_fixed [g4_l4-6_std]: mean 0.7988 over 1 runs
+    s_pkm [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk_float [g4_l6_std]: mean 0.7591 over 1 runs
+    s_pk_1level [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk [g4_l4-6_std]: mean 0.7561 over 1 runs
+    s_pk_rank [g4_l6_std_flip]: mean 0.7530 over 1 runs
+    s_grey [g4_l4-6_std]: mean 0.7470 over 1 runs
+    s_p [g4_l4-6_std]: mean 0.7409 over 1 runs
+[2026-10-20 09:58:12] stage final_svm: 1 groups, 3 runs to do
+[2026-10-20 09:58:12] start final_svm/s_pk_fixed/s0
+[2026-10-20 09:58:33] start final_svm/s_pk_fixed/s1
+[2026-10-20 10:23:23] done  final_svm/s_pk_fixed/s0: test acc 0.7817; best variant g4_l4-6_std 0.7817
+[2026-10-20 10:23:24] start final_svm/s_pk_fixed/s2
+[2026-10-20 10:24:14] done  final_svm/s_pk_fixed/s1: test acc 0.7512; best variant g4_l4-6_std 0.7512
+[2026-10-20 10:37:14] done  final_svm/s_pk_fixed/s2: test acc 0.8128; best variant g4_l4-6_std 0.8128
+[2026-10-20 10:37:44] ranking for final_rl (from screen_rl):
+    r_c1_pk_calcium [single readout]: mean 0.7134 over 1 runs
+    r_c1_pk [single readout]: mean 0.7073 over 1 runs
+    r_c4_pk [single readout]: mean 0.6524 over 1 runs
+    r_c1_pk_fixed_calcium [single readout]: mean 0.6494 over 1 runs
+    r_c1_grey [single readout]: mean 0.6402 over 1 runs
+    r_c1_pk_fixed [single readout]: mean 0.6341 over 1 runs
+    r_c4_pk_fixed [single readout]: mean 0.5427 over 1 runs
+[2026-10-20 10:37:44] stage final_rl: 1 groups, 3 runs to do
+[2026-10-20 10:37:44] start final_rl/r_c1_pk_calcium/s0
+[2026-10-20 10:38:05] start final_rl/r_c1_pk_calcium/s1
+[2026-10-20 11:02:55] done  final_rl/r_c1_pk_calcium/s0: test acc 0.7402; best variant  0.7402
+[2026-10-20 11:02:56] start final_rl/r_c1_pk_calcium/s2
+[2026-10-20 11:03:46] done  final_rl/r_c1_pk_calcium/s1: test acc 0.7030; best variant  0.7030
+[2026-10-20 11:19:16] done  final_rl/r_c1_pk_calcium/s2: test acc 0.7427; best variant  0.7427
+[2026-10-20 11:19:46] stage final_controls: 5 groups, 15 runs to do
+[2026-10-20 11:19:46] start final_controls/f_eth_grey/s0
+[2026-10-20 11:20:07] start final_controls/f_eth_grey/s1
+[2026-10-20 11:33:27] done  final_controls/f_eth_grey/s0: test acc 0.7518; best variant g4_l6_std_flip 0.7518
+[2026-10-20 11:33:28] start final_controls/f_eth_grey/s2
+[2026-10-20 11:34:18] done  final_controls/f_eth_grey/s1: test acc 0.7445; best variant g4_l6_std_flip 0.7445
+[2026-10-20 11:34:18] start final_controls/f_cal_pk/s0
+[2026-10-20 11:35:08] FAILED final_controls/f_cal_pk/s0 (exit 1)
+[2026-10-20 11:35:09] start final_controls/f_cal_pk/s1
+[2026-10-20 11:35:59] FAILED final_controls/f_cal_pk/s1 (exit 1)
+[2026-10-20 11:36:00] start final_controls/f_cal_pk/s2
+[2026-10-20 11:36:50] FAILED final_controls/f_cal_pk/s2 (exit 1)
+[2026-10-20 11:36:50] start final_controls/f_cal_grey/s0
+[2026-10-20 11:37:40] FAILED final_controls/f_cal_grey/s0 (exit 1)
+[2026-10-20 11:37:41] start final_controls/f_cal_grey/s1
+[2026-10-20 11:38:31] FAILED final_controls/f_cal_grey/s1 (exit 1)
+[2026-10-20 11:38:32] start final_controls/f_cal_grey/s2
+[2026-10-20 11:39:22] FAILED final_controls/f_cal_grey/s2 (exit 1)
+[2026-10-20 11:39:22] start final_controls/f_cal_rl_c1/s0
+[2026-10-20 11:42:42] done  final_controls/f_eth_grey/s2: test acc 0.7543; best variant g4_l6_std_flip 0.7543
+[2026-10-20 11:42:43] start final_controls/f_cal_rl_c1/s1
+[2026-10-20 12:02:03] done  final_controls/f_cal_rl_c1/s0: test acc 0.5875; best variant  0.5875
+[2026-10-20 12:02:04] start final_controls/f_cal_rl_c1/s2
+[2026-10-20 12:07:24] done  final_controls/f_cal_rl_c1/s1: test acc 0.5100; best variant  0.5100
+[2026-10-20 12:07:25] start final_controls/f_cal_rl_c1_grey/s0
+[2026-10-20 12:17:45] done  final_controls/f_cal_rl_c1_grey/s0: test acc 0.9075; best variant  0.9075
+[2026-10-20 12:17:46] start final_controls/f_cal_rl_c1_grey/s1
+[2026-10-20 12:24:06] done  final_controls/f_cal_rl_c1/s2: test acc 0.5625; best variant  0.5625
+[2026-10-20 12:24:06] start final_controls/f_cal_rl_c1_grey/s2
+[2026-10-20 12:28:57] done  final_controls/f_cal_rl_c1_grey/s1: test acc 0.8850; best variant  0.8850
+[2026-10-20 12:33:27] done  final_controls/f_cal_rl_c1_grey/s2: test acc 0.8900; best variant  0.8900
+[2026-10-20 12:33:57] campaign phase1_main finished

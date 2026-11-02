@@ -1,0 +1,73 @@
+[2026-10-20 11:40:17] campaign phase1_bal: 3 stages, slots 2, max jobs 3
+[2026-10-20 11:40:17] stage screen_rl_bal: 2 groups, 2 runs to do
+[2026-10-20 11:40:17] start screen_rl_bal/x_rl_c1p2/s0
+[2026-10-20 11:40:17] start screen_rl_bal/x_rl_c1p2_calcium/s0
+[2026-10-20 11:40:17] ranking for final_svm_bal (from phase1_main/screen_svm):
+    s_pkm [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk_1level [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk [g4_l4-6_std]: mean 0.7561 over 1 runs
+    s_pk_rank [g4_l6_std_flip]: mean 0.7530 over 1 runs
+    s_grey [g4_l4-6_std]: mean 0.7470 over 1 runs
+    s_p [g4_l4-6_std]: mean 0.7409 over 1 runs
+[2026-10-20 11:40:17] stage final_svm_bal: 1 groups, 3 runs to do
+[2026-10-20 11:40:17] start final_svm_bal/s_pkm/s0
+[2026-10-20 11:40:17] start final_svm_bal/s_pkm/s1
+[2026-10-20 11:40:17] start final_svm_bal/s_pkm/s2
+[2026-10-20 11:40:17] stage controls_bal: 4 groups, 12 runs to do
+[2026-10-20 11:40:17] start controls_bal/f_eth_grey46/s0
+[2026-10-20 11:40:17] start controls_bal/f_eth_grey46/s1
+[2026-10-20 11:40:17] start controls_bal/f_eth_grey46/s2
+[2026-10-20 11:40:17] start controls_bal/f_cal_pkm/s0
+[2026-10-20 11:40:17] start controls_bal/f_cal_pkm/s1
+[2026-10-20 11:40:17] start controls_bal/f_cal_pkm/s2
+[2026-10-20 11:40:17] start controls_bal/f_cal_grey46/s0
+[2026-10-20 11:40:17] start controls_bal/f_cal_grey46/s1
+[2026-10-20 11:40:17] start controls_bal/f_cal_grey46/s2
+[2026-10-20 11:40:17] start controls_bal/f_cal_rl_c1_bal/s0
+[2026-10-20 11:40:17] start controls_bal/f_cal_rl_c1_bal/s1
+[2026-10-20 11:40:17] start controls_bal/f_cal_rl_c1_bal/s2
+[2026-10-20 11:40:17] campaign phase1_bal finished
+[2026-10-20 11:40:18] campaign phase1_bal: 3 stages, slots 2, max jobs 3
+[2026-10-20 11:40:18] stage screen_rl_bal: 2 groups, 2 runs to do
+[2026-10-20 11:40:18] start screen_rl_bal/x_rl_c1p2/s0
+[2026-10-20 11:40:18] start screen_rl_bal/x_rl_c1p2_calcium/s0
+[2026-10-20 11:40:18] ranking for final_svm_bal (from phase1_main/screen_svm):
+    s_pkm [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk_1level [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk [g4_l4-6_std]: mean 0.7561 over 1 runs
+    s_pk_rank [g4_l6_std_flip]: mean 0.7530 over 1 runs
+    s_grey [g4_l4-6_std]: mean 0.7470 over 1 runs
+    s_p [g4_l4-6_std]: mean 0.7409 over 1 runs
+[2026-10-20 11:40:18] stage final_svm_bal: 1 groups, 3 runs to do
+[2026-10-20 11:40:18] start final_svm_bal/s_pkm/s0
+[2026-10-20 11:40:18] start final_svm_bal/s_pkm/s1
+[2026-10-20 11:40:18] start final_svm_bal/s_pkm/s2
+[2026-10-20 11:40:18] stage controls_bal: 4 groups, 12 runs to do
+[2026-10-20 11:40:18] start controls_bal/f_eth_grey46/s0
+[2026-10-20 11:40:18] start controls_bal/f_eth_grey46/s1
+[2026-10-20 11:40:18] start controls_bal/f_eth_grey46/s2
+[2026-10-20 11:40:18] start controls_bal/f_cal_pkm/s0
+[2026-10-20 11:40:18] start controls_bal/f_cal_pkm/s1
+[2026-10-20 11:40:18] start controls_bal/f_cal_pkm/s2
+[2026-10-20 11:40:18] start controls_bal/f_cal_grey46/s0
+[2026-10-20 11:40:18] start controls_bal/f_cal_grey46/s1
+[2026-10-20 11:40:18] start controls_bal/f_cal_grey46/s2
+[2026-10-20 11:40:18] start controls_bal/f_cal_rl_c1_bal/s0
+[2026-10-20 11:40:18] start controls_bal/f_cal_rl_c1_bal/s1
+[2026-10-20 11:40:18] start controls_bal/f_cal_rl_c1_bal/s2
+[2026-10-20 11:40:18] campaign phase1_bal finished
+[2026-10-20 11:40:23] campaign phase1_bal: 3 stages, slots 2, max jobs 3
+[2026-10-20 11:40:23] stage screen_rl_bal: 2 groups, 2 runs to do
+[2026-10-20 11:40:24] start screen_rl_bal/x_rl_c1p2/s0
+[2026-10-20 11:42:18] start screen_rl_bal/x_rl_c1p2_calcium/s0
+[2026-10-20 12:13:38] done  screen_rl_bal/x_rl_c1p2/s0: validation acc 0.6402; best variant  0.6402
+[2026-10-20 12:15:38] done  screen_rl_bal/x_rl_c1p2_calcium/s0: validation acc 0.6982; best variant  0.6982
+[2026-10-20 12:16:08] ranking for final_svm_bal (from phase1_main/screen_svm):
+    s_pkm [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk_1level [g4_l4-6_std]: mean 0.7591 over 1 runs
+    s_pk [g4_l4-6_std]: mean 0.7561 over 1 runs
+    s_pk_rank [g4_l6_std_flip]: mean 0.7530 over 1 runs
+    s_grey [g4_l4-6_std]: mean 0.7470 over 1 runs
+    s_p [g4_l4-6_std]: mean 0.7409 over 1 runs
+[2026-10-20 12:16:08] stage final_svm_bal: 1 groups, 3 runs to do
+[2026-10-20 12:33:34] start final_svm_bal/s_pkm/s0

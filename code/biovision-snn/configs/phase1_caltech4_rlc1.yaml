@@ -1,0 +1,7 @@
+# Phase 1, RL baseline on Caltech-4 colour (learned S1 -> C1 -> 4x4 pooling -> first-spike R-STDP, whole image).
+base: phase1_eth80_rlc1.yaml
+dataset: caltech
+classes: [Faces, Motorbikes, airplanes, Leopards]
+data: {train_per_class: 100, per_class: 200, colour: true, square: 128, classes: [Faces, Motorbikes, airplanes, Leopards]}
+rstdp: {maps_per_class: 10, kernel: 16, threshold: auto, threshold_frac: 0.2, view: 0,
+        rates: {a_plus: 0.005, a_minus: 0.0025, p_minus: 0.005, p_plus: 0.0005}, calcium: {lam: 0.9}, dropout: 0.5, epochs: 100, eval_every: 10}

@@ -1,0 +1,18 @@
+# Phase 0 campaign B, classifier front: MNIST final test and the SDNN ETH-80 replication (3 seeds).
+# (The R-STDP stages moved to rl_main, the main front.)
+name: phase0_misc
+slots: 1
+max_jobs: 2   # classifier front: leaves one GPU slot to the RL front (main), RAM-limited to 3 jobs
+stages:
+  - name: mnist_final
+    runs:
+      - name: mnist_g5
+        config: configs/phase0_mnist.yaml
+        seeds: [0, 1, 2]
+        set: ["readout.variants=[{grid: 5, layers: [2]}, {grid: 1, layers: [2]}, {grid: 4, layers: [0, 2], standardize: true}]"]
+  - name: replicate
+    runs:
+      - name: eth80_sdnn_paper
+        config: configs/phase0_eth80.yaml
+        seeds: [0, 1, 2]
+        set: ["readout.variants=[{grid: 1, layers: [4]}, {grid: 4, layers: [2], standardize: true}]"]

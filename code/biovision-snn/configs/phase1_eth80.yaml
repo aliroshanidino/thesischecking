@@ -1,0 +1,26 @@
+# Phase 1 (CLAUDE.md Section 8; docs/phase1_design_fa.md; DECISIONS D26): colour ventral stream to IT on the
+# hardware-aware log-domain retina; shift-and-add learning (hardware mode); H-ASIZH thresholds calibrated to ~5 %
+# firing; development size 128 x 128 (pyramid 128 / 64 / 32).
+base: base.yaml
+dataset: eth80
+classes: [apple, car, cow, cup, dog, horse, pear, tomato]
+data: {train_instances: 5, size: 128, colour: true}
+time: {T: 15}
+retina: {mode: bio3, channels: pk, coding: log, delta: 0.25, l_min: auto, input_rate: 0.07, per_channel: true, log: mitchell, levels: 3}
+hardware: {enabled: true, bits: 16, rate_terms: 2}
+init: {w_mean: 0.8, w_std: 0.05}
+layers:
+  - {type: conv, maps: 12, kernel: 5, padding: 2, threshold: auto, k: 12, radius: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}    # V1 S1
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C1
+  - {type: conv, maps: 32, kernel: 5, padding: 2, threshold: auto, k: 32, radius: 1, wta_groups: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}  # V2 S2t + S2p
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C2
+  - {type: conv, maps: 64, kernel: 5, padding: 2, threshold: auto, k: 64, radius: 1, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}    # V4 S3
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C3
+  - {type: conv, maps: 128, kernel: 3, padding: 1, threshold: auto, k: 128, radius: 0, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}  # IT S4
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C4
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: [3000, 6000, 8000, 8000]}
+svm_C: 1.0
+readout:
+  layers: [6]
+  variants: [{grid: 4, layers: [6], standardize: true, flip: true}, {grid: 4, layers: [6], standardize: true},
+             {grid: 4, layers: [4, 6], standardize: true}, {grid: 1, layers: [6]}]

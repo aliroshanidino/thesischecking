@@ -49,6 +49,9 @@
 | [`23-gatescan-phase2-achievements.md`](23-gatescan-phase2-achievements.md) | **فاز ۲ · GateScan:** مقالهٔ TCAD «Masked Is Not Harmless» و کد Mark III؛ بازهٔ تضمین‌شده، ۱۱ رده، پنج نقش عامل، حلقهٔ تریگر، نتایج ShadowFI و ITC'99، سه نسل ابزار، ممیزی مقاله در برابر مخزن |
 | [`24-reference-confidence-audit.md`](24-reference-confidence-audit.md) | **ممیزی مراجع:** حدود ۲۵۰ مرجع یکتا؛ سطح اطمینان Claude (H/M/L) برای ۱۰۴ کار مرور ادبیات؛ برنامهٔ رساندن دستهٔ D به سطح H |
 | [`25-biovision-drawio-architecture.md`](25-biovision-drawio-architecture.md) | **شکل پایهٔ BioVision (draw.io):** آناتومی بلوک‌به‌بلوک با معادله‌ها، چهار حلقهٔ بازخورد، تعداد وزن و نورون، وضعیت هر بلوک، ناسازگاری‌ها، پیش‌بینی و ریسک |
+| [`26-biovision-complete-technical-report.md`](26-biovision-complete-technical-report.md) | **گزارش فنی کامل BioVision (2026-11-02):** معماری نرم‌افزار و ماژول‌ها، 108 آزمون واحد، متن کامل فاز ۰، طراحی و اثبات‌های فاز ۱، همهٔ 57 اجرای فاز ۱ به ترتیب زمانی (شبیه‌ساز متوازن، تطبیق تضاد، نرمال‌سازی محلی تضاد، فقط magno)، ناوردایی، نقطه‌های خطا، دفتر تصمیم‌ها D1 تا D29 و بازتولید. جایگزین کامل‌ترِ `15` و `16` |
+| [`code/biovision-snn/`](code/biovision-snn/) | **کد کامل BioVision-SNN** (snapshot شاخهٔ `phase-1`، commit `739ff3e`)؛ تفاوت‌ها با مخزن کاری در `SNAPSHOT.md` |
+| [`code/biovision-snn-runs/`](code/biovision-snn-runs/) | **سوابق خام همهٔ 136 اجرای 19 کمپین:** `cmd.json`، `log.txt`، `metrics.json`، `campaign.log` |
 | [`deliverables/thesis_progress_deck.pptx`](deliverables/thesis_progress_deck.pptx) | **خروجی:** دک اسلاید تز (به‌همراه PDF)؛ ساخته‌شده با `tools/build_thesis_deck.py` |
 
 ## ۳. نقشهٔ ذهنی یک‌خطی
@@ -57,7 +60,7 @@ Edge/Cloud offloading (Q0) → دستگاه باید خودش قابل‌اتک�
 → SA1 = تشنج دیجیتال، TMR گران (Q3) → H-ASIZH: آستانهٔ تطبیقی درون نورون + اثبات UUB + Q7.19 بدون ضرب
 → از کجا بدانیم؟ (Q4) → GLFI سطح گیت چهارمقداری → 4.2٪ خطرناک در برابر 12.0٪ TMR، RFoM 4.76 در برابر 1.13
 → دوام در یادگیری؟ (Q5) → 256-1024-10 TTFS/STDP، 81.8٪، 1020 از 1024 فعال → GateScan Mark III (بازهٔ تضمین‌شده)
-→ Q6: BioVision‑SNN (فاز ۰ بسته؛ فاز ۱ در جریان) ← یادداشت‌های 13–17؛ Homeostasis 2.0؛ تراشهٔ بینایی مقاوم به خطا
+→ Q6: BioVision‑SNN (فاز ۰ بسته؛ فاز ۱ در جریان) ← یادداشت‌های 13–17 و 26 (گزارش کامل و کد در `code/`)؛ Homeostasis 2.0؛ تراشهٔ بینایی مقاوم به خطا
 ```
 
 ## ۴. سه یافتهٔ مهم ممیزی (جزئیات در `09`)

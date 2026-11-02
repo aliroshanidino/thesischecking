@@ -1,0 +1,209 @@
+{
+ "dataset": "eth80",
+ "seed": 1,
+ "config_hash": "07f9f284a2",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 1312,
+ "n_test": 328,
+ "test_acc": 0.8567073170731707,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   41,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   41,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   2,
+   10,
+   15,
+   0,
+   7,
+   3,
+   2,
+   2
+  ],
+  [
+   5,
+   0,
+   0,
+   36,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   2,
+   0,
+   0,
+   37,
+   1,
+   0,
+   1
+  ],
+  [
+   0,
+   0,
+   5,
+   0,
+   7,
+   29,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   41,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   41
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.00996443908661604,
+  "conv2": 0.04005232825875282
+ },
+ "iterations": {
+  "conv1": 7050,
+  "conv2": 30000
+ },
+ "train_time_s": {
+  "conv1": 127.08731365203857,
+  "conv2": 1205.887145280838
+ },
+ "feature_images_per_s": 11.036037488079478,
+ "sparsity_per_layer": {
+  "0_conv": 0.01418325046855477,
+  "1_pool": 0.1288671875,
+  "2_conv": 0.00099344723183391
+ },
+ "spikes_per_image": {
+  "input": 2880.981707317073,
+  "0_conv": 2179.455,
+  "1_pool": 527.84,
+  "2_conv": 229.685
+ },
+ "spikes_per_image_input_plus_conv": 5290.121707317073,
+ "paper_test_acc": 0.828,
+ "weights": 819300,
+ "limit": null,
+ "readout": "svm_grid1",
+ "loaded_weights": null,
+ "eval_split": "validation",
+ "overrides": [
+  "validation.instances=1",
+  "data.size=200",
+  "retina.threshold=15",
+  "n_layers=3",
+  "layers.2.maps=800",
+  "layers.2.k=800",
+  "learning.max_iter=[8000, 30000]",
+  "readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers: [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true}, {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]",
+  "layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}"
+ ],
+ "variants": {
+  "g4_l2_std": {
+   "svm": 0.8567073170731707,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "grid": 4,
+    "layers": [
+     2
+    ],
+    "standardize": true
+   }
+  },
+  "g3_l2_std": {
+   "svm": 0.875,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "grid": 3,
+    "layers": [
+     2
+    ],
+    "standardize": true
+   }
+  },
+  "g4_l2_std_flip": {
+   "svm": 0.9085365853658537,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "grid": 4,
+    "layers": [
+     2
+    ],
+    "standardize": true,
+    "flip": true
+   }
+  },
+  "g4_l2_std_flip_Cauto": {
+   "svm": 0.9146341463414634,
+   "train": 1.0,
+   "C": 0.03,
+   "cv": {
+    "0.0001": 0.797560975609756,
+    "0.0003": 0.8236353077816492,
+    "0.001": 0.8428571428571429,
+    "0.003": 0.8532520325203251,
+    "0.01": 0.859465737514518,
+    "0.03": 0.8609175377468061,
+    "0.1": 0.8596399535423925,
+    "0.3": 0.8570267131242743,
+    "1.0": 0.8548780487804878,
+    "3.0": 0.8489547038327526
+   },
+   "spec": {
+    "grid": 4,
+    "layers": [
+     2
+    ],
+    "standardize": true,
+    "flip": true,
+    "C": "auto"
+   }
+  }
+ }
+}

@@ -1,0 +1,45 @@
+- seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  name: r_c1_pk
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - 'rstdp.calcium={lam: 0.9}'
+  name: r_c1_pk_calcium
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.channels=grey
+  name: r_c1_grey
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  name: r_c4_pk
+  config: configs/phase1_eth80_rl.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  name: r_c1_pk_fixed
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - 'rstdp.calcium={lam: 0.9}'
+  name: r_c1_pk_fixed_calcium
+  config: configs/phase1_eth80_rlc1.yaml
+- seeds: *id001
+  set:
+  - validation.instances=1
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  name: r_c4_pk_fixed
+  config: configs/phase1_eth80_rl.yaml

@@ -1,0 +1,9 @@
+# Extra tools staged with the main set (DECISIONS D11). Installed with env/install_offline.sh.
+pytest-xdist     # run the test suite on 12 cores (pytest -n 12)
+psutil           # CPU / RAM monitoring inside long runs
+seaborn          # report figures
+motmetrics       # IDF1 / ID switches (Phase 4, CLAUDE.md Section 9)
+tabulate         # tables in REPORT.md
+ipython          # interactive debugging on the HPC
+pip
+wheel

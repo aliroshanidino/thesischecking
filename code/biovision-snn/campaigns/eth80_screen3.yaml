@@ -1,0 +1,27 @@
+# ETH-80 screening round 3 (validation): the user's H-ASIZH threshold dynamics (Roshani et al., Eq. 9) tuned for
+# competitive learning. Round 1 used theta0 = 60, gamma/alpha = 32: thresholds could never fall below 60, so rarely
+# firing maps stayed silent (80.8 % vs 82.6 % for the eta/rho homeostasis, whose thresholds spread over 30..75).
+# Here theta0 = 2/3 x 60 = 40 and gamma/alpha = 64, so theta* = 40 + 64 r* spans 40..104 (r* = firing probability).
+name: eth80_screen3
+slots: 1
+max_jobs: 2   # classifier front: leaves one GPU slot to the RL front (main), RAM-limited to 3 jobs
+stages:
+  - name: screen
+    defaults:
+      config: configs/phase0_eth80.yaml
+      seeds: [0]
+      set:
+        - validation.instances=1
+        - data.size=200
+        - retina.threshold=15
+        - n_layers=3
+        - layers.2.maps=800
+        - layers.2.k=800
+        - "learning.max_iter=[8000, 30000]"
+        - "readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers: [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true}, {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]"
+    runs:
+      - {name: h1_hasizh, set: ["layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}"]}
+      - {name: h2_hasizh_brake, set: ["layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667, brake: 2.0}"]}
+      - {name: h3_hasizh_sdsp, set: ["layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}", layers.2.rule=sdsp,
+                                     "layers.2.sdsp={kappa: 0.0, silent_ltd: true, ca_up: 0.5, ca_down: 0.02}"]}
+      - {name: h4_calcium_homeo, set: ["layers.2.homeostasis={eta: 0.5, rho: 0.2, calcium: true, lam: 0.9}"]}

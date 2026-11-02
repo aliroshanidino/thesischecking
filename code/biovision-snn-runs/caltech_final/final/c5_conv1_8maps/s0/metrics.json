@@ -1,0 +1,87 @@
+{
+ "dataset": "caltech",
+ "seed": 0,
+ "config_hash": "3cb6587c03",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 400,
+ "n_test": 833,
+ "test_acc": 0.9915966386554622,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   234,
+   1
+  ],
+  [
+   6,
+   592
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.009920937940478325,
+  "conv2": 0.10100135952234268,
+  "conv3": 0.009758838452398777
+ },
+ "iterations": {
+  "conv1": 4550,
+  "conv2": 12000,
+  "conv3": 5050
+ },
+ "train_time_s": {
+  "conv1": 60.8744957447052,
+  "conv2": 114.11546802520752,
+  "conv3": 49.72088575363159
+ },
+ "feature_images_per_s": 129.07077168599463,
+ "sparsity_per_layer": {
+  "0_conv": 0.02064765689642848,
+  "1_pool": 0.23589543122404105,
+  "2_conv": 0.029428268414963363,
+  "3_pool": 0.054962876123485736,
+  "4_conv": 0.07924957362137579
+ },
+ "spikes_per_image": {
+  "input": 7547.218487394958,
+  "0_conv": 6424.16,
+  "1_pool": 1931.04,
+  "2_conv": 152.615,
+  "3_pool": 70.325,
+  "4_conv": 6.97
+ },
+ "spikes_per_image_input_plus_conv": 14130.963487394958,
+ "paper_test_acc": 0.991,
+ "weights": 46160,
+ "limit": null,
+ "readout": "svm_grid3",
+ "loaded_weights": null,
+ "eval_split": "test",
+ "overrides": [
+  "layers.0.maps=8",
+  "layers.0.k=8"
+ ],
+ "knn_test_acc": 0.9711884753901561,
+ "variants": {
+  "g3_l2_std": {
+   "svm": 0.9915966386554622,
+   "train": 1.0,
+   "C": 1.0,
+   "cv": null,
+   "spec": {
+    "layers": [
+     2
+    ],
+    "grid": 3,
+    "standardize": true,
+    "knn": 3
+   },
+   "knn": 0.9711884753901561
+  }
+ }
+}

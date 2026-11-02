@@ -1,0 +1,29 @@
+[17:00:15] phase0_eth80_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_attention\eth_screen\a4_rpe_h128\s0
+[17:00:17] data: 1312 train / 328 test images (2 s)
+[17:00:33] encoded (18 s); input spikes per test image 961
+[17:00:33] decision-layer input: 961 spikes per image
+[17:00:41]   layer 0: iter 500, C_l = 0.2083
+[17:00:49]   layer 0: iter 1000, C_l = 0.2031
+[17:00:57]   layer 0: iter 1500, C_l = 0.1763
+[17:01:05]   layer 0: iter 2000, C_l = 0.1423
+[17:01:12]   layer 0: iter 2500, C_l = 0.1102
+[17:01:20]   layer 0: iter 3000, C_l = 0.0838
+[17:01:28]   layer 0: iter 3500, C_l = 0.0637
+[17:01:36]   layer 0: iter 4000, C_l = 0.0488
+[17:01:44]   layer 0: iter 4500, C_l = 0.0379
+[17:01:52]   layer 0: iter 5000, C_l = 0.0300
+[17:02:00]   layer 0: iter 5500, C_l = 0.0241
+[17:02:08]   layer 0: iter 6000, C_l = 0.0198
+[17:02:09] hidden layer: STDP pre-training 95 s; decision-layer input 256 spikes per image
+[17:08:36] R-STDP epoch 10: train 0.3826 test 0.1768 (silent 0.000), attention updates 209838
+[17:15:15] R-STDP epoch 20: train 0.4970 test 0.3445 (silent 0.000), attention updates 419407
+[17:22:53] R-STDP epoch 30: train 0.7271 test 0.4909 (silent 0.000), attention updates 627954
+[17:32:11] R-STDP epoch 40: train 0.8018 test 0.5244 (silent 0.000), attention updates 836263
+[17:42:42] R-STDP epoch 50: train 0.8575 test 0.5701 (silent 0.000), attention updates 1044614
+[17:53:26] R-STDP epoch 60: train 0.8117 test 0.5183 (silent 0.000), attention updates 1253120
+[18:00:37] R-STDP epoch 70: train 0.6806 test 0.3994 (silent 0.000), attention updates 1461774
+[18:06:23] R-STDP epoch 80: train 0.8155 test 0.4848 (silent 0.000), attention updates 1670551
+[18:06:23] R-STDP selected epoch 50 (best train): test 0.5701; final 0.4848; best-test (optimistic) 0.5701
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[18:06:24] done: test accuracy 0.5701 (paper 0.828)

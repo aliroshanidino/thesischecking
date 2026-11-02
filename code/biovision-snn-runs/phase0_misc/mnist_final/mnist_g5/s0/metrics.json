@@ -1,0 +1,213 @@
+{
+ "dataset": "mnist",
+ "seed": 0,
+ "config_hash": "7cab2c94fe",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 60000,
+ "n_test": 10000,
+ "test_acc": 0.9854,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   976,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   1,
+   1
+  ],
+  [
+   0,
+   1127,
+   0,
+   4,
+   0,
+   1,
+   2,
+   1,
+   0,
+   0
+  ],
+  [
+   1,
+   1,
+   1012,
+   4,
+   3,
+   0,
+   0,
+   8,
+   3,
+   0
+  ],
+  [
+   0,
+   0,
+   1,
+   1000,
+   0,
+   5,
+   0,
+   1,
+   2,
+   1
+  ],
+  [
+   3,
+   0,
+   0,
+   0,
+   969,
+   0,
+   3,
+   1,
+   2,
+   4
+  ],
+  [
+   2,
+   0,
+   0,
+   10,
+   1,
+   874,
+   2,
+   2,
+   1,
+   0
+  ],
+  [
+   5,
+   2,
+   0,
+   1,
+   2,
+   6,
+   941,
+   0,
+   1,
+   0
+  ],
+  [
+   1,
+   2,
+   2,
+   0,
+   2,
+   1,
+   0,
+   1015,
+   1,
+   4
+  ],
+  [
+   1,
+   0,
+   2,
+   4,
+   2,
+   1,
+   2,
+   1,
+   957,
+   4
+  ],
+  [
+   0,
+   3,
+   1,
+   0,
+   6,
+   6,
+   0,
+   7,
+   3,
+   983
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.009986522607505322,
+  "conv2": 0.009991138242185116
+ },
+ "iterations": {
+  "conv1": 7100,
+  "conv2": 21100
+ },
+ "train_time_s": {
+  "conv1": 202.3684561252594,
+  "conv2": 839.4774930477142
+ },
+ "feature_images_per_s": 117.69632788753249,
+ "sparsity_per_layer": {
+  "0_conv": 0.01844386574074074,
+  "1_pool": 0.04915393518518518,
+  "2_conv": 0.00522578125
+ },
+ "spikes_per_image": {
+  "input": 404.1122,
+  "0_conv": 318.71,
+  "1_pool": 212.345,
+  "2_conv": 33.445
+ },
+ "spikes_per_image_input_plus_conv": 756.2672,
+ "paper_test_acc": 0.984,
+ "weights": 76500,
+ "limit": null,
+ "readout": "svm_grid1",
+ "loaded_weights": null,
+ "eval_split": "test",
+ "overrides": [
+  "readout.variants=[{grid: 5, layers: [2]}, {grid: 1, layers: [2]}, {grid: 4, layers: [0, 2], standardize: true}]"
+ ],
+ "variants": {
+  "g5_l2": {
+   "svm": 0.9854,
+   "train": 1.0,
+   "C": 2.4,
+   "cv": null,
+   "spec": {
+    "grid": 5,
+    "layers": [
+     2
+    ]
+   }
+  },
+  "g1_l2": {
+   "svm": 0.9108,
+   "train": 0.9069333333333334,
+   "C": 2.4,
+   "cv": null,
+   "spec": {
+    "grid": 1,
+    "layers": [
+     2
+    ]
+   }
+  },
+  "g4_l0-2_std": {
+   "svm": 0.9856,
+   "train": 1.0,
+   "C": 2.4,
+   "cv": null,
+   "spec": {
+    "grid": 4,
+    "layers": [
+     0,
+     2
+    ],
+    "standardize": true
+   }
+  }
+ }
+}

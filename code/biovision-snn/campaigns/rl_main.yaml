@@ -1,0 +1,64 @@
+# Main front (user, 2026-10-19; DECISIONS D22, D23): reward-modulated first-spike decisions, no external classifier.
+# v2: the Mozafari et al. 2018 network (fixed Gabor S1/C1 + R-STDP S2, class-assigned maps, adaptive rates, dropout)
+# is the base; our learning-rule variants (calcium per-neuron rates, teacher, margin, R-SDSP, shift-and-add hardware
+# arithmetic) are screened on validation (1 held-out training object per class / 30 % of the Caltech training
+# images), the best is tested with the paper's own protocols. v1 (R-STDP directly on the sparse conv2 spikes of
+# the 800-map STDP network) reached 19 % validation after 10 epochs and was stopped; one dense-input run remains.
+# The screen winner was m0_paper (= the paper's settings), so eth_final_loo IS the Mozafari leave-one-out
+# replication; the separate replication stage for it was removed.
+name: rl_main
+slots: 2
+max_jobs: 3   # RAM: < 1 GB free with 3 jobs (each ~1.6 GB); was 4 for RL priority
+stages:
+  - name: eth_screen
+    defaults:
+      config: configs/phase0_eth80_mozafari.yaml
+      seeds: [0]
+      set: [validation.instances=1]
+    runs:
+      - {name: m0_paper}
+      - {name: m1_calcium, set: ["rstdp.calcium={lam: 0.9}"]}
+      - {name: m2_calcium_teacher, set: ["rstdp.calcium={lam: 0.9}", rstdp.teacher=0.5]}
+      - {name: m3_calcium_margin, set: ["rstdp.calcium={lam: 0.9}", rstdp.margin=2]}
+      - {name: m4_mpc20, set: [rstdp.maps_per_class=20]}
+      - {name: m5_rsdsp, set: [rstdp.rule=sdsp, "rstdp.sdsp={kappa: 0.0, lam: 0.99, ca_up: 0.05, silent_ltd: true}"]}
+      - {name: m6_rsdsp_k03, set: [rstdp.rule=sdsp, "rstdp.sdsp={kappa: 0.3, lam: 0.99, ca_up: 0.05, silent_ltd: true}"]}
+      - {name: m7_hw, set: ["hardware={enabled: true, bits: 16}"]}
+      - name: f1_conv2_dense
+        config: configs/phase0_eth80.yaml
+        args: [--load-weights, "A:/image recognition accelerator/work/campaigns/eth80_main/screen/e1_maps800/s0/weights.pt"]
+        set: [data.size=200, retina.threshold=15, n_layers=4, layers.2.maps=800, layers.2.k=800,
+              "learning.max_iter=[8000, 30000]", "layers.2.homeostasis={eta: 0.5, rho: 0.2}",
+              "rstdp={maps_per_class: 10, kernel: 8, threshold: 200, rates: {a_plus: 0.01, a_minus: 0.0035, p_minus: 0.01, p_plus: 0.0006}, dropout: 0.4, epochs: 40, eval_every: 5, input: {threshold_scale: 0.5, wta: false}}"]
+  - name: caltech_screen
+    defaults:
+      config: configs/phase0_caltech_mozafari.yaml
+      seeds: [0]
+      set: [validation.fraction=0.3, data.per_class=435, data.scale=0.5]
+    runs:
+      - {name: cm0_paper}
+      - {name: cm1_calcium, set: ["rstdp.calcium={lam: 0.9}"]}
+      - {name: cm2_calcium_teacher, set: ["rstdp.calcium={lam: 0.9}", rstdp.teacher=0.5]}
+      - {name: cm5_rsdsp, set: [rstdp.rule=sdsp, "rstdp.sdsp={kappa: 0.0, lam: 0.99, ca_up: 0.15, silent_ltd: true}"]}
+      - {name: cm7_hw, set: ["hardware={enabled: true, bits: 16}"]}
+  - name: eth_final55
+    from: eth_screen
+    top: 1
+    drop: [validation.]
+    seeds: [0, 1, 2]
+  - name: caltech_final
+    from: caltech_screen
+    top: 1
+    drop: [validation.]
+    seeds: [0, 1, 2]
+  - name: eth_final_loo
+    from: eth_screen
+    top: 1
+    drop: [validation.]
+    seeds: [0]
+    folds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    set: [data.protocol=loo, "data.fold={fold}"]
+  - name: replicate_mozafari
+    runs:
+      - {name: caltech_mozafari_paper, config: configs/phase0_caltech_mozafari.yaml, seeds: [0, 1, 2],
+         set: [data.per_class=435, data.scale=0.5]}

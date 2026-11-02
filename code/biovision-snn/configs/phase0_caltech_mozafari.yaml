@@ -1,0 +1,21 @@
+# Phase 0+ : Mozafari et al. 2018 network (fixed Gabor S1/C1 + R-STDP S2, first-spike decision), settings of
+# SpykeTorch's MozafariShallow (Caltech). Our data split (200 train images per class, rest test).
+base: phase0_caltech.yaml
+data: {train_per_class: 200, height: 0}       # original image size (SpykeTorch does not rescale)
+time: {T: 15}
+retina:
+  mode: gabor_c1
+  gabor_size: 5
+  orientations: [67.5, 112.5, 157.5, 202.5]
+  pool: [7, 6]
+  lateral_inhibition: [0.15, 0.12, 0.10, 0.07, 0.05]
+layers: []
+learning: {a_plus: 0.004, a_minus: 0.003, freeze_below: 0.01, max_iter: []}
+rstdp:
+  maps_per_class: 10
+  kernel: 17
+  threshold: 42
+  rates: {a_plus: 0.005, a_minus: 0.0025, p_minus: 0.005, p_plus: 0.0005}
+  dropout: 0.5
+  epochs: 300
+  eval_every: 10

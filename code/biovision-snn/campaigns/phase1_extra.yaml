@@ -1,0 +1,14 @@
+# Phase 1 error-point check (report section "convergence of the shift-and-add soft bound"): the hardware factor
+# min(w, 1 - w) / 2 has half the slope of w (1 - w) at the bounds, so S1 converges twice as slowly (C_l of conv1 after
+# 3000 updates: float 0.041, hardware 0.080). Same ETH-80 validation screen as phase1_main, colour retina with the
+# fixed contrast threshold (best SVM screen setting), one job at a time next to phase1_main.
+name: phase1_extra
+slots: 1
+max_jobs: 3
+stages:
+  - name: screen_x
+    defaults: {seeds: [0], set: [validation.instances=1, retina.l_min=-0.5, retina.per_channel=false]}
+    runs:
+      - {name: x_svm_slope, config: configs/phase1_eth80.yaml, set: [hardware.stab=slope]}
+      - {name: x_rl_c1_slope, config: configs/phase1_eth80_rlc1.yaml, set: [hardware.stab=slope]}
+      - {name: x_svm_s1long, config: configs/phase1_eth80.yaml, set: ["learning.max_iter=[8000, 6000, 8000, 8000]"]}

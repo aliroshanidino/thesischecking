@@ -1,0 +1,64 @@
+- config: configs/phase0_eth80.yaml
+  seeds: &id001
+  - 0
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}'
+  name: h1_hasizh
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667, brake:
+    2.0}'
+  name: h2_hasizh_brake
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]'
+  - 'layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}'
+  - layers.2.rule=sdsp
+  - 'layers.2.sdsp={kappa: 0.0, silent_ltd: true, ca_up: 0.5, ca_down: 0.02}'
+  name: h3_hasizh_sdsp
+- config: configs/phase0_eth80.yaml
+  seeds: *id001
+  set:
+  - validation.instances=1
+  - data.size=200
+  - retina.threshold=15
+  - n_layers=3
+  - layers.2.maps=800
+  - layers.2.k=800
+  - learning.max_iter=[8000, 30000]
+  - 'readout.variants=[{grid: 4, layers: [2], standardize: true}, {grid: 3, layers:
+    [2], standardize: true}, {grid: 4, layers: [2], standardize: true, flip: true},
+    {grid: 4, layers: [2], standardize: true, flip: true, C: auto}]'
+  - 'layers.2.homeostasis={eta: 0.5, rho: 0.2, calcium: true, lam: 0.9}'
+  name: h4_calcium_homeo

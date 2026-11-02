@@ -1,0 +1,38 @@
+[12:17:49] phase1_eth80_rlc1 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_adapt\screen_inv\a_rl_base\s0
+[12:17:55] data: 1312 train / 328 test images (6 s)
+[12:17:57] retina contrast thresholds per channel: [-2.06, -1.95, -2.06, -1.88, 0.63, -1.36]
+[12:20:48] encoded (179 s); input spikes per test image 8673
+[12:20:49] conv1: threshold calibrated to 52.69
+[12:21:00]   layer 0: iter 500, C_l = 0.2020
+[12:21:12]   layer 0: iter 1000, C_l = 0.2121
+[12:21:24]   layer 0: iter 1500, C_l = 0.1800
+[12:21:36]   layer 0: iter 2000, C_l = 0.1399
+[12:21:47]   layer 0: iter 2500, C_l = 0.1057
+[12:21:59]   layer 0: iter 3000, C_l = 0.0805
+[12:21:59] conv1: 3000 iterations, C_l = 0.0805, 72 s
+[12:22:29] decision-layer input: 317 spikes per image
+[12:22:29] decision threshold calibrated to 50.6
+[12:24:55] R-STDP epoch 10: train 0.6982 test 0.5305 (silent 0.012)
+[12:27:40] R-STDP epoch 20: train 0.8598 test 0.6433 (silent 0.012)
+[12:29:57] R-STDP epoch 30: train 0.9017 test 0.6524 (silent 0.012)
+[12:31:56] R-STDP epoch 40: train 0.9314 test 0.6921 (silent 0.012)
+[12:33:46] R-STDP epoch 50: train 0.9383 test 0.6982 (silent 0.012)
+[12:35:36] R-STDP epoch 60: train 0.9474 test 0.7134 (silent 0.012)
+[12:37:33] R-STDP epoch 70: train 0.9413 test 0.7165 (silent 0.012)
+[12:39:36] R-STDP epoch 80: train 0.9436 test 0.7073 (silent 0.012)
+[12:39:36] R-STDP selected epoch 60 (best train): test 0.7134; final 0.7073; best-test (optimistic) 0.7165
+[12:40:48] invariance (R-STDP) brightness x0.25: 0.7043 (unperturbed 0.7073)
+[12:41:24] invariance (R-STDP) brightness x0.5: 0.7073 (unperturbed 0.7073)
+[12:41:57] invariance (R-STDP) brightness x2: 0.5732 (unperturbed 0.7073)
+[12:42:30] invariance (R-STDP) brightness x4: 0.0549 (unperturbed 0.7073)
+[12:43:07] invariance (R-STDP) gamma 0.5: 0.1982 (unperturbed 0.7073)
+[12:43:44] invariance (R-STDP) gamma 2: 0.6372 (unperturbed 0.7073)
+[12:44:18] invariance (R-STDP) scale 0.7: 0.3262 (unperturbed 0.7073)
+[12:44:50] invariance (R-STDP) scale 0.85: 0.5671 (unperturbed 0.7073)
+[12:45:24] invariance (R-STDP) scale 1.2: 0.6250 (unperturbed 0.7073)
+[12:46:01] invariance (R-STDP) scale 1.4: 0.2835 (unperturbed 0.7073)
+[12:46:31] invariance (R-STDP) shift 4px: 0.7043 (unperturbed 0.7073)
+[12:47:05] invariance (R-STDP) shift 8px: 0.6799 (unperturbed 0.7073)
+[12:47:35] invariance (R-STDP) shift 16px: 0.5244 (unperturbed 0.7073)
+[12:47:41] feature figure conv1 skipped: AttributeError
+[12:47:42] done: test accuracy 0.7134 (paper None)

@@ -1,0 +1,23 @@
+- name: m0_paper
+  config: configs/phase0_eth80_mozafari.yaml
+  set:
+  - data.protocol=loo
+  - data.fold={fold}
+  args: []
+  seeds:
+  - 0
+  folds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  selected_from:
+    mean: 0.7957317073170732
+    runs: 1
+    variant: ''

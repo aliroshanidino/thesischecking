@@ -1,0 +1,16 @@
+- name: r_c1_pk_calcium
+  config: configs/phase1_eth80_rlc1.yaml
+  set:
+  - 'rstdp.calcium={lam: 0.9}'
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+  args: []
+  seeds:
+  - 0
+  - 1
+  - 2
+  folds: null
+  selected_from:
+    mean: 0.7134146341463414
+    runs: 1
+    variant: ''

@@ -1,0 +1,5 @@
+# Full HPC environment (installed offline from wheels, CLAUDE.md Section 3.5 Step D).
+# torch / torchvision are the CPU builds from https://download.pytorch.org/whl/cpu
+-r requirements-nontorch.txt
+torch
+torchvision

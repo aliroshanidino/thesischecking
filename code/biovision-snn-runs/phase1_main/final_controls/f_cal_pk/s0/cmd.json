@@ -1,0 +1,17 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase1_caltech4.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "retina.l_min=-0.5",
+ "--set",
+ "retina.per_channel=false",
+ "--set",
+ "readout.variants=[{grid: 4, layers: [6], standardize: true, flip: true}]",
+ "--set",
+ "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"
+]

@@ -1,0 +1,23 @@
+# ETH-80 classifier front, final test (Phase 0 closed quickly on user request, 2026-10-20). Selection on validation:
+# h1_hasizh (H-ASIZH threshold dynamics, theta0 = 2/3 x 60, gamma/alpha = 64; 800 conv2 maps) led the three screening
+# rounds (85.67 %) and its confirm split (85.67 / 91.46 %); readout chosen by the mean of the two validation splits:
+# grid 4, standardised, mirrored training images (88.26 %). The remaining confirm runs (s2_scales3, h3_hasizh_sdsp)
+# were stopped to close Phase 0. Test: 5 random objects per class for training, the other 5 for testing, 3 seeds.
+name: eth80_final
+slots: 3
+max_jobs: 3
+stages:
+  - name: final55
+    runs:
+      - name: h1_hasizh
+        config: configs/phase0_eth80.yaml
+        seeds: [0, 1, 2]
+        set:
+          - data.size=200
+          - retina.threshold=15
+          - n_layers=3
+          - layers.2.maps=800
+          - layers.2.k=800
+          - "learning.max_iter=[8000, 30000]"
+          - "layers.2.homeostasis={alpha: 0.015625, gamma: 1.0, theta0_scale: 0.6667}"
+          - "readout.variants=[{grid: 4, layers: [2], standardize: true, flip: true}, {grid: 4, layers: [2], standardize: true, flip: true, C: auto}, {grid: 4, layers: [2], standardize: true}, {grid: 1, layers: [2]}]"

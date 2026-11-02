@@ -1,0 +1,26 @@
+{
+ "dataset": "eth80",
+ "seed": 0,
+ "eval_split": "test",
+ "test_acc": 0.8659,
+ "train_acc": 1.0,
+ "variants": {
+  "g4_l2_std_flip": {
+   "svm": 0.8659,
+   "train": 1.0,
+   "spec": {
+    "grid": 4,
+    "layers": [
+     2
+    ],
+    "standardize": true,
+    "flip": true
+   }
+  }
+ },
+ "partial": "stopped after the selected readout (2026-10-20, D25): the extra readouts (C by CV, no flip, global max) were still selecting C on the CPU after 2 h; numbers from log.txt",
+ "spikes_per_image": {
+  "input": 3163.0
+ },
+ "overrides": []
+}

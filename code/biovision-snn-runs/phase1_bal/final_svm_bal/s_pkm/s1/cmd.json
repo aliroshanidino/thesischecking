@@ -1,0 +1,15 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase1_eth80.yaml",
+ "--seed",
+ "1",
+ "--set",
+ "retina.channels=pkm",
+ "--set",
+ "readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]",
+ "--set",
+ "invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85, 1.2, 1.4], shift: [4, 8, 16], n_test: 400}"
+]

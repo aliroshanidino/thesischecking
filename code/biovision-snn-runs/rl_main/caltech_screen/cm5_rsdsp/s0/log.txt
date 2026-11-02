@@ -1,0 +1,144 @@
+[16:27:31] phase0_caltech_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_main\caltech_screen\cm5_rsdsp\s0
+[16:27:33] data: 280 train / 120 test images (2 s)
+[16:27:37] encoded (6 s); input spikes per test image 702
+[16:27:37] decision-layer input: 702 spikes per image
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [64,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [65,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [2,0,0], thread: [30,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [2,0,0], thread: [31,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [125,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [126,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [127,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [0,0,0], thread: [59,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [0,0,0], thread: [60,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [0,0,0], thread: [61,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [0,0,0], thread: [62,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [0,0,0], thread: [63,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [0,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [1,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [2,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [3,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [4,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [5,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [6,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [7,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [8,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [9,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [10,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [11,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [12,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [13,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [14,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [15,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [16,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [17,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [18,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [19,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [20,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [21,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [22,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [23,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [24,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [25,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [26,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [27,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [28,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [29,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [30,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [31,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [32,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [33,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [34,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [35,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [36,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [37,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [38,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [39,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [40,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [41,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [42,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [43,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [44,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [45,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [46,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [47,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [48,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [49,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [50,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [51,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [52,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [53,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [54,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [55,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [56,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [57,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [58,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [59,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [60,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [61,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [62,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\cuda\IndexKernel.cu:111: block: [1,0,0], thread: [63,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 381, in <module>
+    main()
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 274, in main
+    probe, extra = rstdp_readout(cfg, model, tr_in, tr_y, te_in, te_y, gen, device, log)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\experiments\phase0.py", line 143, in rstdp_readout
+    tr = readout.train_epoch(x_tr, tr_y)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "A:\image recognition accelerator\biovision-snn\biovision\ventral\rstdp_global.py", line 103, in train_epoch
+    self._sdsp(x, winner, times, ok, rates)
+  File "A:\image recognition accelerator\biovision-snn\biovision\ventral\rstdp_global.py", line 128, in _sdsp
+    sdsp_update(self.layer.weight, x[0], [winner], times, self.last_pot, th, self.ca, [(ap, am)],
+  File "A:\image recognition accelerator\biovision-snn\biovision\learning\sdsp.py", line 73, in sdsp_update
+    v_before = torch.cat([trace.new_zeros(1, n), trace[:-1]]).t()         # [n, T]: V just before each step
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: device-side assert triggered
+Search for `cudaErrorAssert' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+[00:25:43] phase0_caltech_mozafari seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\rl_main\caltech_screen\cm5_rsdsp\s0
+[00:25:45] data: 280 train / 120 test images (2 s)
+[00:25:48] encoded (5 s); input spikes per test image 702
+[00:25:48] decision-layer input: 702 spikes per image
+[00:26:13] R-STDP epoch 10: train 0.8929 test 0.7583 (silent 0.000)
+[00:26:39] R-STDP epoch 20: train 0.9107 test 0.8167 (silent 0.000)
+[00:27:05] R-STDP epoch 30: train 1.0000 test 0.8917 (silent 0.000)
+[00:27:30] R-STDP epoch 40: train 0.9857 test 0.8833 (silent 0.000)
+[00:27:54] R-STDP epoch 50: train 0.9964 test 0.9083 (silent 0.000)
+[00:28:19] R-STDP epoch 60: train 1.0000 test 0.9083 (silent 0.000)
+[00:28:44] R-STDP epoch 70: train 1.0000 test 0.9250 (silent 0.000)
+[00:29:09] R-STDP epoch 80: train 1.0000 test 0.9583 (silent 0.000)
+[00:29:34] R-STDP epoch 90: train 0.9964 test 0.9667 (silent 0.000)
+[00:29:59] R-STDP epoch 100: train 1.0000 test 0.9750 (silent 0.000)
+[00:30:25] R-STDP epoch 110: train 1.0000 test 0.9583 (silent 0.000)
+[00:30:51] R-STDP epoch 120: train 1.0000 test 0.9417 (silent 0.000)
+[00:31:16] R-STDP epoch 130: train 1.0000 test 0.9500 (silent 0.000)
+[00:31:41] R-STDP epoch 140: train 1.0000 test 0.9583 (silent 0.000)
+[00:32:06] R-STDP epoch 150: train 1.0000 test 0.9667 (silent 0.000)
+[00:32:32] R-STDP epoch 160: train 0.9964 test 0.9667 (silent 0.000)
+[00:32:57] R-STDP epoch 170: train 0.9964 test 0.9667 (silent 0.000)
+[00:33:22] R-STDP epoch 180: train 1.0000 test 0.9583 (silent 0.000)
+[00:33:48] R-STDP epoch 190: train 0.9964 test 0.9583 (silent 0.000)
+[00:34:13] R-STDP epoch 200: train 0.9964 test 0.9667 (silent 0.000)
+[00:34:39] R-STDP epoch 210: train 0.9964 test 0.9750 (silent 0.000)
+[00:35:04] R-STDP epoch 220: train 0.9929 test 0.9750 (silent 0.000)
+[00:35:29] R-STDP epoch 230: train 0.9964 test 0.9667 (silent 0.000)
+[00:35:55] R-STDP epoch 240: train 0.9964 test 0.9667 (silent 0.000)
+[00:36:21] R-STDP epoch 250: train 0.9964 test 0.9833 (silent 0.000)
+[00:36:46] R-STDP epoch 260: train 0.9964 test 0.9917 (silent 0.000)
+[00:37:11] R-STDP epoch 270: train 0.9964 test 0.9917 (silent 0.000)
+[00:37:37] R-STDP epoch 280: train 0.9964 test 0.9917 (silent 0.000)
+[00:38:02] R-STDP epoch 290: train 0.9964 test 0.9917 (silent 0.000)
+[00:38:28] R-STDP epoch 300: train 0.9964 test 0.9917 (silent 0.000)
+[00:38:28] R-STDP selected epoch 180 (best train): test 0.9583; final 0.9917; best-test (optimistic) 0.9917
+A:\image recognition accelerator\biovision-snn\biovision\eval\visualize.py:58: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend()
+[00:38:29] done: test accuracy 0.9583 (paper 0.991)

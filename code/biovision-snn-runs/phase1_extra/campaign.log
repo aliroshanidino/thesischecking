@@ -1,0 +1,15 @@
+[2026-10-20 08:29:43] campaign phase1_extra: 1 stages, slots 1, max jobs 3
+[2026-10-20 08:29:43] stage screen_x: 3 groups, 3 runs to do
+[2026-10-20 08:29:43] start screen_x/x_svm_slope/s0
+[2026-10-20 08:29:43] start screen_x/x_rl_c1_slope/s0
+[2026-10-20 08:29:43] start screen_x/x_svm_s1long/s0
+[2026-10-20 08:29:43] campaign phase1_extra finished
+[2026-10-20 08:29:48] campaign phase1_extra: 1 stages, slots 1, max jobs 3
+[2026-10-20 08:29:48] stage screen_x: 3 groups, 3 runs to do
+[2026-10-20 08:29:48] start screen_x/x_svm_slope/s0
+[2026-10-20 08:44:38] done  screen_x/x_svm_slope/s0: validation acc 0.7652; best variant g4_l6_std 0.7744
+[2026-10-20 08:44:39] start screen_x/x_rl_c1_slope/s0
+[2026-10-20 09:13:29] done  screen_x/x_rl_c1_slope/s0: validation acc 0.6402; best variant  0.6402
+[2026-10-20 09:16:03] start screen_x/x_svm_s1long/s0
+[2026-10-20 09:37:53] done  screen_x/x_svm_s1long/s0: validation acc 0.8049; best variant g4_l4-6_std 0.8232
+[2026-10-20 09:38:23] campaign phase1_extra finished

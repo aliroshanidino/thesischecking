@@ -1,0 +1,46 @@
+# RL front, attention-gated learning (user, 2026-10-19; DECISIONS D24). v2: reward prediction error (AGREL's
+# delta = r - r_bar), hidden homeostasis during the attention phase, reward-only variant. v1 (raw reward sign) silenced
+# the hidden layer: 87 % of the decisions were silent after 40 epochs. a0 (control, no attention, v1): 48.17 %.
+name: rl_attention
+slots: 1
+max_jobs: 3
+stages:
+  - name: eth_screen
+    defaults:
+      config: configs/phase0_eth80_mozafari.yaml
+      seeds: [0]
+      set:
+        - validation.instances=1
+        - "rstdp.hidden={maps: 64, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter: 6000, homeostasis: {eta: 0.05, rho: 0.8}}"
+        - rstdp.kernel=9
+        - rstdp.threshold=30
+        - rstdp.epochs=80
+        - rstdp.eval_every=10
+        - "rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}"
+    runs:
+      - {name: a1_rpe}
+      - {name: a2_rpe_reward_only, set: ["rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true, punish: false}"]}
+      - {name: a0h_control, set: ["rstdp.attention={gate: 0.5, top: 0, scale: 0.0}"]}
+      - {name: a3_rpe_scale02_top8, set: ["rstdp.attention={gate: 0.5, top: 8, scale: 0.2, rpe: true}"]}
+      - {name: a4_rpe_h128, set: ["rstdp.hidden={maps: 128, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter: 6000, homeostasis: {eta: 0.05, rho: 0.8}}"]}
+  - name: caltech_screen
+    defaults:
+      config: configs/phase0_caltech_mozafari.yaml
+      seeds: [0]
+      set:
+        - validation.fraction=0.3
+        - data.per_class=435
+        - data.scale=0.5
+        - "rstdp.hidden={maps: 32, kernel: 5, threshold: 12, pool: [3, 3], pretrain_iter: 4000, homeostasis: {eta: 0.05, rho: 0.8}}"
+        - rstdp.kernel=5
+        - rstdp.threshold=20
+        - rstdp.epochs=80
+        - rstdp.eval_every=10
+        - "rstdp.attention={gate: 0.5, top: 16, scale: 0.5, rpe: true}"
+    runs:
+      - {name: ca1_rpe}
+      - {name: ca0h_control, set: ["rstdp.attention={gate: 0.5, top: 0, scale: 0.0}"]}
+      # decision kernel 7 covers the whole height of the 7 x 11 pooled map; threshold 10 for ~100 input spikes
+      # (kernel 5 / threshold 20 left 22 % of the decisions silent: 58.3 % with attention, 55.0 % without)
+      - {name: ca2_rpe_k7_th10, set: [rstdp.kernel=7, rstdp.threshold=10]}
+      - {name: ca2h_control_k7_th10, set: [rstdp.kernel=7, rstdp.threshold=10, "rstdp.attention={gate: 0.5, top: 0, scale: 0.0}"]}

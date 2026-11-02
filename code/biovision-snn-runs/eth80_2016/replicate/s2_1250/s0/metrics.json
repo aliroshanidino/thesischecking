@@ -1,0 +1,170 @@
+{
+ "dataset": "eth80",
+ "seed": 0,
+ "config_hash": "81137f40fb",
+ "device": {
+  "device": "cuda",
+  "torch": "2.14.1+cu126",
+  "host": "DESKTOP-P9HI9EH",
+  "threads": "8",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "cuda": "12.6"
+ },
+ "n_train": 1640,
+ "n_test": 1640,
+ "test_acc": 0.7707317073170732,
+ "train_acc": 1.0,
+ "confusion": [
+  [
+   154,
+   2,
+   8,
+   0,
+   9,
+   1,
+   0,
+   31
+  ],
+  [
+   0,
+   193,
+   2,
+   0,
+   8,
+   1,
+   1,
+   0
+  ],
+  [
+   0,
+   9,
+   116,
+   0,
+   28,
+   44,
+   1,
+   7
+  ],
+  [
+   2,
+   11,
+   1,
+   191,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   15,
+   32,
+   0,
+   124,
+   29,
+   0,
+   5
+  ],
+  [
+   0,
+   4,
+   54,
+   0,
+   33,
+   109,
+   0,
+   5
+  ],
+  [
+   0,
+   0,
+   5,
+   0,
+   6,
+   3,
+   187,
+   4
+  ],
+  [
+   0,
+   1,
+   5,
+   0,
+   6,
+   3,
+   0,
+   190
+  ]
+ ],
+ "final_C_l": {
+  "conv1": 0.08206816017627716
+ },
+ "iterations": {
+  "conv1": 150000
+ },
+ "train_time_s": {
+  "conv1": 15205.389812231064
+ },
+ "feature_images_per_s": 2.8781804037466268,
+ "sparsity_per_layer": {
+  "0_conv": 3.1337579617834397e-06
+ },
+ "spikes_per_image": {
+  "input": 4719.0,
+  "0_conv": 6.765
+ },
+ "spikes_per_image_input_plus_conv": 4725.765,
+ "paper_test_acc": 0.828,
+ "weights": 1280000,
+ "limit": null,
+ "readout": "svm_grid1",
+ "loaded_weights": null,
+ "eval_split": "test",
+ "overrides": [
+  "layers.0.maps=1250",
+  "learning.max_iter=[150000]",
+  "readout.variants=[{grid: 1, layers: [0], svm: ovo}, {grid: 1, layers: [0]}, {grid: 3, layers: [0], standardize: true}, {grid: 3, layers: [0], standardize: true, knn: 5}]"
+ ],
+ "variants": {
+  "g1_l0_ovo": {
+   "svm": 0.7707317073170732,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "layers": [
+     0
+    ],
+    "grid": 1,
+    "svm": "ovo"
+   }
+  },
+  "g1_l0": {
+   "svm": 0.7676829268292683,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "layers": [
+     0
+    ],
+    "grid": 1
+   }
+  },
+  "g3_l0_std": {
+   "svm": 0.8396341463414634,
+   "train": 1.0,
+   "C": 1.2,
+   "cv": null,
+   "spec": {
+    "layers": [
+     0
+    ],
+    "grid": 3,
+    "standardize": true,
+    "knn": 5
+   },
+   "knn": 0.8402439024390244
+  }
+ }
+}

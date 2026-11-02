@@ -1,0 +1,11 @@
+# Phase 1 (D28): the colour ventral stream with twice the maps in V4 and IT (S3 128, S4 256) for the classifier front.
+base: phase1_eth80.yaml
+layers:
+  - {type: conv, maps: 12, kernel: 5, padding: 2, threshold: auto, k: 12, radius: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}    # V1 S1
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C1
+  - {type: conv, maps: 32, kernel: 5, padding: 2, threshold: auto, k: 32, radius: 1, wta_groups: 2, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}  # V2
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C2
+  - {type: conv, maps: 128, kernel: 5, padding: 2, threshold: auto, k: 128, radius: 1, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}  # V4 S3
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C3
+  - {type: conv, maps: 256, kernel: 3, padding: 1, threshold: auto, k: 256, radius: 0, homeostasis: {eta_rel: 0.03125, rho: 0.03125, z: rate}}  # IT S4
+  - {type: pool, kernel: 2, stride: 2}                                                                       # C4

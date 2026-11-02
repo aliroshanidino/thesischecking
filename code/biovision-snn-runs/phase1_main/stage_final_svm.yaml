@@ -1,0 +1,18 @@
+- name: s_pk_fixed
+  config: configs/phase1_eth80.yaml
+  set:
+  - retina.l_min=-0.5
+  - retina.per_channel=false
+  - 'readout.variants=[{grid: 4, layers: [4, 6], standardize: true}]'
+  - 'invariance={brightness: [0.25, 0.5, 2, 4], gamma: [0.5, 2], scale: [0.7, 0.85,
+    1.2, 1.4], shift: [4, 8, 16], n_test: 400}'
+  args: []
+  seeds:
+  - 0
+  - 1
+  - 2
+  folds: null
+  selected_from:
+    mean: 0.7987804878048781
+    runs: 1
+    variant: g4_l4-6_std

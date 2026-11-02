@@ -1,0 +1,20 @@
+[2026-10-19 08:52:26] campaign phase0_misc: 4 stages, slots 1, max jobs 3
+[2026-10-19 08:52:26] stage mnist_final: 1 groups, 3 runs to do
+[2026-10-19 08:52:26] start mnist_final/mnist_g5/s0
+[2026-10-19 10:03:16] done  mnist_final/mnist_g5/s0: test acc 0.9854; best variant g4_l0-2_std 0.9856
+[2026-10-19 10:03:17] start mnist_final/mnist_g5/s1
+[2026-10-19 11:00:07] done  mnist_final/mnist_g5/s1: test acc 0.9845; best variant g4_l0-2_std 0.9853
+[2026-10-19 11:01:54] campaign phase0_misc: 2 stages, slots 1, max jobs 3
+[2026-10-19 11:01:54] stage mnist_final: 1 groups, 1 runs to do
+[2026-10-19 17:24:02] start mnist_final/mnist_g5/s2
+[2026-10-19 18:21:22] done  mnist_final/mnist_g5/s2: test acc 0.9857; best variant g4_l0-2_std 0.9858
+[2026-10-19 18:21:52] stage replicate: 1 groups, 3 runs to do
+[2026-10-19 19:20:34] start replicate/eth80_sdnn_paper/s0
+[2026-10-19 19:46:54] done  replicate/eth80_sdnn_paper/s0: test acc 0.4402; best variant g4_l2_std 0.7018
+[2026-10-19 23:20:40] start replicate/eth80_sdnn_paper/s1
+[2026-10-19 23:37:30] done  replicate/eth80_sdnn_paper/s1: test acc 0.4738; best variant g4_l2_std 0.6726
+[2026-10-19 23:44:10] start replicate/eth80_sdnn_paper/s2
+[2026-10-19 23:48:58] campaign phase0_misc: 2 stages, slots 1, max jobs 2
+[2026-10-19 23:48:58] stage mnist_final: 1 groups, 0 runs to do
+[2026-10-19 23:48:58] stage replicate: 1 groups, 1 runs to do
+[2026-10-19 23:54:28] campaign phase0_misc finished

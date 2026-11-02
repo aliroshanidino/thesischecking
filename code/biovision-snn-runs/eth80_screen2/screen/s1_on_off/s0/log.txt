@@ -1,0 +1,77 @@
+[14:46:53] phase0_eth80 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\eth80_screen2\screen\s1_on_off\s0
+[14:46:58] data: 1312 train / 328 test images (5 s)
+[14:47:22] encoded (29 s); input spikes per test image 16317
+[14:47:51]   layer 0: iter 500, C_l = 0.1791
+[14:48:19]   layer 0: iter 1000, C_l = 0.1221
+[14:48:47]   layer 0: iter 1500, C_l = 0.0567
+[14:49:16]   layer 0: iter 2000, C_l = 0.0245
+[14:49:44]   layer 0: iter 2500, C_l = 0.0121
+[14:49:56] conv1: 2700 iterations, C_l = 0.0096, 154 s
+[14:51:31]   layer 2: iter 500, C_l = 0.1662
+[14:52:21]   layer 2: iter 1000, C_l = 0.1744
+[14:53:10]   layer 2: iter 1500, C_l = 0.1821
+[14:53:58]   layer 2: iter 2000, C_l = 0.1894
+[14:54:46]   layer 2: iter 2500, C_l = 0.1962
+[14:55:34]   layer 2: iter 3000, C_l = 0.2024
+[14:56:22]   layer 2: iter 3500, C_l = 0.2082
+[14:57:10]   layer 2: iter 4000, C_l = 0.2132
+[14:57:58]   layer 2: iter 4500, C_l = 0.2175
+[14:58:46]   layer 2: iter 5000, C_l = 0.2212
+[14:59:35]   layer 2: iter 5500, C_l = 0.2239
+[15:00:23]   layer 2: iter 6000, C_l = 0.2258
+[15:01:12]   layer 2: iter 6500, C_l = 0.2267
+[15:01:58]   layer 2: iter 7000, C_l = 0.2268
+[15:02:42]   layer 2: iter 7500, C_l = 0.2257
+[15:03:27]   layer 2: iter 8000, C_l = 0.2236
+[15:04:16]   layer 2: iter 8500, C_l = 0.2207
+[15:04:57]   layer 2: iter 9000, C_l = 0.2169
+[15:05:36]   layer 2: iter 9500, C_l = 0.2124
+[15:06:15]   layer 2: iter 10000, C_l = 0.2072
+[15:06:54]   layer 2: iter 10500, C_l = 0.2016
+[15:07:33]   layer 2: iter 11000, C_l = 0.1954
+[15:08:11]   layer 2: iter 11500, C_l = 0.1888
+[15:08:50]   layer 2: iter 12000, C_l = 0.1820
+[15:09:29]   layer 2: iter 12500, C_l = 0.1748
+[15:10:08]   layer 2: iter 13000, C_l = 0.1675
+[15:10:46]   layer 2: iter 13500, C_l = 0.1601
+[15:11:25]   layer 2: iter 14000, C_l = 0.1527
+[15:12:04]   layer 2: iter 14500, C_l = 0.1453
+[15:12:42]   layer 2: iter 15000, C_l = 0.1380
+[15:13:21]   layer 2: iter 15500, C_l = 0.1308
+[15:14:00]   layer 2: iter 16000, C_l = 0.1237
+[15:14:39]   layer 2: iter 16500, C_l = 0.1169
+[15:15:19]   layer 2: iter 17000, C_l = 0.1103
+[15:15:57]   layer 2: iter 17500, C_l = 0.1039
+[15:16:36]   layer 2: iter 18000, C_l = 0.0978
+[15:17:15]   layer 2: iter 18500, C_l = 0.0920
+[15:17:53]   layer 2: iter 19000, C_l = 0.0864
+[15:18:32]   layer 2: iter 19500, C_l = 0.0811
+[15:19:11]   layer 2: iter 20000, C_l = 0.0761
+[15:19:50]   layer 2: iter 20500, C_l = 0.0715
+[15:20:28]   layer 2: iter 21000, C_l = 0.0670
+[15:21:08]   layer 2: iter 21500, C_l = 0.0628
+[15:21:46]   layer 2: iter 22000, C_l = 0.0589
+[15:22:25]   layer 2: iter 22500, C_l = 0.0552
+[15:23:04]   layer 2: iter 23000, C_l = 0.0517
+[15:23:42]   layer 2: iter 23500, C_l = 0.0485
+[15:24:21]   layer 2: iter 24000, C_l = 0.0455
+[15:25:00]   layer 2: iter 24500, C_l = 0.0427
+[15:25:39]   layer 2: iter 25000, C_l = 0.0400
+[15:26:18]   layer 2: iter 25500, C_l = 0.0376
+[15:26:57]   layer 2: iter 26000, C_l = 0.0352
+[15:27:36]   layer 2: iter 26500, C_l = 0.0331
+[15:28:15]   layer 2: iter 27000, C_l = 0.0311
+[15:28:54]   layer 2: iter 27500, C_l = 0.0292
+[15:29:32]   layer 2: iter 28000, C_l = 0.0275
+[15:30:11]   layer 2: iter 28500, C_l = 0.0259
+[15:30:50]   layer 2: iter 29000, C_l = 0.0244
+[15:31:29]   layer 2: iter 29500, C_l = 0.0230
+[15:32:07]   layer 2: iter 30000, C_l = 0.0217
+[15:32:07] conv2: 30000 iterations, C_l = 0.0217, 2532 s
+[15:37:02] SVM: train 1.0000, test 0.8232 [g4_l2_std]
+[15:37:23] SVM: train 1.0000, test 0.7896 [g3_l2_std]
+[15:39:59] SVM: train 1.0000, test 0.8232 [g4_l2_std_flip]
+[15:40:48] SVM: train 1.0000, test 0.8262 [g3_l2_std_flip]
+[16:57:15] C by cross-validation on the training set: 0.003 (cv acc 0.8498) [g4_l2_std_flip_Cauto]
+[16:59:27] SVM: train 1.0000, test 0.8323 [g4_l2_std_flip_Cauto]
+[16:59:58] done: test accuracy 0.8232 (paper 0.828)

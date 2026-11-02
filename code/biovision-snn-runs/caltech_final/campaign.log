@@ -1,0 +1,16 @@
+[2026-10-19 08:56:38] campaign caltech_final: 2 stages, slots 1, max jobs 3
+[2026-10-19 08:56:38] stage final: 1 groups, 3 runs to do
+[2026-10-19 09:56:42] start final/c5_conv1_8maps/s0
+[2026-10-19 10:01:32] done  final/c5_conv1_8maps/s0: test acc 0.9916; best variant g3_l2_std 0.9916
+[2026-10-19 10:36:23] start final/c5_conv1_8maps/s1
+[2026-10-19 10:45:43] done  final/c5_conv1_8maps/s1: test acc 0.9904; best variant g3_l2_std 0.9904
+[2026-10-19 11:00:08] start final/c5_conv1_8maps/s2
+[2026-10-19 11:13:28] done  final/c5_conv1_8maps/s2: test acc 0.9868; best variant g3_l2_std 0.9868
+[2026-10-19 11:13:58] stage val_combo: 1 groups, 3 runs to do
+[2026-10-19 14:46:44] start val_combo/c6_conv1_8_conv2_40/s0
+[2026-10-19 15:04:34] done  val_combo/c6_conv1_8_conv2_40/s0: validation acc 0.9917; best variant g3_l2_std 0.9917
+[2026-10-19 17:15:32] start val_combo/c6_conv1_8_conv2_40/s1
+[2026-10-19 17:24:22] done  val_combo/c6_conv1_8_conv2_40/s1: validation acc 1.0000; best variant g3_l2_std 1.0000
+[2026-10-19 18:21:19] start val_combo/c6_conv1_8_conv2_40/s2
+[2026-10-19 18:34:09] done  val_combo/c6_conv1_8_conv2_40/s2: validation acc 1.0000; best variant g3_l2_std 1.0000
+[2026-10-19 18:34:39] campaign caltech_final finished

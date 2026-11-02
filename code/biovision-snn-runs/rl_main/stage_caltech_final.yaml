@@ -1,0 +1,16 @@
+- name: cm1_calcium
+  config: configs/phase0_caltech_mozafari.yaml
+  set:
+  - data.per_class=435
+  - data.scale=0.5
+  - 'rstdp.calcium={lam: 0.9}'
+  args: []
+  seeds:
+  - 0
+  - 1
+  - 2
+  folds: null
+  selected_from:
+    mean: 0.9916666666666667
+    runs: 1
+    variant: ''

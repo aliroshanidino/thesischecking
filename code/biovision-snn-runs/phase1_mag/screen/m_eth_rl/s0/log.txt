@@ -1,0 +1,29 @@
+[14:11:52] phase1_eth80_rlc1 seed 0 on {'device': 'cuda', 'torch': '2.14.1+cu126', 'host': 'DESKTOP-P9HI9EH', 'threads': '8', 'gpu': 'NVIDIA GeForce RTX 3050 Laptop GPU', 'cuda': '12.6'} -> A:\image recognition accelerator\work\campaigns\phase1_mag\screen\m_eth_rl\s0
+[14:12:00] data: 1312 train / 328 test images (8 s)
+[14:13:03] encoded (71 s); input spikes per test image 2055
+[14:13:04] conv1: threshold calibrated to 18.83
+[14:13:14]   layer 0: iter 500, C_l = 0.1993
+[14:13:24]   layer 0: iter 1000, C_l = 0.1849
+[14:13:35]   layer 0: iter 1500, C_l = 0.1278
+[14:13:45]   layer 0: iter 2000, C_l = 0.0795
+[14:13:55]   layer 0: iter 2500, C_l = 0.0489
+[14:14:05]   layer 0: iter 3000, C_l = 0.0306
+[14:14:05] conv1: 3000 iterations, C_l = 0.0306, 62 s
+[14:14:25] decision-layer input: 327 spikes per image
+[14:14:25] decision threshold calibrated to 52.4
+[14:17:10] R-STDP epoch 10: train 0.7043 test 0.5762 (silent 0.015)
+[14:19:52] R-STDP epoch 20: train 0.8468 test 0.6494 (silent 0.015)
+[14:22:28] R-STDP epoch 30: train 0.8963 test 0.6524 (silent 0.015)
+[14:25:15] R-STDP epoch 40: train 0.9177 test 0.6890 (silent 0.015)
+[14:28:01] R-STDP epoch 50: train 0.9314 test 0.6951 (silent 0.015)
+[14:30:39] R-STDP epoch 60: train 0.9352 test 0.7012 (silent 0.015)
+[14:33:33] R-STDP epoch 70: train 0.9444 test 0.7195 (silent 0.015)
+[14:36:10] R-STDP epoch 80: train 0.9497 test 0.7195 (silent 0.015)
+[14:36:10] R-STDP selected epoch 80 (best train): test 0.7195; final 0.7195; best-test (optimistic) 0.7195
+[14:36:39] invariance (R-STDP) brightness x0.25: 0.7134 (unperturbed 0.7195)
+[14:36:54] invariance (R-STDP) brightness x0.5: 0.7226 (unperturbed 0.7195)
+[14:37:08] invariance (R-STDP) brightness x2: 0.5610 (unperturbed 0.7195)
+[14:37:22] invariance (R-STDP) brightness x4: 0.1006 (unperturbed 0.7195)
+[14:37:36] invariance (R-STDP) gamma 0.5: 0.2744 (unperturbed 0.7195)
+[14:37:51] invariance (R-STDP) gamma 2: 0.5732 (unperturbed 0.7195)
+[14:38:02] invariance (R-STDP) scale 0.7: 0.3140 (unperturbed 0.7195)

@@ -1,0 +1,3 @@
+stage,group,run,dataset,seed,eval_split,acc,best_variant,best_variant_acc,knn,rstdp_best_test_optimistic,rstdp_final,spikes_per_image,weights,images_per_s,train_time_s,n_train,n_test,overrides,path
+screen_rl_bal,x_rl_c1p2,s0,eth80,0,validation,0.640244,,0.640244,,0.6402439024390244,0.6402439024390244,15084.8,1800,0.93,64.4,1312,328,validation.instances=1,A:\image recognition accelerator\work\campaigns\phase1_bal\screen_rl_bal\x_rl_c1p2\s0
+screen_rl_bal,x_rl_c1p2_calcium,s0,eth80,0,validation,0.698171,,0.698171,,0.698170731707317,0.698170731707317,15084.8,1800,0.96,73.6,1312,328,validation.instances=1 rstdp.calcium={lam: 0.9},A:\image recognition accelerator\work\campaigns\phase1_bal\screen_rl_bal\x_rl_c1p2_calcium\s0

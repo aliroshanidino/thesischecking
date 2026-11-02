@@ -1,0 +1,12 @@
+[2026-10-19 10:06:03] campaign eth80_screen2: 1 stages, slots 1, max jobs 3
+[2026-10-19 10:06:03] stage screen: 4 groups, 4 runs to do
+[2026-10-19 14:46:44] start screen/s1_on_off/s0
+[2026-10-19 17:00:04] done  screen/s1_on_off/s0: validation acc 0.8232; best variant g4_l2_std_flip_Cauto 0.8323
+[2026-10-19 20:16:27] start screen/s2_scales3/s0
+[2026-10-19 22:14:17] done  screen/s2_scales3/s0: validation acc 0.8354; best variant g4_l2_std_flip 0.8506
+[2026-10-19 22:18:55] start screen/s3_maps1200/s0
+[2026-10-19 23:48:41] campaign eth80_screen2: 1 stages, slots 1, max jobs 2
+[2026-10-19 23:48:41] stage screen: 4 groups, 2 runs to do
+[2026-10-20 01:02:49] start screen/s4_on_off_scales3/s0
+[2026-10-20 02:34:39] done  screen/s4_on_off_scales3/s0: validation acc 0.7957; best variant g4_l2_std_flip 0.8140
+[2026-10-20 02:35:09] campaign eth80_screen2 finished

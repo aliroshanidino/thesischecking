@@ -1,0 +1,15 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase0_caltech_mozafari.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "validation.fraction=0.3",
+ "--set",
+ "data.per_class=435",
+ "--set",
+ "data.scale=0.5"
+]

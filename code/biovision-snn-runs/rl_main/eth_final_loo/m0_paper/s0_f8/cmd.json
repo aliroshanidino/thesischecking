@@ -1,0 +1,13 @@
+[
+ "A:\\image recognition accelerator\\biovision-snn\\.venv\\Scripts\\python.exe",
+ "-m",
+ "biovision.experiments.phase0",
+ "--config",
+ "configs/phase0_eth80_mozafari.yaml",
+ "--seed",
+ "0",
+ "--set",
+ "data.protocol=loo",
+ "--set",
+ "data.fold=8"
+]
