@@ -156,17 +156,13 @@ gaps9 = [('timer-alert-outline', 'No deterministic guarantees', 'Deadline, power
          ('brain', 'Neuromorphic is not mature', 'Far more efficient, yet still below YOLO-class accuracy on COCO.'),
          ('school-outline', 'No learning in the field', 'Devices drift and wear, yet dependable on-chip learning is rarely shown.')]
 for k, (ic, h, t) in enumerate(gaps9):
-    y = 1.38 + k * 0.895; first = k == 0
-    rrect(s9, 1.42, y, 6.62, 0.82, 'FDF4F4' if first else WHITE, 'E8B4B4' if first else LINE, 0.14, 1.25 if first else 0.75)
-    rect(s9, 1.42, y + 0.16, 0.06, 0.5, RED)
-    oval(s9, 1.62, y + 0.13, 0.56, 'E3EEF7'); picture(s9, f'{IC}/g9_{ic}.png', 1.72, y + 0.23, 0.36, 0.36)
-    tb(s9, 2.32, y + 0.06, 5.6, 0.36, [[(f'G{k+1}  ', {'size': 11, 'bold': True, 'color': RED}), (h, {'size': 15, 'bold': True, 'color': INK, 'font': HFONT})]])
-    tb(s9, 2.32, y + 0.42, 5.65, 0.38, [[(t, {'size': 12, 'color': INK})]])
-tb(s9, 1.42, 5.84, 6.62, 0.24, [[('Out of scope: security attacks and rare long-tail events.', {'size': 10.5, 'italic': True, 'color': MUTED})]])
-picture(s9, f'{FIG}/gap1.png', 8.25, 1.38, 4.67, 4.40)
-bn = rrect(s9, 1.42, 6.12, 11.5, 0.5, INK, None, 0.2)
-write(bn, [[('Close the loop on the device  —  ', {'size': 14, 'color': WHITE, 'font': HFONT}),
-            ('deterministic · within standards · dependable · still learning', {'size': 14, 'bold': True, 'color': AMBER, 'font': HFONT})]], align='c', anchor='m')
+    y = 1.42 + k * 1.0; first = k == 0
+    rrect(s9, 1.42, y, 11.5, 0.9, WHITE, LINE, 0.12, 0.75)
+    rect(s9, 1.42, y + 0.18, 0.07, 0.54, RED)
+    oval(s9, 1.72, y + 0.13, 0.64, 'E3EEF7'); picture(s9, f'{IC}/g9_{ic}.png', 1.83, y + 0.24, 0.42, 0.42)
+    tb(s9, 2.6, y + 0.07, 10.1, 0.42, [[(f'G{k+1}   ', {'size': 13, 'bold': True, 'color': RED}), (h, {'size': 18, 'bold': True, 'color': INK, 'font': HFONT})]])
+    tb(s9, 2.6, y + 0.48, 10.1, 0.38, [[(t, {'size': 14, 'color': INK})]])
+tb(s9, 1.42, 6.42, 11.5, 0.26, [[('Out of scope: security attacks and rare long-tail events.', {'size': 11, 'italic': True, 'color': MUTED})]])
 
 D.finalize([s1, s2, s3, s4, s5, s6, s7, s8, s9])
 prs.save(OUT); print('saved', OUT, len(prs.slides))
